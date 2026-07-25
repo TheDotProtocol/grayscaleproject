@@ -24,15 +24,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - run: pnpm install
       - run: pnpm --filter @grayscale/shared build
+      - run: pnpm --filter @grayscale/platform build
       - run: pnpm --filter @grayscale/agents build
 
       - name: Prisma migrate
@@ -46,6 +45,7 @@ jobs:
           DATABASE_URL: postgresql://grayscale:grayscale@localhost:5432/grayscale
 
       - run: pnpm --filter @grayscale/shared test
+      - run: pnpm --filter @grayscale/platform test
       - run: pnpm --filter @grayscale/backend test
       - run: pnpm typecheck
       - run: pnpm build

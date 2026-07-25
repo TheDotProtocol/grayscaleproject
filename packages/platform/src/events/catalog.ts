@@ -315,6 +315,16 @@ export const EVENT_CATALOG = {
   "organizational-signal.emitted": { version: 1, category: "organization", description: "Organizational signal emitted" },
   "organizational-signal.consumed": { version: 1, category: "organization", description: "Organizational signal consumed" },
   "organizational-insight.generated": { version: 1, category: "organization", description: "Explainable observation generated" },
+
+  // ─── Executive Notebook & Curiosity (Sprint 2 Phase B — ADR-028–030) ─
+  "executive.notebook.recorded": { version: 1, category: "executive", description: "Executive notebook entry recorded" },
+  "executive.notebook.versioned": { version: 1, category: "executive", description: "Executive notebook entry version appended" },
+  "executive.curiosity.question.asked": { version: 1, category: "executive", description: "Curiosity question generated" },
+  "executive.curiosity.investigation.started": { version: 1, category: "executive", description: "Curiosity investigation started" },
+  "executive.curiosity.investigation.completed": { version: 1, category: "executive", description: "Curiosity investigation completed" },
+  "executive.skeptic.pass.completed": { version: 1, category: "executive", description: "Skeptic pass completed on recommendation draft" },
+  "athena.discovery.completed": { version: 1, category: "executive", description: "Athena discovery pipeline completed" },
+  "athena.recommendation.drafted": { version: 1, category: "executive", description: "Athena recommendation draft with full explainability" },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

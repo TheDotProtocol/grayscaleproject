@@ -2,7 +2,7 @@
 
 **Project Grayscale — Production Readiness Gate for Executives**
 
-**Version:** 1.4 (Sprint 2 Phase A.4 — Organizational Intent & Context Runtime)  
+**Version:** 1.5 (Sprint 2 Phase B — Athena Reference Executive)  
 **Foundation:** v1.0.0-bedrock  
 **Reference Executive:** Athena (Sprint 2)  
 **Companion docs:** `EXECUTIVE_PHILOSOPHY.md`, `EXECUTIVE_MANIFESTO.md`, `EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
@@ -636,6 +636,56 @@ Each area is scored **PASS**, **WARN**, or **FAIL**. Any **FAIL** in a critical 
 | EXECUTIVES_ENABLED still false | Flag unchanged until Athena cert |
 
 **Critical:** YES — **final foundation gate before Athena implementation**
+
+---
+
+## Part V — Sprint 2 Phase B Mandatory Gates
+
+### 3.54 Executive Notebook Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Entries immutable | Append-only versioning enforced |
+| Separate from company memory | Distinct storage and API |
+| Graph/memory linked | Link refs persisted |
+| Searchable | Query by type and text |
+| NOT recommendations | entryType never produces recommendation output |
+
+**Critical:** YES
+
+### 3.55 Curiosity Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Question types supported | All 5 curiosity types |
+| Investigation workflow | open → investigating → resolved |
+| Never direct recommend | curiosityNeverRecommends verified |
+| Evidence linkage | Investigations store evidence refs |
+
+**Critical:** YES
+
+### 3.56 Skeptic Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All challenge types | 9 skeptic challenge types |
+| whatCouldMakeThisWrong present | Every pass result |
+| Blocking on missing evidence | No evidence → failed pass |
+| Confidence adjustment | adjustedConfidence computed |
+
+**Critical:** YES
+
+### 3.57 Athena Explainability Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Full explainability fields | All AthenaRecommendationExplainability fields |
+| isAthenaExplainabilityComplete | Runtime validation passes |
+| Discovery before recommend | Eligibility gate enforced |
+| Skeptic integrated | Every draft has skeptic pass |
+| Notebook + curiosity cited | IDs in explainability trace |
+
+**Critical:** YES — **Athena certification gate**
 
 ---
 

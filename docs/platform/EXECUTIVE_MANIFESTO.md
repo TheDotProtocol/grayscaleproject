@@ -2,7 +2,7 @@
 
 **Project Grayscale — Constitution of the Executive Layer**
 
-**Version:** 1.4 (Sprint 2 Phase A.4 — Organizational Intent & Context Runtime)  
+**Version:** 1.5 (Sprint 2 Phase B — Athena Reference Executive)  
 **Status:** Mandatory for all executives  
 **Effective:** Sprint 2 onward  
 **Foundation:** v1.0.0-bedrock (FROZEN)
@@ -1059,6 +1059,54 @@ Contracts: `OrganizationalSignalBusPort` (ADR-026), `OrganizationalInsightEngine
 | `organizational-insights` | Observations |
 | `historical-comparisons` | Period comparisons |
 | `snapshot-explorer` | Immutable snapshots |
+
+---
+
+## Part V — Sprint 2 Phase B: Athena Reference Executive
+
+*Extends Part IV. See `docs/executives/ATHENA.md` and `ARCHITECTURE_LOCK.md`.*
+
+---
+
+## 68. Executive Notebook
+
+Notebook ≠ Organizational Memory. Each executive owns a private notebook:
+
+Observations, hypotheses, assumptions, investigations, open questions, rejected ideas, lessons learned, watch items, reflections.
+
+Entries are immutable, versioned, searchable, graph-linked, memory-linked, event-sourced. **NOT recommendations.**
+
+Contract: `ExecutiveNotebookPort` (ADR-028).
+
+---
+
+## 69. Executive Curiosity Engine
+
+Executives continuously generate questions: Why? What changed? What is missing? What contradicts? What should be investigated?
+
+Questions → investigations → evidence → influences recommendations. **Curiosity never directly recommends.**
+
+Contract: `ExecutiveCuriosityEnginePort` (ADR-029).
+
+---
+
+## 70. Executive Skeptic Engine
+
+Before recommendation finalization, constitutional skeptic pass challenges: assumptions, missing evidence, alternatives, bias, contradictions, low confidence, dependency failures, policy conflicts, constraint violations.
+
+Every recommendation MUST contain **"What could make this wrong?"**
+
+Contract: `ExecutiveSkepticEnginePort` (ADR-030).
+
+---
+
+## 71. Athena — Reference Executive
+
+Athena implements the full constitutional pipeline: Discovery → Curiosity → Analysis → Skeptic → Explainability.
+
+Athena consumes complete CompanyContext via Context Runtime. Athena earns recommendations — never improvises. Athena is first to certify; all successors inherit her architecture.
+
+`EXECUTIVES_ENABLED=true` only after Athena certification (gate §3.37).
 
 ---
 

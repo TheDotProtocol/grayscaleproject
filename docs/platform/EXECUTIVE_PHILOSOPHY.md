@@ -2,7 +2,7 @@
 
 **Project Grayscale — Why Executives Exist**
 
-**Version:** 1.2 (Sprint 2 Phase A.4)  
+**Version:** 1.3 (Sprint 2 Phase B)  
 **Status:** Constitutional — immutable  
 **Effective:** Sprint 2 Phase A (Athena Discovery) onward  
 **Foundation:** Bedrock v1.0.0-bedrock (Certified, FROZEN)
@@ -294,6 +294,8 @@ Before any recommendation, executives must answer five questions via **complete 
 Executives inherit context, intent, history, signals, and observations. They never infer organizational purpose. They never lose historical context. They reason **only after complete context assembly**.
 
 The Context Runtime assembles ONE immutable context. Executives never access platform services directly.
+
+Executives maintain a private **Notebook** (≠ company memory), a **Curiosity Engine** (questions → investigations → evidence), and every recommendation passes a **Skeptic Engine** challenge before finalization.
 
 ---
 

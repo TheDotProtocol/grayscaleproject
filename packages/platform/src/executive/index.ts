@@ -16,3 +16,7 @@ export * from "./recommendation-lifecycle.js";
 export * from "./executive-council.js";
 export * from "./persona-engine.js";
 export * from "./experience-memory.js";
+export * from "./notebook.js";
+export * from "./curiosity-engine.js";
+export * from "./skeptic-engine.js";
+export * from "./athena-explainability.js";

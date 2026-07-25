@@ -106,6 +106,9 @@ model Company {
   platformHealthSnapshots PlatformHealthSnapshot[]
   readinessSnapshots    ReadinessSnapshot[]
   platformJobs          PlatformJob[]
+  executiveNotebookEntries ExecutiveNotebookEntry[]
+  executiveCuriosityQuestions ExecutiveCuriosityQuestion[]
+  executiveCuriosityInvestigations ExecutiveCuriosityInvestigation[]
 
   @@map("companies")
 }
@@ -910,6 +913,67 @@ model ExecutiveOutput {
   @@index([companyId, executiveId])
   @@index([instanceId])
   @@map("executive_outputs")
+}
+
+// ─── Executive Notebook & Curiosity (Sprint 2 Phase B) ────────
+
+model ExecutiveNotebookEntry {
+  id              String   @id @default(uuid())
+  companyId       String   @map("company_id")
+  executiveId     String   @map("executive_id")
+  entryType       String   @map("entry_type")
+  title           String
+  content         String
+  version         Int      @default(1)
+  previousEntryId String?  @map("previous_entry_id")
+  memoryIds       String[] @default([]) @map("memory_ids")
+  graphNodeIds    String[] @default([]) @map("graph_node_ids")
+  eventIds        String[] @default([]) @map("event_ids")
+  investigationIds String[] @default([]) @map("investigation_ids")
+  correlationId   String   @map("correlation_id")
+  sourceEventId   String?  @map("source_event_id")
+  metadata        Json     @default("{}")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId, executiveId, entryType])
+  @@index([companyId, executiveId, createdAt])
+  @@map("executive_notebook_entries")
+}
+
+model ExecutiveCuriosityQuestion {
+  id              String   @id @default(uuid())
+  companyId       String   @map("company_id")
+  executiveId     String   @map("executive_id")
+  questionType    String   @map("question_type")
+  question        String
+  context         String?
+  status          String   @default("open")
+  investigationId String?  @map("investigation_id")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId, executiveId, status])
+  @@map("executive_curiosity_questions")
+}
+
+model ExecutiveCuriosityInvestigation {
+  id           String    @id @default(uuid())
+  companyId    String    @map("company_id")
+  executiveId  String    @map("executive_id")
+  questionId   String    @map("question_id")
+  findings     String    @default("")
+  evidenceRefs String[]  @default([]) @map("evidence_refs")
+  status       String    @default("open")
+  startedAt    DateTime  @default(now()) @map("started_at")
+  completedAt  DateTime? @map("completed_at")
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId, executiveId, status])
+  @@map("executive_curiosity_investigations")
 }
 
 // ─── Integration & Plugin Platform (Phase 1.5F) ─────────────

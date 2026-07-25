@@ -20,6 +20,8 @@ import { GraphModule } from "./modules/graph/graph.module";
 import { IntelligenceModule } from "./modules/intelligence/intelligence.module";
 import { ExecutiveModule } from "./modules/executive/executive.module";
 import { ContextRuntimeModule } from "./modules/context-runtime/context-runtime.module";
+import { AthenaModule } from "./modules/athena/athena.module";
+import { ExecutiveNotebookModule } from "./modules/executive-notebook/executive-notebook.module";
 import { IntegrationPlatformModule } from "./modules/integration-platform/integration-platform.module";
 import { MissionControlModule } from "./modules/mission-control/mission-control.module";
 import { PlatformOperationsModule } from "./modules/platform-operations/platform-operations.module";
@@ -43,6 +45,8 @@ import { PlatformOperationsModule } from "./modules/platform-operations/platform
     IntelligenceModule,
     ExecutiveModule,
     ContextRuntimeModule,
+    AthenaModule,
+    ExecutiveNotebookModule,
     IntegrationPlatformModule,
     MissionControlModule,
     PlatformOperationsModule,
