@@ -13,6 +13,8 @@ Every executive inside Project Grayscale **MUST** inherit and comply with this d
 
 **Founder Constitution:** `FOUNDER_CONSTITUTION.md` — immutable; above this manifesto and all executives. Inherited via `CompanyContext.founderConstitution`.
 
+**Organizational Operating Model:** `ORGANIZATIONAL_OPERATING_MODEL.md` — immutable; defines how the organization itself reasons. Executives inherit via Bedrock-assembled context—they do not own or modify organizational intelligence.
+
 **Executive Organization (Sprint 2+):** Athena (reference), Atlas, Ledger, Mercury, Sentinel, Forge, Navigator, and all future executives inherit this manifesto.
 
 ---

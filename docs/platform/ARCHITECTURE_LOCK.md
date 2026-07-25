@@ -94,15 +94,17 @@ Unacceptable answers:
 ## 7. Constitutional Hierarchy
 
 ```
-ARCHITECTURE_LOCK.md     ← this document (immutable rules)
-EXECUTIVE_PHILOSOPHY.md  ← why
-EXECUTIVE_MANIFESTO.md   ← what
-ADR-001–027+             ← how (decisions)
-Platform contracts       ← interfaces
-Implementation           ← code
+ARCHITECTURE_LOCK.md              ← this document (immutable rules)
+FOUNDER_CONSTITUTION.md           ← founder–platform relationship
+ORGANIZATIONAL_OPERATING_MODEL.md ← organization reasoning (first-class system)
+EXECUTIVE_PHILOSOPHY.md           ← why
+EXECUTIVE_MANIFESTO.md            ← what
+ADR-001–034+                      ← how (decisions)
+Platform contracts                ← interfaces
+Implementation                    ← code
 ```
 
-When in conflict: Architecture Lock → Philosophy → Manifesto → ADR → Code.
+When in conflict: Architecture Lock → Founder Constitution → Organizational Operating Model → Philosophy → Manifesto → ADR → Code.
 
 ---
 

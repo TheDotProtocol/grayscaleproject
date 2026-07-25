@@ -304,6 +304,7 @@ Executives maintain a private **Notebook** (≠ company memory), a **Curiosity E
 | Document | Role |
 |----------|------|
 | `FOUNDER_CONSTITUTION.md` | **Founder–platform relationship** — above all executives |
+| `ORGANIZATIONAL_OPERATING_MODEL.md` | **Organization reasoning** — how the organization thinks (first-class system) |
 | `EXECUTIVE_PHILOSOPHY.md` | **Why** — this document (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** — behavioral constitution |
 | `EXECUTIVE_COMPLIANCE_SUITE.md` | **Deterministic certification** (ECS) |
@@ -316,7 +317,7 @@ Executives maintain a private **Notebook** (≠ company memory), a **Curiosity E
 | `TEMPORAL_INTELLIGENCE.md` | Historical evolution framework |
 | `FOUNDATION_CERTIFICATE.md` | Platform baseline (Bedrock) |
 
-When documents conflict, resolve upward: Founder Constitution → Philosophy → Manifesto → Specification → Certification.
+When documents conflict, resolve upward: Founder Constitution → Organizational Operating Model → Philosophy → Manifesto → Specification → Certification.
 
 Philosophy changes require ADR + governance + founder approval. **Founder Constitution changes require ADR + version bump + migration note + constitutional approval.**
 

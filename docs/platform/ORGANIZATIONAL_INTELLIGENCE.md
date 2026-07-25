@@ -25,6 +25,8 @@ Executives must eventually understand an organization the way an experienced fou
 
 This document defines how the nine **Organizational Intelligence engines** work together as permanent Core Platform capabilities inherited by every executive.
 
+**Constitutional companion:** `ORGANIZATIONAL_OPERATING_MODEL.md` defines *what the organization is* at a constitutional level. This document defines *how the nine engines implement organizational intelligence* technically.
+
 **Phase A.2 delivers contracts only.** No implementations. No LLM. No recommendations. `EXECUTIVES_ENABLED` remains `false`.
 
 ---

@@ -20,6 +20,8 @@ Athena is the first fully constitutional executive. It demonstrates:
 
 Atlas, Ledger, Sentinel, Mercury, Navigator, Forge, and all future executives **extend Athena through inheritance—not duplication**.
 
+All executives inherit the **Organizational Operating Model** (`ORGANIZATIONAL_OPERATING_MODEL.md`)—the organization reasons independently; executives consume, never own, organizational intelligence.
+
 ---
 
 ## Architecture Responsibilities
