@@ -303,8 +303,11 @@ Executives maintain a private **Notebook** (≠ company memory), a **Curiosity E
 
 | Document | Role |
 |----------|------|
+| `FOUNDER_CONSTITUTION.md` | **Founder–platform relationship** — above all executives |
 | `EXECUTIVE_PHILOSOPHY.md` | **Why** — this document (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** — behavioral constitution |
+| `EXECUTIVE_COMPLIANCE_SUITE.md` | **Deterministic certification** (ECS) |
+| `ATHENA_REFERENCE_IMPLEMENTATION.md` | **Reference executive blueprint** |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | **How** — technical contracts |
 | `EXECUTIVE_CERTIFICATION.md` | **When** — production readiness gates |
 | `ORGANIZATIONAL_INTELLIGENCE.md` | **How** — organizational intelligence master doc |
@@ -313,9 +316,9 @@ Executives maintain a private **Notebook** (≠ company memory), a **Curiosity E
 | `TEMPORAL_INTELLIGENCE.md` | Historical evolution framework |
 | `FOUNDATION_CERTIFICATE.md` | Platform baseline (Bedrock) |
 
-When documents conflict, resolve upward: Philosophy → Manifesto → Specification → Certification.
+When documents conflict, resolve upward: Founder Constitution → Philosophy → Manifesto → Specification → Certification.
 
-Philosophy changes require ADR + governance + founder approval. Implementation may evolve; purpose does not.
+Philosophy changes require ADR + governance + founder approval. **Founder Constitution changes require ADR + version bump + migration note + constitutional approval.**
 
 ---
 

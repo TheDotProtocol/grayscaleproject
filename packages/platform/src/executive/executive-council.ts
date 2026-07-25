@@ -1,5 +1,38 @@
 /** Executive Council — inter-executive collaboration via Bus (ADR-014) */
 
+export const COUNCIL_EXECUTIVES = [
+  "athena",
+  "atlas",
+  "ledger",
+  "mercury",
+  "sentinel",
+  "navigator",
+  "forge",
+] as const;
+
+export type CouncilExecutiveId = (typeof COUNCIL_EXECUTIVES)[number];
+
+export type CouncilBehaviorMode =
+  | "consensus"
+  | "debate"
+  | "conflict_detection"
+  | "evidence_comparison"
+  | "minority_opinion"
+  | "synthesis";
+
+export interface CouncilDeliberation {
+  id: string;
+  companyId: string;
+  recommendationId?: string;
+  mode: CouncilBehaviorMode;
+  participatingExecutives: CouncilExecutiveId[];
+  consensusReached: boolean;
+  minorityOpinions: { executiveId: string; position: string; evidenceRefs: string[] }[];
+  synthesizedRecommendation?: string;
+  correlationId: string;
+  createdAt: string;
+}
+
 export const COUNCIL_ACTIONS = [
   "approve",
   "disagree",

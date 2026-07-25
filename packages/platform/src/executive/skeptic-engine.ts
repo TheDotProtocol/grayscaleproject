@@ -37,6 +37,14 @@ export interface SkepticPassResult {
   whatCouldMakeThisWrong: string;
   adjustedConfidence: number;
   completedAt: string;
+  /** Part 9 mandatory skeptic questions — populated by Executive Skeptic Engine */
+  mandatoryQuestions?: {
+    whatCouldMakeThisWrong: string;
+    contradictingEvidence: string;
+    weakAssumptions: string;
+    missingInformation: string;
+    bestAlternative: string;
+  };
 }
 
 export interface ExecutiveSkepticEnginePort {

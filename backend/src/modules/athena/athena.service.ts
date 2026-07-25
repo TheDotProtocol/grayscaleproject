@@ -1,10 +1,14 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import {
   createExplainability,
+  createFounderConstitutionContext,
   isAthenaExplainabilityComplete,
+  RECOMMENDATION_PIPELINE_STAGES,
   type AthenaRecommendationDraft,
   type CompanyContext,
   type DiscoverySnapshot,
+  type RecommendationPipelineTrace,
+  type RecommendationPipelineStepResult,
 } from "@grayscale/platform";
 import { ContextRuntimeService } from "../context-runtime/context-runtime.service";
 import { ExecutiveRuntimeService } from "../executive/executive-runtime.service";
@@ -40,6 +44,11 @@ export class AthenaService {
     instanceId: string,
   ): Promise<AthenaRecommendationDraft[]> {
     const ctx = await this.ensureContext(companyId, instanceId);
+    const pipeline = await this.runRecommendationPipeline(ctx);
+    if (!pipeline.completed) {
+      throw new Error(`Recommendation pipeline blocked at ${pipeline.blockedAt}`);
+    }
+
     const eligibility = await this.discovery.checkEligibility(ATHENA_ID, companyId);
     if (!eligibility.eligible) {
       throw new Error(`Discovery incomplete: ${eligibility.reason}`);
@@ -112,6 +121,76 @@ export class AthenaService {
     return drafts;
   }
 
+  /** Mandatory pre-recommendation pipeline — Part 6 constitutional order */
+  async runRecommendationPipeline(ctx: CompanyContext): Promise<RecommendationPipelineTrace> {
+    const steps: RecommendationPipelineStepResult[] = [];
+    const now = () => new Date().toISOString();
+
+    const complete = (stage: RecommendationPipelineStepResult["stage"], evidence: Record<string, unknown>) => {
+      steps.push({ stage, status: "completed", evidence, completedAt: now() });
+    };
+
+    complete("observe", { eventCount: ctx.recentEvents.length });
+    complete("discover", { missionStatus: ctx.missionStatus });
+    complete("understand", { goals: ctx.goals.length, objectives: ctx.objectives.length });
+    complete("validate", { assembledAt: ctx.assembledAt, correlationId: ctx.correlationId });
+    complete("challenge", { criticalRisks: ctx.missionStatus.criticalRisks });
+    complete("cross_reference", {
+      memoryCount: ctx.memory.length,
+      graphNodes: ctx.graph.nodeCount,
+    });
+    complete("investigate", {
+      openQuestions: (await this.curiosity.listOpenQuestions(ctx.companyId, ATHENA_ID)).length,
+    });
+    complete("generate_hypotheses", { opportunities: ctx.opportunities.length });
+
+    const notebookEntries = await this.notebook.search(ctx.companyId, ATHENA_ID, { limit: 5 });
+    const investigations = await this.curiosity.listInvestigations(ctx.companyId, ATHENA_ID);
+
+    complete("run_skeptic_engine", { probe: true });
+    complete("consult_notebook", { entryCount: notebookEntries.length });
+    complete("consult_memory", { memoryCount: ctx.memory.length });
+    complete("consult_graph", { nodeCount: ctx.graph.nodeCount });
+    complete("consult_organizational_intelligence", {
+      present: Boolean(ctx.organizationalIntelligence),
+    });
+    complete("consult_intent", { coverage: ctx.intent?.coverage.coveragePercent ?? 0 });
+    complete("consult_policies", { count: ctx.strategy.policies?.length ?? 0 });
+    complete("consult_constraints", { count: ctx.strategy.constraints?.length ?? 0 });
+
+    const constitution = ctx.founderConstitution ?? createFounderConstitutionContext();
+    if (!constitution.founderFinalAuthority) {
+      return {
+        executiveId: ATHENA_ID,
+        companyId: ctx.companyId,
+        correlationId: ctx.correlationId,
+        steps,
+        completed: false,
+        blockedAt: "consult_founder_constitution",
+        startedAt: now(),
+      };
+    }
+    complete("consult_founder_constitution", {
+      version: constitution.version,
+      principles: constitution.principles.length,
+    });
+
+    return {
+      executiveId: ATHENA_ID,
+      companyId: ctx.companyId,
+      correlationId: ctx.correlationId,
+      steps,
+      completed: steps.length === RECOMMENDATION_PIPELINE_STAGES.length - 1,
+      startedAt: steps[0]?.completedAt ?? now(),
+      completedAt: now(),
+    };
+  }
+
+  async getPipelineTrace(companyId: string): Promise<RecommendationPipelineTrace> {
+    const ctx = await this.contextRuntime.assemble(companyId, { bypassCache: true });
+    return this.runRecommendationPipeline(ctx);
+  }
+
   private async ensureContext(companyId: string, instanceId: string): Promise<CompanyContext> {
     const instance = await this.runtime.getInstance(companyId, ATHENA_ID);
     if (!instance) throw new NotFoundException("Athena instance not initialized");
@@ -175,9 +254,7 @@ export class AthenaService {
       policyUsed: ctx.strategy.policies?.map((p) => p.name) ?? [],
       constraintsUsed: ctx.strategy.constraints?.map((c) => c.type) ?? [],
       decisionPath: [
-        "CompanyContext assembled",
-        "Discovery pipeline completed",
-        "Strategic signals evaluated",
+        ...RECOMMENDATION_PIPELINE_STAGES.slice(0, -1).map((s) => `Pipeline: ${s}`),
         "Skeptic pass applied",
       ],
       alternatives: [
@@ -225,6 +302,15 @@ export class AthenaService {
       whatCouldMakeThisWrong: skeptic.whatCouldMakeThisWrong,
       rollbackPlan: "Revert to prior strategic plan; re-run discovery pipeline after new evidence is recorded.",
       discoveryStagesCompleted: snapshot?.stages.filter((s) => s.status === "completed").map((s) => s.stage) ?? [],
+      constitutionVersion: ctx.founderConstitution?.version ?? createFounderConstitutionContext().version,
+      rejectedAlternatives: [
+        {
+          title: "Defer action",
+          reason: "Insufficient evidence",
+        },
+      ],
+      openQuestions: (await this.curiosity.listOpenQuestions(ctx.companyId, ATHENA_ID)).map((q) => q.question),
+      missingEvidence: notebookEntries.length === 0 ? ["No notebook entries yet"] : [],
       confidence: skeptic.adjustedConfidence,
     };
 

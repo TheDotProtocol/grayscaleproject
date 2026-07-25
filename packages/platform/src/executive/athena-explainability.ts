@@ -18,6 +18,10 @@ export interface AthenaRecommendationExplainability extends ExecutiveExplainabil
   trustScore?: number;
   rollbackPlan: string;
   discoveryStagesCompleted: string[];
+  constitutionVersion?: string;
+  rejectedAlternatives?: { title: string; reason: string }[];
+  openQuestions?: string[];
+  missingEvidence?: string[];
 }
 
 export interface AthenaRecommendationDraft {

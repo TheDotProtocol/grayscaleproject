@@ -20,6 +20,7 @@ import { PlatformCostObservatoryService } from "../platform-operations/platform-
 import { ReadinessReportGeneratorService } from "../platform-operations/readiness-report-generator.service";
 import { PlatformEvolutionService } from "../platform-operations/platform-evolution.service";
 import { SecurityObservatoryService } from "../platform-operations/security-observatory.service";
+import { AthenaWidgetDataService } from "./athena-widget-data.service";
 
 @Injectable()
 export class WidgetDataService implements WidgetDataPort {
@@ -44,6 +45,7 @@ export class WidgetDataService implements WidgetDataPort {
     private readonly foundationReadiness: ReadinessReportGeneratorService,
     private readonly evolution: PlatformEvolutionService,
     private readonly security: SecurityObservatoryService,
+    private readonly athenaWidgets: AthenaWidgetDataService,
   ) {}
 
   async fetchWidget(
@@ -98,6 +100,32 @@ export class WidgetDataService implements WidgetDataPort {
         return this.evolution.getCurrent();
       case "security-health":
         return this.security.assess(companyId);
+      case "athena-status":
+        return this.athenaWidgets.getStatus(companyId);
+      case "athena-discovery-progress":
+        return this.athenaWidgets.getDiscoveryProgress(companyId);
+      case "athena-trust-score":
+        return this.athenaWidgets.getTrustScore(companyId);
+      case "athena-certification-progress":
+        return this.athenaWidgets.getCertificationProgress(companyId);
+      case "athena-notebook-activity":
+        return this.athenaWidgets.getNotebookActivity(companyId);
+      case "athena-curiosity-investigations":
+        return this.athenaWidgets.getCuriosityInvestigations(companyId);
+      case "athena-skeptic-challenges":
+        return this.athenaWidgets.getSkepticChallenges(companyId);
+      case "athena-executive-health":
+        return this.athenaWidgets.getExecutiveHealth(companyId);
+      case "athena-explainability":
+        return this.athenaWidgets.getExplainability(companyId);
+      case "athena-recommendation-lifecycle":
+        return this.athenaWidgets.getRecommendationLifecycle(companyId);
+      case "athena-constitution-compliance":
+        return this.athenaWidgets.getConstitutionCompliance(companyId);
+      case "athena-automation-readiness":
+        return this.athenaWidgets.getAutomationReadiness(companyId);
+      case "athena-founder-overrides":
+        return this.athenaWidgets.getFounderOverrides(companyId);
       default:
         return null;
     }

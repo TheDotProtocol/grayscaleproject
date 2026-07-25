@@ -832,8 +832,11 @@ Store in `docs/engineering/certification/{executive-id}-{version}.md`
 
 | Document | Scope |
 |----------|-------|
+| `FOUNDER_CONSTITUTION.md` | **Founder–platform relationship** (above all executives) |
 | `EXECUTIVE_PHILOSOPHY.md` | **Why** executives exist (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** executives must be (constitution) |
+| `EXECUTIVE_COMPLIANCE_SUITE.md` | **Deterministic certification** (ECS) |
+| `ATHENA_REFERENCE_IMPLEMENTATION.md` | **Reference executive blueprint** |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | **How** to implement (technical contracts) |
 | `EXECUTIVE_CERTIFICATION.md` | **When** production-ready (this document — gates) |
 

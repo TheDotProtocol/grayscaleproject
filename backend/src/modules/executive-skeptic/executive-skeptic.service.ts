@@ -59,6 +59,19 @@ export class ExecutiveSkepticService implements ExecutiveSkepticEnginePort {
       passed: !blocking,
       challenges,
       whatCouldMakeThisWrong,
+      mandatoryQuestions: {
+        whatCouldMakeThisWrong,
+        contradictingEvidence: challenges.some((c) => c.type === "contradiction")
+          ? "Contradictory evidence identified in challenge pass"
+          : "No direct contradictions cited — monitor for new conflicting signals",
+        weakAssumptions: input.assumptions.length > 0
+          ? `Weakest assumption: ${input.assumptions[input.assumptions.length - 1]}`
+          : "No assumptions documented — this itself is a weakness",
+        missingInformation: challenges.some((c) => c.type === "missing_evidence")
+          ? "Supporting evidence is insufficient or absent"
+          : "Additional operational context may be needed for high-stakes decisions",
+        bestAlternative: "Defer action until additional evidence is gathered",
+      },
       adjustedConfidence,
       completedAt: new Date().toISOString(),
     };

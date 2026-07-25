@@ -8,6 +8,7 @@ import type { TemporalIntelligenceContext } from "../temporal/temporal-engine.js
 import type { OrganizationalSignalSnapshot } from "../signals/signal-bus.js";
 import type { OrganizationalInsightSnapshot } from "../insights/insight-engine.js";
 import type { ContextRuntimeMetadata } from "../context-runtime/runtime.js";
+import type { FounderConstitutionContext } from "./founder-constitution.js";
 import type { MemoryRecord } from "../memory/types.js";
 import type { GraphSummary } from "../graph/ports.js";
 import type { StrategicIntelligenceContext } from "../intelligence/context.js";
@@ -165,6 +166,9 @@ export interface CompanyContext {
   signals?: OrganizationalSignalSnapshot;
   insights?: OrganizationalInsightSnapshot;
   contextRuntime?: ContextRuntimeMetadata;
+
+  /** Founder Constitution — immutable principles inherited by all executives */
+  founderConstitution?: FounderConstitutionContext;
 }
 
 export interface CompanyContextAssemblerPort {

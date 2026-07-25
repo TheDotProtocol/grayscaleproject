@@ -20,3 +20,6 @@ export * from "./notebook.js";
 export * from "./curiosity-engine.js";
 export * from "./skeptic-engine.js";
 export * from "./athena-explainability.js";
+export * from "./founder-constitution.js";
+export * from "./compliance-suite.js";
+export * from "./recommendation-pipeline.js";

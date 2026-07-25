@@ -20,6 +20,7 @@
     "validate:foundation": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec tsx ../scripts/foundation-validation/run.ts",
     "validate:foundation:quick": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec tsx ../scripts/foundation-validation/run.ts --quick",
     "validate:foundation:offline": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec tsx ../scripts/foundation-validation/run.ts --offline",
+    "certify:sprint2": "pnpm --filter @grayscale/backend exec tsx ../scripts/sprint2-certification/run.ts",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:reset": "docker compose down -v && docker compose up -d",

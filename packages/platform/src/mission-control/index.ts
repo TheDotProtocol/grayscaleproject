@@ -11,3 +11,4 @@ export * from "./quick-actions.js";
 export * from "./executive-widgets.js";
 export * from "./organizational-widgets.js";
 export * from "./context-runtime-widgets.js";
+export * from "./athena-widgets.js";

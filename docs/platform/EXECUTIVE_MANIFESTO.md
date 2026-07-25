@@ -11,6 +11,8 @@ Every executive inside Project Grayscale **MUST** inherit and comply with this d
 
 **Philosophical north star:** `EXECUTIVE_PHILOSOPHY.md` — read first; rarely changes.
 
+**Founder Constitution:** `FOUNDER_CONSTITUTION.md` — immutable; above this manifesto and all executives. Inherited via `CompanyContext.founderConstitution`.
+
 **Executive Organization (Sprint 2+):** Athena (reference), Atlas, Ledger, Mercury, Sentinel, Forge, Navigator, and all future executives inherit this manifesto.
 
 ---

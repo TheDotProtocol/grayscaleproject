@@ -1,5 +1,24 @@
 import { Injectable } from "@nestjs/common";
 import type { MissionControlWidgetDefinition, WidgetInstanceConfig } from "@grayscale/platform";
+import { RESERVED_ATHENA_MC_WIDGETS } from "@grayscale/platform";
+
+const ATHENA_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = RESERVED_ATHENA_MC_WIDGETS.map(
+  (w, i) => ({
+    ...w,
+    refreshPolicy: { mode: "polling" as const, intervalSeconds: 60 },
+    permissions: [],
+    layout: {
+      defaultWidth: 1,
+      defaultHeight: "standard" as const,
+      order: 100 + i,
+      collapsible: true,
+      resizable: true,
+      exportable: true,
+    },
+    supportsMultipleInstances: false,
+    deepLinkPath: `/dashboard/mission-control?widget=${w.id}`,
+  }),
+);
 
 export const DEFAULT_WIDGETS: MissionControlWidgetDefinition[] = [
   {
@@ -234,6 +253,7 @@ export const DEFAULT_WIDGETS: MissionControlWidgetDefinition[] = [
     supportsMultipleInstances: false,
     deepLinkPath: "/dashboard/mission-control?widget=security-health",
   },
+  ...ATHENA_WIDGET_DEFINITIONS,
 ];
 
 @Injectable()

@@ -15,14 +15,22 @@ export class AthenaController {
   ) {}
 
   @Get("status")
-  status() {
+  async status(@Param("companyId") companyId: string) {
+    const instance = await this.runtime.getInstance(companyId, "athena");
     return {
       executiveId: "athena",
       role: "Chief Executive Strategist",
+      canonicalIdentity: "ATHENA",
+      instanceId: instance?.id ?? null,
       executivesEnabled: this.runtime.isEnabled(),
-      certification: "in_progress",
-      message: "Athena Phase B — discovery and draft recommendations available for certification testing",
+      certification: "Sprint-2",
+      message: "Athena reference executive — certified dormant until Founder activation",
     };
+  }
+
+  @Get("pipeline")
+  getPipeline(@Param("companyId") companyId: string) {
+    return this.athena.getPipelineTrace(companyId);
   }
 
   @Post("instances/:instanceId/discovery")

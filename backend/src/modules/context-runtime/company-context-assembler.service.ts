@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import {
   storedToPlatformEvent,
+  createFounderConstitutionContext,
   type CompanyContext,
   type ContextAssemblerResult,
   type ImmutableCompanyContext,
@@ -277,6 +278,7 @@ export class CompanyContextAssemblerService {
       temporal: temporalContext,
       signals: signalSnapshot,
       insights: insightSnapshot,
+      founderConstitution: createFounderConstitutionContext(),
     };
 
     assemblerResults.push({
