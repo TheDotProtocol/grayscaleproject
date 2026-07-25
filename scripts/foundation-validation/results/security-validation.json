@@ -1,0 +1,56 @@
+{
+  "tests": [
+    {
+      "name": "permission_escalation",
+      "attack": "Query memory records from another company",
+      "expected": "Zero rows returned or access denied",
+      "result": "blocked",
+      "durationMs": 0.8573329999999828
+    },
+    {
+      "name": "sandbox_escape",
+      "attack": "Access sandbox API for uninstalled plugin",
+      "expected": "Denied",
+      "result": "blocked",
+      "durationMs": 0.7084999999999582
+    },
+    {
+      "name": "replay_attack",
+      "attack": "Insert duplicate domain event ID",
+      "expected": "Unique constraint violation",
+      "result": "blocked",
+      "durationMs": 2.8094169999999963
+    },
+    {
+      "name": "token_abuse",
+      "attack": "Detect plaintext integration tokens",
+      "expected": "Security observatory detects plaintext",
+      "result": "blocked",
+      "durationMs": 0.6839590000000157
+    },
+    {
+      "name": "event_injection",
+      "attack": "Inject event with unknown type",
+      "expected": "Stored but isolated from catalog processing",
+      "result": "detected",
+      "durationMs": 2.87820899999997
+    },
+    {
+      "name": "credential_misuse",
+      "attack": "Detect expired integration credentials",
+      "expected": "Findings recorded",
+      "result": "detected",
+      "durationMs": 0.6693329999999946
+    },
+    {
+      "name": "plugin_isolation_bypass",
+      "attack": "Plugin with empty allowedApis cannot access memory.write",
+      "expected": "Denied at policy level",
+      "result": "blocked",
+      "durationMs": 0.5105419999999867
+    }
+  ],
+  "score": 94,
+  "passed": true,
+  "blockers": []
+}

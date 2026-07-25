@@ -1,0 +1,38 @@
+{
+  "name": "project-grayscale",
+  "version": "1.0.0-bedrock",
+  "private": true,
+  "description": "Project Grayscale — AI Company Operating System",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:web": "turbo run dev --filter=@grayscale/web",
+    "dev:api": "turbo run dev --filter=@grayscale/backend",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "db:generate": "pnpm --filter @grayscale/backend exec prisma generate",
+    "db:migrate": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec prisma migrate deploy",
+    "db:migrate:dev": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec prisma migrate dev",
+    "db:push": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec prisma db push",
+    "db:seed": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec prisma db seed",
+    "db:studio": "pnpm --filter @grayscale/backend exec prisma studio",
+    "validate:foundation": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec tsx ../scripts/foundation-validation/run.ts",
+    "validate:foundation:quick": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec tsx ../scripts/foundation-validation/run.ts --quick",
+    "validate:foundation:offline": "set -a && . ./.env && set +a && pnpm --filter @grayscale/backend exec tsx ../scripts/foundation-validation/run.ts --offline",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:reset": "docker compose down -v && docker compose up -d",
+    "setup:dev": "bash scripts/setup-dev.sh",
+    "setup:fresh": "bash scripts/setup-dev.sh --fresh"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.9.3",
+    "prettier": "^3.5.3"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

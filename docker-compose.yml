@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: grayscale-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: grayscale
+      POSTGRES_PASSWORD: grayscale
+      POSTGRES_DB: grayscale
+    ports:
+      - "5433:5432"
+    volumes:
+      - grayscale_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U grayscale -d grayscale"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: grayscale-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - grayscale_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  grayscale_pg_data:
+  grayscale_redis_data:

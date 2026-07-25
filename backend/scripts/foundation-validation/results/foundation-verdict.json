@@ -1,0 +1,9 @@
+{
+  "verdict": "NOT CERTIFIED",
+  "certified": false,
+  "validationScore": 47,
+  "blockers": [
+    "Database unavailable — live stress/recovery/performance validation not executed"
+  ],
+  "generatedAt": "2026-07-25T16:25:00.558Z"
+}

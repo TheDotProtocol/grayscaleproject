@@ -1,0 +1,13 @@
+node_modules
+dist
+.next
+.turbo
+.env
+.env.local
+*.log
+.DS_Store
+coverage
+.prisma
+apps/mobile/.dart_tool
+apps/mobile/build
+apps/desktop/src-tauri/target

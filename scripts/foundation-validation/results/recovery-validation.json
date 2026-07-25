@@ -1,0 +1,83 @@
+{
+  "tests": [
+    {
+      "name": "event_store_replay_dry_run",
+      "durationMs": 1.9285000000000423,
+      "success": true
+    },
+    {
+      "name": "snapshot_recovery",
+      "durationMs": 3.560624999999959,
+      "success": true
+    },
+    {
+      "name": "queue_recovery",
+      "durationMs": 1.3853750000000105,
+      "success": true
+    },
+    {
+      "name": "database_recovery",
+      "durationMs": 0.9302090000000476,
+      "success": true
+    },
+    {
+      "name": "connector_recovery",
+      "durationMs": 1.5225419999999872,
+      "success": true
+    },
+    {
+      "name": "plugin_recovery",
+      "durationMs": 1.0240830000000187,
+      "success": true
+    },
+    {
+      "name": "retry_recovery",
+      "durationMs": 1.292250000000024,
+      "success": true
+    },
+    {
+      "name": "replay_recovery",
+      "durationMs": 0.6415000000000077,
+      "success": true
+    }
+  ],
+  "operations": [
+    {
+      "type": "snapshot",
+      "status": "completed",
+      "id": "73280f53-1f83-4e14-8aff-3b7bf77262ed"
+    },
+    {
+      "type": "queue_recovery",
+      "status": "verified",
+      "id": "0 failures, 0 pending"
+    },
+    {
+      "type": "database_recovery",
+      "status": "consistent",
+      "id": "e:100 m:50 g:25"
+    },
+    {
+      "type": "connector_recovery",
+      "status": "verified",
+      "id": "0 integrations, 0 snapshots"
+    },
+    {
+      "type": "plugin_recovery",
+      "status": "verified",
+      "id": "0 plugins"
+    },
+    {
+      "type": "retry",
+      "status": "completed",
+      "id": "d0785bd1-1fe6-4074-81bc-5847ba0ee9a3"
+    },
+    {
+      "type": "replay",
+      "status": "completed",
+      "id": "e73458be-8030-4991-8e40-4b1d0e7ee90d"
+    }
+  ],
+  "passed": true,
+  "blockers": []
+}

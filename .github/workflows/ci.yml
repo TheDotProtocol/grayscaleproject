@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: grayscale
+          POSTGRES_PASSWORD: grayscale
+          POSTGRES_DB: grayscale
+        ports: ["5432:5432"]
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install
+      - run: pnpm --filter @grayscale/shared build
+      - run: pnpm --filter @grayscale/agents build
+
+      - name: Prisma migrate
+        run: pnpm --filter @grayscale/backend exec prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://grayscale:grayscale@localhost:5432/grayscale
+
+      - name: Prisma generate
+        run: pnpm --filter @grayscale/backend exec prisma generate
+        env:
+          DATABASE_URL: postgresql://grayscale:grayscale@localhost:5432/grayscale
+
+      - run: pnpm --filter @grayscale/shared test
+      - run: pnpm --filter @grayscale/backend test
+      - run: pnpm typecheck
+      - run: pnpm build

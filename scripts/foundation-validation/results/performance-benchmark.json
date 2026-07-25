@@ -1,0 +1,116 @@
+{
+  "benchmarks": {
+    "memory_engine_search": {
+      "p50": 2.594875000000002,
+      "p95": 5.225542000000019,
+      "p99": 5.225542000000019,
+      "samples": 15,
+      "success": true
+    },
+    "knowledge_graph_summary": {
+      "p50": 1.4807500000000005,
+      "p95": 6.876916999999992,
+      "p99": 6.876916999999992,
+      "samples": 15,
+      "success": true
+    },
+    "knowledge_graph_neighbors": {
+      "p50": 3.6774580000000014,
+      "p95": 11.97162499999996,
+      "p99": 11.97162499999996,
+      "samples": 15,
+      "success": true
+    },
+    "mission_control_aggregation": {
+      "p50": 1.8185419999999795,
+      "p95": 28.551375000000007,
+      "p99": 28.551375000000007,
+      "samples": 15,
+      "success": true
+    },
+    "global_search_simulation": {
+      "p50": 1.8467919999999935,
+      "p95": 25.571542000000022,
+      "p99": 25.571542000000022,
+      "samples": 15,
+      "success": true
+    },
+    "timeline_query": {
+      "p50": 1.4407919999999876,
+      "p95": 4.551917000000003,
+      "p99": 4.551917000000003,
+      "samples": 15,
+      "success": true
+    },
+    "platform_health_compute": {
+      "p50": 1.597249999999974,
+      "p95": 28.616083000000003,
+      "p99": 28.616083000000003,
+      "samples": 15,
+      "success": true
+    },
+    "pulse_v2_aggregation": {
+      "p50": 1.7065000000000055,
+      "p95": 24.232332999999983,
+      "p99": 24.232332999999983,
+      "samples": 15,
+      "success": true
+    },
+    "integration_sync_status": {
+      "p50": 1.5031659999999647,
+      "p95": 31.771749999999997,
+      "p99": 31.771749999999997,
+      "samples": 15,
+      "success": true
+    }
+  },
+  "baselines": {
+    "memory_engine_search": {
+      "targetP95Ms": 500,
+      "actualP95Ms": 5,
+      "pass": true
+    },
+    "knowledge_graph_summary": {
+      "targetP95Ms": 300,
+      "actualP95Ms": 7,
+      "pass": true
+    },
+    "knowledge_graph_neighbors": {
+      "targetP95Ms": 400,
+      "actualP95Ms": 12,
+      "pass": true
+    },
+    "mission_control_aggregation": {
+      "targetP95Ms": 800,
+      "actualP95Ms": 29,
+      "pass": true
+    },
+    "global_search_simulation": {
+      "targetP95Ms": 600,
+      "actualP95Ms": 26,
+      "pass": true
+    },
+    "timeline_query": {
+      "targetP95Ms": 300,
+      "actualP95Ms": 5,
+      "pass": true
+    },
+    "platform_health_compute": {
+      "targetP95Ms": 400,
+      "actualP95Ms": 29,
+      "pass": true
+    },
+    "pulse_v2_aggregation": {
+      "targetP95Ms": 300,
+      "actualP95Ms": 24,
+      "pass": true
+    },
+    "integration_sync_status": {
+      "targetP95Ms": 500,
+      "actualP95Ms": 32,
+      "pass": true
+    }
+  },
+  "passed": true,
+  "blockers": []
+}
