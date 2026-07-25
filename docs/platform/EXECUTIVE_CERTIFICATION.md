@@ -2,10 +2,10 @@
 
 **Project Grayscale — Production Readiness Gate for Executives**
 
-**Version:** 1.0  
+**Version:** 1.2 (Sprint 2 Phase A.1 — Athena Discovery Architecture)  
 **Foundation:** v1.0.0-bedrock  
 **Reference Executive:** Athena (Sprint 2)  
-**Companion docs:** `EXECUTIVE_MANIFESTO.md`, `EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
+**Companion docs:** `EXECUTIVE_PHILOSOPHY.md`, `EXECUTIVE_MANIFESTO.md`, `EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
 
 No executive may enter production until certified. Certification is **binary**: PASS or FAIL. Partial certification is not recognized.
 
@@ -31,8 +31,10 @@ Before certification begins:
 | Prerequisite | Status |
 |--------------|--------|
 | Foundation certified (Bedrock) | Required |
-| `EXECUTIVE_MANIFESTO.md` accepted | Required |
+| `EXECUTIVE_PHILOSOPHY.md` accepted | Required |
+| `EXECUTIVE_MANIFESTO.md` v1.1 accepted | Required |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` accepted | Required |
+| Discovery Mode complete (Athena) | Required before recommendation generation |
 | Executive implementation complete | Required |
 | All unit/integration tests written | Required |
 
@@ -265,6 +267,187 @@ Each area is scored **PASS**, **WARN**, or **FAIL**. Any **FAIL** in a critical 
 
 ---
 
+## Part II — Sprint 2 Phase A Mandatory Gates
+
+*The following certification areas extend Part I. All Part I areas remain required.*
+
+### 3.22 Identity Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Executive ID immutable | UUID never changes across lifecycle |
+| Canonical name stable | Internal name distinct from display name |
+| Identity record complete | All manifesto §40 fields populated |
+| Display name ≠ identity | Audit trails use Executive ID only |
+
+**Critical:** YES
+
+### 3.23 Trust Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Trust metrics computed | Accuracy, acceptance, success rates tracked |
+| Trust Score displayed | Mission Control executive-trust widget |
+| New executive starts at baseline | No assumed trust |
+| Trust attributed to Executive ID | Not display name |
+
+**Critical:** YES
+
+### 3.24 Experience Memory Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Separate from Company Memory | Distinct storage and provenance |
+| Lessons learned recorded | On recommendation outcome |
+| Corrections captured | Founder feedback persisted |
+| Never overwrites company memory | Write isolation verified |
+
+**Critical:** YES
+
+### 3.25 Identity Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Identity read-only to executive | Mutation attempts denied |
+| Presentation adapts to identity | Tone, language, accessibility tested |
+| Reasoning unchanged by persona | Same inputs → same recommendation substance |
+| Identity Engine inherited | All executives receive identity automatically |
+| Separate from ECM | Identity prefs ≠ behavioural inference |
+
+**Critical:** YES
+
+### 3.26 Executive Cognitive Model Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| ECM separate from Memory | Distinct storage and provenance |
+| Evidence required for updates | Updates without evidence rejected |
+| No assumption-based inference | LLM-only ECM updates fail certification |
+| Executives consume ECM read-only | Via CompanyContext only |
+| Confidence reflects evidence volume | Low evidence → low confidence surfaced |
+
+**Critical:** YES
+
+### 3.27 Discovery Mode Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Discovery pipeline enforced | No recommend before eligibility |
+| Discovery state tracked | Lifecycle records `discovering` phase |
+| All 13 discovery stages logged | Observe through recommendation eligibility |
+| Premature recommend blocked | Certification test rejects early output |
+
+**Critical:** YES
+
+### 3.28 Policy Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Active policies retrieved | Via CompanyContext |
+| Policy evaluation in trace | Every recommendation |
+| No invented policies | Hallucination test fails certification |
+
+**Critical:** YES
+
+### 3.29 Constraint Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Hard constraints block | Cannot override |
+| Constraint evaluation in trace | Documented in explainability |
+| Conflict surfaced to founder | Not silently ignored |
+
+**Critical:** YES
+
+### 3.30 Executive Council Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Council messages via Bus only | No direct calls |
+| Approve/disagree/delegate/escalate | All actions typed and auditable |
+| Dissent requires evidence | Empty disagree rejected |
+| Council events in catalog | executive.council.* registered |
+
+**Critical:** NO (WARN until multi-executive; YES for Athena council-ready)
+
+### 3.31 Recommendation Lifecycle Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All lifecycle states supported | observed → lessons_learned |
+| State transitions emit events | No silent skips |
+| Founder review required | submitted → approved/rejected |
+| measured → lessons_learned | Outcome loop closed |
+
+**Critical:** YES
+
+### 3.32 Executive Humility Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Unknown response when evidence missing | Test scenario passes |
+| Deferred response when confidence low | Below threshold → defer |
+| Humility outputs in Mission Control | Visible, not errors |
+| No fabricated certainty | Stress test passes |
+
+**Critical:** YES
+
+### 3.33 Persona Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Display name customization works | UI shows founder name |
+| Internal identity unchanged | Logs show canonical name |
+| Reasoning pipeline identical | Same substance across personas |
+
+**Critical:** YES
+
+### 3.34 Athena Pipeline Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Full pipeline executed | All 12 stages produce trace artifacts |
+| No stage skipped | Static/runtime probe |
+| Not "chat with memory" | No direct LLM-only path to recommend |
+
+**Critical:** YES
+
+### 3.35 Explainability Depth Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Memories cited | IDs resolvable |
+| Events cited | IDs resolvable |
+| Graph nodes cited | IDs resolvable |
+| Policies/constraints in trace | Evaluation chain complete |
+| Alternatives documented | With rejection rationale |
+
+**Critical:** YES
+
+### 3.36 Mission Control Executive Widgets
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Minimum widget set registered | identity-profile, discovery-progress, executive-trust, recommendation-readiness |
+| ADR-014 widget IDs reserved | All 10 discovery widgets in catalog |
+| Widget data via CompanyContext | No bypass |
+| Independent from platform-health | Separate widgets |
+
+**Critical:** NO (WARN allowed for Phase A partial; YES before production)
+
+### 3.37 EXECUTIVES_ENABLED Gate
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All critical areas PASS | Zero critical FAILs |
+| Certification score ≥ 90 | Computed across all areas |
+| Governance approval recorded | executive.activation.approved |
+| Only then: EXECUTIVES_ENABLED=true | Flag flip is final gate |
+
+**Critical:** YES — **no executive activates without this gate**
+
+---
+
 ## 4. Certification Score
 
 ```
@@ -312,6 +495,11 @@ Certification **FAILS** if any of:
 | Critical security finding | Block until remediated |
 | Breaking Foundation API | Block until ADR + fix |
 | EXECUTIVES_ENABLED=true before certification | Block + revert flag |
+| Discovery incomplete before recommendations | Block until discovery done |
+| Persona changes recommendation substance | Block + manifesto violation |
+| Trust score assumed without metrics | Block until trust engine live |
+| Skipped pipeline stage (Athena) | Block until pipeline complete |
+| Philosophy violation (false certainty) | Block + review |
 
 Failed executives remain **registered** but **not activatable**.
 
@@ -338,12 +526,20 @@ Athena MUST be the **first certified executive** and sets the bar for all succes
 Athena-specific gates:
 
 - CompanyContext-only inputs verified by static analysis + runtime probes
-- All 18+ mandatory recommendation output fields present
-- 11 Mission Control widgets operational
-- Founder preference adaptation without preference mutation
+- All mandatory recommendation output fields present (see Manifesto §50)
+- Full 12-stage reasoning pipeline with trace artifacts
+- Discovery Mode complete before first recommendation
+- Executive Trust Score operational
+- Executive Experience Memory separate from Company Memory
+- Identity Engine inherited; ECM evidence-governed; persona does not alter reasoning
+- Executive Humility responses tested
+- Recommendation lifecycle state machine complete
+- Mission Control executive widgets (minimum set)
 - Executive Bus coordination patterns documented for replication
 
 **No second executive may certify until Athena passes.**
+
+**EXECUTIVES_ENABLED=true** is permitted ONLY after Athena certification approval.
 
 ---
 
@@ -395,6 +591,7 @@ Store in `docs/engineering/certification/{executive-id}-{version}.md`
 
 | Document | Scope |
 |----------|-------|
+| `EXECUTIVE_PHILOSOPHY.md` | **Why** executives exist (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** executives must be (constitution) |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | **How** to implement (technical contracts) |
 | `EXECUTIVE_CERTIFICATION.md` | **When** production-ready (this document — gates) |

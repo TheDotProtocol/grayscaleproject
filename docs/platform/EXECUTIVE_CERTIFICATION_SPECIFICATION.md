@@ -6,6 +6,8 @@
 **Status:** Mandatory  
 **Effective:** Upon Foundation completion (Phase 1.5H)
 
+**Constitutional hierarchy:** Read `EXECUTIVE_PHILOSOPHY.md` (why) before this specification (how). Manifesto v1.2 (Sprint 2 Phase A.1) extends behavioral rules; platform contracts in `@grayscale/platform/src/executive/` define discovery architecture ports (ADR-014).
+
 No executive implementation may begin until this specification is accepted and the Platform Readiness Report verdict is `READY FOR SPRINT 2`.
 
 ---

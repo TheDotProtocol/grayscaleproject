@@ -3,6 +3,7 @@
 export const EXECUTIVE_LIFECYCLE_STATES = [
   "created",
   "initializing",
+  "discovering",
   "idle",
   "waiting",
   "thinking",
@@ -23,8 +24,9 @@ export const VALID_LIFECYCLE_TRANSITIONS: Record<
   ExecutiveLifecycleState[]
 > = {
   created: ["initializing", "archived"],
-  initializing: ["idle", "failed", "archived"],
-  idle: ["waiting", "thinking", "executing", "paused", "archived"],
+  initializing: ["discovering", "idle", "failed", "archived"],
+  discovering: ["idle", "blocked", "failed", "archived"],
+  idle: ["waiting", "thinking", "discovering", "executing", "paused", "archived"],
   waiting: ["idle", "thinking", "blocked", "archived"],
   thinking: ["idle", "needs_approval", "executing", "blocked", "failed"],
   blocked: ["idle", "waiting", "failed"],

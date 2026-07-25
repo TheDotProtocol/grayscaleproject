@@ -196,6 +196,48 @@ export const EVENT_CATALOG = {
     description: "Recovery operation completed",
   },
   "slo.breach": { version: 1, category: "operations", description: "SLO breach detected" },
+
+  // ─── Executive Discovery (Sprint 2 Phase A.1 — ADR-014, reserved) ─
+  "identity.updated": {
+    version: 1,
+    category: "executive",
+    description: "Operator identity profile updated",
+  },
+  "cognitive-model.evidence.recorded": {
+    version: 1,
+    category: "executive",
+    description: "ECM evidence recorded — behavioural update applied",
+  },
+  "discovery.started": {
+    version: 1,
+    category: "executive",
+    description: "Executive entered discovery mode",
+  },
+  "discovery.stage.completed": {
+    version: 1,
+    category: "executive",
+    description: "Discovery pipeline stage completed",
+  },
+  "discovery.eligible": {
+    version: 1,
+    category: "executive",
+    description: "Discovery complete — recommendation mode eligible",
+  },
+  "trust.score.updated": {
+    version: 1,
+    category: "executive",
+    description: "Executive trust score recalculated",
+  },
+  "recommendation.lifecycle.transitioned": {
+    version: 1,
+    category: "recommendation",
+    description: "Recommendation lifecycle state transition",
+  },
+  "executive.council.message": {
+    version: 1,
+    category: "executive",
+    description: "Executive council message sent",
+  },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

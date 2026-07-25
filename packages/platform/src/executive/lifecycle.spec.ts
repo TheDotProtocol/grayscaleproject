@@ -4,7 +4,8 @@ import { canTransition } from "./lifecycle.js";
 describe("executive lifecycle", () => {
   it("allows valid transitions", () => {
     expect(canTransition("created", "initializing")).toBe(true);
-    expect(canTransition("initializing", "idle")).toBe(true);
+    expect(canTransition("initializing", "discovering")).toBe(true);
+    expect(canTransition("discovering", "idle")).toBe(true);
     expect(canTransition("idle", "thinking")).toBe(true);
   });
 

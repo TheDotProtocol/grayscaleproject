@@ -1,4 +1,7 @@
 import type { PlatformEvent } from "../events/envelope.js";
+import type { OperatorIdentityProfile } from "./identity-engine.js";
+import type { ExecutiveCognitiveProfile } from "./cognitive-model.js";
+import type { DiscoverySnapshot } from "./discovery-engine.js";
 import type { MemoryRecord } from "../memory/types.js";
 import type { GraphSummary } from "../graph/ports.js";
 import type { StrategicIntelligenceContext } from "../intelligence/context.js";
@@ -141,6 +144,11 @@ export interface CompanyContext {
   integrations: IntegrationStatus[];
 
   recentEvents: PlatformEvent[];
+
+  /** Sprint 2 — assembled by platform, read-only to executives (ADR-014) */
+  identity?: OperatorIdentityProfile;
+  cognitiveModel?: ExecutiveCognitiveProfile;
+  discovery?: DiscoverySnapshot;
 }
 
 export interface CompanyContextAssemblerPort {
