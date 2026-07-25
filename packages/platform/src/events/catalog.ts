@@ -300,6 +300,21 @@ export const EVENT_CATALOG = {
     category: "organization",
     description: "Adaptation metric recorded",
   },
+
+  // ─── Context Runtime (Sprint 2 Phase A.4 — ADR-023–027) ────────
+  "intent.proposed": { version: 1, category: "organization", description: "Intent record proposed" },
+  "intent.approved": { version: 1, category: "organization", description: "Intent record approved" },
+  "intent.updated": { version: 1, category: "organization", description: "Intent hierarchy updated" },
+  "intent.snapshot.captured": { version: 1, category: "organization", description: "Intent snapshot captured" },
+  "context-runtime.assembled": { version: 1, category: "operations", description: "Immutable CompanyContext assembled" },
+  "context-runtime.cache.invalidated": { version: 1, category: "operations", description: "Context cache invalidated" },
+  "temporal.snapshot.captured": { version: 1, category: "organization", description: "Temporal snapshot captured" },
+  "temporal.trend.detected": { version: 1, category: "organization", description: "Historical trend detected" },
+  "temporal.pattern.detected": { version: 1, category: "organization", description: "Historical pattern detected" },
+  "organizational-snapshot.captured": { version: 1, category: "organization", description: "Full organizational snapshot captured" },
+  "organizational-signal.emitted": { version: 1, category: "organization", description: "Organizational signal emitted" },
+  "organizational-signal.consumed": { version: 1, category: "organization", description: "Organizational signal consumed" },
+  "organizational-insight.generated": { version: 1, category: "organization", description: "Explainable observation generated" },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

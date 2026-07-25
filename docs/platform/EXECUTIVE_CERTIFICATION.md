@@ -2,7 +2,7 @@
 
 **Project Grayscale — Production Readiness Gate for Executives**
 
-**Version:** 1.3 (Sprint 2 Phase A.2 — Organizational Intelligence Foundation)  
+**Version:** 1.4 (Sprint 2 Phase A.4 — Organizational Intent & Context Runtime)  
 **Foundation:** v1.0.0-bedrock  
 **Reference Executive:** Athena (Sprint 2)  
 **Companion docs:** `EXECUTIVE_PHILOSOPHY.md`, `EXECUTIVE_MANIFESTO.md`, `EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
@@ -560,6 +560,82 @@ Each area is scored **PASS**, **WARN**, or **FAIL**. Any **FAIL** in a critical 
 | Recommendation adaptation | Citations in explainability trace |
 
 **Critical:** YES
+
+---
+
+## Part IV — Sprint 2 Phase A.4 Mandatory Gates
+
+*Final foundation layer before Athena. Extends Part III.*
+
+### 3.48 Intent Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Hierarchy levels defined | Vision through execution (10 levels) |
+| Trace validation works | Entity → intent chain resolvable |
+| Coverage computed | Intent coverage metrics available |
+| Executives never infer purpose | Inference-only intent fails certification |
+| Approval workflow for intent changes | Unapproved intent blocked |
+
+**Critical:** YES
+
+### 3.49 Context Runtime Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Single immutable context assembled | CompanyContextAssembler operational |
+| Cache with invalidation | Event projectors invalidate cache |
+| Executives read-only | Direct service access blocked |
+| All assemblers traced | contextRuntime.assemblerResults populated |
+| No bypass path | Static/runtime probes confirm |
+
+**Critical:** YES
+
+### 3.50 Temporal Intelligence Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Historical snapshots captured | Immutable snapshot records |
+| No forecasting | Forecast attempts fail certification |
+| Trends/patterns explainable | Evidence required on all analyses |
+| Organization age computed | From company founding date |
+| History never recomputed | Snapshot immutability verified |
+
+**Critical:** YES
+
+### 3.51 Signal Framework Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Signals distinct from events | isSignalDistinctFromEvent verified |
+| Strategy consumes signals | Signal subscription path exists |
+| Executives consume context only | No direct signal mutation by executives |
+| All signal types registered | 18 signal types in contract |
+
+**Critical:** YES
+
+### 3.52 Insight Framework Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Observations only | isRecommendation always false |
+| Derived from signals | Signal linkage required |
+| No recommendation generation | Insight engine cannot produce recommendations |
+| Explainable | Evidence and confidence on all insights |
+
+**Critical:** YES
+
+### 3.53 Complete Context Assembly Gate
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All five questions answerable | DNA, emotion, cognition, knowledge, intent in context |
+| organizationalIntelligence present | Phase A.2 engines assembled |
+| intent + temporal + signals + insights present | Phase A.4 fields populated |
+| contextRuntime metadata present | Assembly trace complete |
+| EXECUTIVES_ENABLED still false | Flag unchanged until Athena cert |
+
+**Critical:** YES — **final foundation gate before Athena implementation**
 
 ---
 

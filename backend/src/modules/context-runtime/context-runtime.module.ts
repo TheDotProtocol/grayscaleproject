@@ -1,0 +1,62 @@
+import { Module, forwardRef } from "@nestjs/common";
+import { PrismaModule } from "../../prisma/prisma.module";
+import { IntelligenceModule } from "../intelligence/intelligence.module";
+import { GraphModule } from "../graph/graph.module";
+import { MemoryIndexModule } from "../memory/memory-index.module";
+import { PulseModule } from "../pulse/pulse.module";
+import { PluginsModule } from "../plugins/plugins.module";
+import { EventsModule } from "../events/events.module";
+import { PlatformOperationsModule } from "../platform-operations/platform-operations.module";
+import { ContextCacheService } from "./context-cache.service";
+import { ContextRuntimeService } from "./context-runtime.service";
+import { CompanyContextAssemblerService } from "./company-context-assembler.service";
+import { OrganizationalIntelligenceAssemblerService } from "./organizational-intelligence-assembler.service";
+import { IntentEngineService } from "./intent-engine.service";
+import { TemporalEngineService } from "./temporal-engine.service";
+import { OrganizationalSignalBusService } from "./organizational-signal-bus.service";
+import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
+import { IntentProjector } from "./projectors/intent.projector";
+import { SnapshotProjector } from "./projectors/snapshot.projector";
+import { SignalProjector } from "./projectors/signal.projector";
+import { InsightProjector } from "./projectors/insight.projector";
+
+@Module({
+  imports: [
+    PrismaModule,
+    IntelligenceModule,
+    GraphModule,
+    MemoryIndexModule,
+    PulseModule,
+    PluginsModule,
+    PlatformOperationsModule,
+    forwardRef(() => EventsModule),
+  ],
+  providers: [
+    ContextCacheService,
+    ContextRuntimeService,
+    CompanyContextAssemblerService,
+    OrganizationalIntelligenceAssemblerService,
+    IntentEngineService,
+    TemporalEngineService,
+    OrganizationalSignalBusService,
+    OrganizationalInsightEngineService,
+    IntentProjector,
+    SnapshotProjector,
+    SignalProjector,
+    InsightProjector,
+  ],
+  exports: [
+    ContextRuntimeService,
+    CompanyContextAssemblerService,
+    ContextCacheService,
+    IntentEngineService,
+    TemporalEngineService,
+    OrganizationalSignalBusService,
+    OrganizationalInsightEngineService,
+    IntentProjector,
+    SnapshotProjector,
+    SignalProjector,
+    InsightProjector,
+  ],
+})
+export class ContextRuntimeModule {}

@@ -2,7 +2,7 @@
 
 **Project Grayscale — Constitution of the Executive Layer**
 
-**Version:** 1.3 (Sprint 2 Phase A.2 — Organizational Intelligence Foundation)  
+**Version:** 1.4 (Sprint 2 Phase A.4 — Organizational Intent & Context Runtime)  
 **Status:** Mandatory for all executives  
 **Effective:** Sprint 2 onward  
 **Foundation:** v1.0.0-bedrock (FROZEN)
@@ -970,6 +970,98 @@ Reserved in Phase A.2 — implementation Phase A.3+.
 
 ---
 
+## Part IV — Sprint 2 Phase A.4: Intent, Context Runtime & Temporal Intelligence
+
+*Final foundation layer before Athena. Extends Part III without modifying prior rules.*
+
+---
+
+## 62. Five Questions Before Recommendation
+
+Every executive MUST answer via complete `CompanyContext` before strategic reasoning:
+
+| # | Question | Source |
+|---|----------|--------|
+| 1 | WHO are we? | Organizational DNA |
+| 2 | HOW are we? | Emotional Engine |
+| 3 | HOW do we think? | Cognitive Engine |
+| 4 | WHAT do we know? | Memory + Graph + Learning + Wisdom |
+| 5 | WHY are we doing this? | Intent Engine |
+
+Incomplete context assembly is a certification failure.
+
+---
+
+## 63. Organizational Intent
+
+Intent explains **WHY** — not what or how.
+
+**Hierarchy (full traceability required):**
+
+Vision → Mission → Intent → Strategic Themes → Goals → Objectives → Projects → Tasks → Recommendations → Execution
+
+Executives MUST preserve intent chains in explainability traces. Executives MUST NOT infer organizational purpose without evidence.
+
+Contract: `IntentEnginePort` (ADR-023).
+
+---
+
+## 64. Context Runtime
+
+**ONE immutable CompanyContext** per assembly. Executives NEVER:
+
+- Assemble context themselves
+- Access platform services directly
+- Mutate assembled context
+
+Context Runtime (`backend/src/modules/context-runtime/`) orchestrates parallel assemblers with cache invalidation on domain events.
+
+Contract: `ContextRuntimePort` (ADR-024).
+
+---
+
+## 65. Temporal Intelligence
+
+Historical evolution only — **no forecasting**.
+
+Track trends, patterns, milestones, growth phases, evolution index. Snapshots are immutable — never recompute history.
+
+Contract: `TemporalEnginePort` (ADR-025).
+
+---
+
+## 66. Signals and Insights
+
+**Signals** = what changed (not what happened). **Insights** = explainable observations (NOT recommendations).
+
+| Type | Example |
+|------|---------|
+| Signal | "Founder stress increased" |
+| Insight | "Engineering throughput declined 27% over four weeks" |
+| NOT Insight | "Hire another engineer" |
+
+Strategy consumes signals. Executives consume context (including insights). No direct engine-to-engine coupling.
+
+Contracts: `OrganizationalSignalBusPort` (ADR-026), `OrganizationalInsightEnginePort` (ADR-027).
+
+---
+
+## 67. Mission Control — Context Runtime Widgets (Reserved)
+
+| Widget ID | Purpose |
+|-----------|---------|
+| `intent-hierarchy` | Intent chain visualization |
+| `intent-coverage` | Strategic object linkage |
+| `organizational-timeline` | Evolution timeline |
+| `organizational-evolution` | Evolution index |
+| `context-health` | Context assembly health |
+| `signal-feed` | Active signals |
+| `organizational-insights` | Observations |
+| `historical-comparisons` | Period comparisons |
+| `snapshot-explorer` | Immutable snapshots |
+
+---
+
 ## Compliance
 
 | Document | Relationship |
@@ -978,6 +1070,9 @@ Reserved in Phase A.2 — implementation Phase A.3+.
 | `EXECUTIVE_PHILOSOPHY.md` | **Why executives exist — north star** |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | Technical interface spec |
 | `EXECUTIVE_CERTIFICATION.md` | Certification process and gates |
+| `ORGANIZATIONAL_CONTEXT_RUNTIME.md` | Context assembly architecture |
+| `ORGANIZATIONAL_INTENT.md` | Intent hierarchy |
+| `TEMPORAL_INTELLIGENCE.md` | Historical evolution |
 | `ORGANIZATIONAL_INTELLIGENCE.md` | Organizational intelligence master architecture |
 | `EXECUTIVE_MANIFESTO.md` | **This document — behavioral constitution** |
 

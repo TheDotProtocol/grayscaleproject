@@ -3,6 +3,11 @@ import type { OperatorIdentityProfile } from "./identity-engine.js";
 import type { ExecutiveCognitiveProfile } from "./cognitive-model.js";
 import type { DiscoverySnapshot } from "./discovery-engine.js";
 import type { OrganizationalIntelligenceContext } from "../organization/context.js";
+import type { IntentContext } from "../intent/intent-engine.js";
+import type { TemporalIntelligenceContext } from "../temporal/temporal-engine.js";
+import type { OrganizationalSignalSnapshot } from "../signals/signal-bus.js";
+import type { OrganizationalInsightSnapshot } from "../insights/insight-engine.js";
+import type { ContextRuntimeMetadata } from "../context-runtime/runtime.js";
 import type { MemoryRecord } from "../memory/types.js";
 import type { GraphSummary } from "../graph/ports.js";
 import type { StrategicIntelligenceContext } from "../intelligence/context.js";
@@ -153,6 +158,13 @@ export interface CompanyContext {
 
   /** Sprint 2 Phase A.2 — organizational intelligence (ADR-015–022) */
   organizationalIntelligence?: OrganizationalIntelligenceContext;
+
+  /** Sprint 2 Phase A.4 — intent, temporal, signals, insights (ADR-023–027) */
+  intent?: IntentContext;
+  temporal?: TemporalIntelligenceContext;
+  signals?: OrganizationalSignalSnapshot;
+  insights?: OrganizationalInsightSnapshot;
+  contextRuntime?: ContextRuntimeMetadata;
 }
 
 export interface CompanyContextAssemblerPort {

@@ -2,7 +2,7 @@
 
 **Project Grayscale — Why Executives Exist**
 
-**Version:** 1.1 (Sprint 2 Phase A.2)  
+**Version:** 1.2 (Sprint 2 Phase A.4)  
 **Status:** Constitutional — immutable  
 **Effective:** Sprint 2 Phase A (Athena Discovery) onward  
 **Foundation:** Bedrock v1.0.0-bedrock (Certified, FROZEN)
@@ -281,6 +281,22 @@ Wisdom is consumed before strategy evaluation. Learning informs but does not rep
 
 ---
 
+## 18. Context, Intent, and History Are Inherited
+
+Before any recommendation, executives must answer five questions via **complete CompanyContext assembly**:
+
+1. **WHO are we?** — Organizational DNA
+2. **HOW are we?** — Emotional Engine
+3. **HOW do we think?** — Cognitive Engine
+4. **WHAT do we know?** — Memory, Graph, Learning, Wisdom
+5. **WHY are we doing this?** — Intent Engine
+
+Executives inherit context, intent, history, signals, and observations. They never infer organizational purpose. They never lose historical context. They reason **only after complete context assembly**.
+
+The Context Runtime assembles ONE immutable context. Executives never access platform services directly.
+
+---
+
 ## Constitutional Hierarchy
 
 | Document | Role |
@@ -290,6 +306,9 @@ Wisdom is consumed before strategy evaluation. Learning informs but does not rep
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | **How** — technical contracts |
 | `EXECUTIVE_CERTIFICATION.md` | **When** — production readiness gates |
 | `ORGANIZATIONAL_INTELLIGENCE.md` | **How** — organizational intelligence master doc |
+| `ORGANIZATIONAL_CONTEXT_RUNTIME.md` | Context assembly master doc |
+| `ORGANIZATIONAL_INTENT.md` | Intent hierarchy and WHY chain |
+| `TEMPORAL_INTELLIGENCE.md` | Historical evolution framework |
 | `FOUNDATION_CERTIFICATE.md` | Platform baseline (Bedrock) |
 
 When documents conflict, resolve upward: Philosophy → Manifesto → Specification → Certification.

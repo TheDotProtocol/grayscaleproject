@@ -16,6 +16,7 @@ import { PluginsModule } from "../plugins/plugins.module";
 import { MemoryIndexModule } from "../memory/memory-index.module";
 import { GraphModule } from "../graph/graph.module";
 import { IntelligenceModule } from "../intelligence/intelligence.module";
+import { ContextRuntimeModule } from "../context-runtime/context-runtime.module";
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { IntelligenceModule } from "../intelligence/intelligence.module";
     MemoryIndexModule,
     GraphModule,
     forwardRef(() => IntelligenceModule),
+    forwardRef(() => ContextRuntimeModule),
   ],
   providers: [
     EventStoreService,

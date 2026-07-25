@@ -6,7 +6,7 @@
 **Status:** Mandatory  
 **Effective:** Upon Foundation completion (Phase 1.5H)
 
-**Constitutional hierarchy:** Read `EXECUTIVE_PHILOSOPHY.md` (why) before this specification (how). Manifesto v1.3 (Sprint 2 Phase A.2) extends behavioral rules; platform contracts in `@grayscale/platform/src/executive/` and `@grayscale/platform/src/organization/` define discovery and organizational intelligence ports (ADR-014–022).
+**Constitutional hierarchy:** Read `EXECUTIVE_PHILOSOPHY.md` (why) before this specification (how). Manifesto v1.4 (Sprint 2 Phase A.4) extends behavioral rules; platform contracts in `@grayscale/platform/src/executive/`, `@grayscale/platform/src/organization/`, `@grayscale/platform/src/intent/`, `@grayscale/platform/src/context-runtime/`, `@grayscale/platform/src/temporal/`, `@grayscale/platform/src/signals/`, and `@grayscale/platform/src/insights/` define discovery, organizational intelligence, intent, context runtime, temporal, signal, and insight ports (ADR-014–027).
 
 No executive implementation may begin until this specification is accepted and the Platform Readiness Report verdict is `READY FOR SPRINT 2`.
 

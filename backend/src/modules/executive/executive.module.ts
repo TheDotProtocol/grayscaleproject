@@ -6,6 +6,7 @@ import { MemoryIndexModule } from "../memory/memory-index.module";
 import { PulseModule } from "../pulse/pulse.module";
 import { PluginsModule } from "../plugins/plugins.module";
 import { EventsModule } from "../events/events.module";
+import { ContextRuntimeModule } from "../context-runtime/context-runtime.module";
 import { CompanyContextService } from "./company-context.service";
 import { CapabilityRegistryService } from "./capability-registry.service";
 import { PermissionService } from "./permission.service";
@@ -24,6 +25,7 @@ import { ExecutiveController } from "./executive.controller";
     MemoryIndexModule,
     PulseModule,
     PluginsModule,
+    ContextRuntimeModule,
     forwardRef(() => EventsModule),
   ],
   controllers: [ExecutiveController],

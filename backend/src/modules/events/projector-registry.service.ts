@@ -11,6 +11,10 @@ import { PluginsProjector } from "./projectors/plugins.projector";
 import { MemoryIndexProjector } from "../memory/memory-index.projector";
 import { GraphProjector } from "../graph/graph-projector.service";
 import { StrategicGraphProjector } from "../intelligence/strategic-graph.projector";
+import { IntentProjector } from "../context-runtime/projectors/intent.projector";
+import { SnapshotProjector } from "../context-runtime/projectors/snapshot.projector";
+import { SignalProjector } from "../context-runtime/projectors/signal.projector";
+import { InsightProjector } from "../context-runtime/projectors/insight.projector";
 
 @Injectable()
 export class ProjectorRegistryService implements OnModuleInit {
@@ -23,6 +27,10 @@ export class ProjectorRegistryService implements OnModuleInit {
     private readonly memoryIndexProjector: MemoryIndexProjector,
     private readonly graphProjector: GraphProjector,
     private readonly strategicGraphProjector: StrategicGraphProjector,
+    private readonly intentProjector: IntentProjector,
+    private readonly snapshotProjector: SnapshotProjector,
+    private readonly signalProjector: SignalProjector,
+    private readonly insightProjector: InsightProjector,
   ) {}
 
   onModuleInit(): void {
@@ -31,6 +39,10 @@ export class ProjectorRegistryService implements OnModuleInit {
     this.register(this.memoryIndexProjector);
     this.register(this.graphProjector);
     this.register(this.strategicGraphProjector);
+    this.register(this.intentProjector);
+    this.register(this.snapshotProjector);
+    this.register(this.signalProjector);
+    this.register(this.insightProjector);
     this.logger.log(`Registered ${this.projectors.length} event projectors`);
   }
 
