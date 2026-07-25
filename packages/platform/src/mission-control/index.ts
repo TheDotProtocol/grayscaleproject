@@ -9,3 +9,4 @@ export * from "./timeline.js";
 export * from "./search.js";
 export * from "./quick-actions.js";
 export * from "./executive-widgets.js";
+export * from "./organizational-widgets.js";

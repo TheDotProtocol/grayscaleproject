@@ -238,6 +238,68 @@ export const EVENT_CATALOG = {
     category: "executive",
     description: "Executive council message sent",
   },
+
+  // ─── Organizational Intelligence (Sprint 2 Phase A.2 — ADR-015–022) ─
+  "organizational-dna.updated": {
+    version: 1,
+    category: "organization",
+    description: "Organizational DNA record updated or approved",
+  },
+  "organizational-dna.proposed": {
+    version: 1,
+    category: "organization",
+    description: "Organizational DNA change proposed pending approval",
+  },
+  "founder-dna.evidence.recorded": {
+    version: 1,
+    category: "organization",
+    description: "Founder DNA updated with evidence",
+  },
+  "organizational-emotion.observed": {
+    version: 1,
+    category: "organization",
+    description: "Organizational emotional metric observed",
+  },
+  "organizational-cognitive.evidence.recorded": {
+    version: 1,
+    category: "organization",
+    description: "Organizational cognitive profile updated with evidence",
+  },
+  "organizational-learning.recorded": {
+    version: 1,
+    category: "organization",
+    description: "Organizational learning record captured",
+  },
+  "organizational-learning.linked": {
+    version: 1,
+    category: "organization",
+    description: "Learning record linked to memory/graph/strategy",
+  },
+  "organizational-wisdom.proposed": {
+    version: 1,
+    category: "organization",
+    description: "Wisdom principle proposed",
+  },
+  "organizational-wisdom.approved": {
+    version: 1,
+    category: "organization",
+    description: "Wisdom principle approved",
+  },
+  "organizational-culture.observed": {
+    version: 1,
+    category: "organization",
+    description: "Culture dimension observed",
+  },
+  "organizational-reputation.signal.recorded": {
+    version: 1,
+    category: "organization",
+    description: "Reputation signal recorded (manual/evidence)",
+  },
+  "organizational-adaptation.metric.recorded": {
+    version: 1,
+    category: "organization",
+    description: "Adaptation metric recorded",
+  },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

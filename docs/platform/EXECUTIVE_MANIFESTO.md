@@ -2,7 +2,7 @@
 
 **Project Grayscale — Constitution of the Executive Layer**
 
-**Version:** 1.2 (Sprint 2 Phase A.1 — Athena Discovery Architecture)  
+**Version:** 1.3 (Sprint 2 Phase A.2 — Organizational Intelligence Foundation)  
 **Status:** Mandatory for all executives  
 **Effective:** Sprint 2 onward  
 **Foundation:** v1.0.0-bedrock (FROZEN)
@@ -828,6 +828,148 @@ Athena widgets define the reference pattern for Atlas, Ledger, Mercury, Sentinel
 
 ---
 
+## Part III — Sprint 2 Phase A.2: Organizational Intelligence
+
+*Extends Part II without modifying prior rules. See `ORGANIZATIONAL_INTELLIGENCE.md` for master architecture.*
+
+---
+
+## 53. Organizational Intelligence Inheritance
+
+Every executive **inherits** organizational intelligence via `CompanyContext.organizationalIntelligence`:
+
+| Engine | Executives MUST |
+|--------|-----------------|
+| Organizational DNA | Respect vision, values, non-negotiables |
+| Founder DNA | Adapt to founder behavioural evidence |
+| Emotional | Consider wellbeing context; **never manipulate** |
+| Cognitive | Align with org thinking patterns |
+| Learning | Reference prior lessons |
+| Wisdom | Apply approved principles **before** strategy |
+| Culture | Respect cultural health signals |
+| Reputation | Factor external perception |
+| Adaptation | Calibrate change readiness |
+
+Executives MUST NOT invent organizational identity, fabricate emotional scores, or bypass DNA/wisdom approval workflows.
+
+---
+
+## 54. Organizational DNA
+
+Immutable company identity — vision, mission, values, philosophies, non-negotiables.
+
+- Versioned with approval workflow and audit trail
+- Graph and memory linked via evidence
+- Executives consume read-only
+- Changes emit `organizational-dna.*` events
+
+Contract: `OrganizationalDnaEnginePort` (ADR-015).
+
+---
+
+## 55. Founder DNA
+
+Separate from Organizational DNA and Identity Engine. Evidence-derived founder behavioural profile.
+
+- Never inferred without evidence
+- Distinct from ECM (operator-level) and Identity Engine (presentation)
+- Executives adapt communication and recommendation framing
+
+Contract: `FounderDnaEnginePort` (ADR-015 §2).
+
+---
+
+## 56. Emotional Context — Observe, Never Manipulate
+
+Organizational Emotional Engine tracks wellbeing metrics (founder stress, morale, momentum, etc.).
+
+**Constitutional rule:** Executives observe emotional context. They MUST NOT manipulate emotional state, exploit stress, or pressure decisions based on detected vulnerability.
+
+Every score requires evidence, confidence, reason, and trend.
+
+Contract: `OrganizationalEmotionalEnginePort` (ADR-016).
+
+---
+
+## 57. Organizational Cognition
+
+Models **how** the organization thinks — not what it knows.
+
+- Decision patterns, planning maturity, bias detection, thinking styles
+- Cognitive evolution tracked over time with evidence
+- Executives consume read-only; platform updates with evidence only
+
+Distinct from Executive Cognitive Model (ECM) which models **operator** behaviour.
+
+Contract: `OrganizationalCognitiveEnginePort` (ADR-017).
+
+---
+
+## 58. Learning and Wisdom
+
+**Learning:** Captures failures, successes, experiments, retrospectives, discoveries. Auto-links to memory, graph, strategy, timeline, projects.
+
+**Wisdom:** Transforms repeated learning into enduring principles.
+
+```
+Memory:   "We failed."
+Learning: "We learned why."
+Wisdom:   "This principle guides future decisions."
+```
+
+Wisdom requires approval workflow. Executives consume approved wisdom **before** strategy evaluation.
+
+Contracts: `OrganizationalLearningEnginePort` (ADR-018), `OrganizationalWisdomEnginePort` (ADR-019).
+
+---
+
+## 59. Culture, Reputation, Adaptation
+
+**Culture Engine:** Models behavioural health — communication quality, accountability, governance respect. Mission Control primary consumer.
+
+**Reputation Engine:** Tracks external perception (customers, investors, partners, press, employees, community). Manual/evidence only in Phase A.2 — no external integrations.
+
+**Adaptation Engine:** Measures change readiness — improvement speed, learning speed, maturity indices.
+
+Contracts: ADR-020, ADR-021, ADR-022.
+
+---
+
+## 60. Recommendation Adaptation
+
+Recommendations MUST adapt to:
+
+- Organizational DNA and non-negotiables
+- Founder DNA and Identity Engine presentation
+- ECM operator behavioural model
+- Emotional context (without manipulation)
+- Organizational cognitive patterns
+- Prior learning and approved wisdom
+- Culture health and adaptation readiness
+
+Failure to adapt is a certification failure. Failure to cite organizational intelligence sources in explainability traces is a certification failure.
+
+---
+
+## 61. Mission Control — Organizational Widgets
+
+| Widget ID | Purpose |
+|-----------|---------|
+| `organizational-dna` | DNA summary |
+| `founder-dna` | Founder behavioural profile |
+| `organization-emotion` | Org-wide emotional metrics |
+| `founder-emotion` | Founder emotional metrics |
+| `organizational-cognitive-profile` | Org thinking patterns |
+| `learning-timeline` | Lessons captured |
+| `wisdom-library` | Approved principles |
+| `culture-health` | Culture dimensions |
+| `reputation` | External perception |
+| `adaptation-index` | Change readiness |
+
+Reserved in Phase A.2 — implementation Phase A.3+.
+
+---
+
 ## Compliance
 
 | Document | Relationship |
@@ -836,6 +978,7 @@ Athena widgets define the reference pattern for Atlas, Ledger, Mercury, Sentinel
 | `EXECUTIVE_PHILOSOPHY.md` | **Why executives exist — north star** |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | Technical interface spec |
 | `EXECUTIVE_CERTIFICATION.md` | Certification process and gates |
+| `ORGANIZATIONAL_INTELLIGENCE.md` | Organizational intelligence master architecture |
 | `EXECUTIVE_MANIFESTO.md` | **This document — behavioral constitution** |
 
 **Violation of this Manifesto is grounds for immediate executive suspension.**

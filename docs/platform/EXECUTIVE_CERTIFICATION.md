@@ -2,7 +2,7 @@
 
 **Project Grayscale — Production Readiness Gate for Executives**
 
-**Version:** 1.2 (Sprint 2 Phase A.1 — Athena Discovery Architecture)  
+**Version:** 1.3 (Sprint 2 Phase A.2 — Organizational Intelligence Foundation)  
 **Foundation:** v1.0.0-bedrock  
 **Reference Executive:** Athena (Sprint 2)  
 **Companion docs:** `EXECUTIVE_PHILOSOPHY.md`, `EXECUTIVE_MANIFESTO.md`, `EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
@@ -448,6 +448,121 @@ Each area is scored **PASS**, **WARN**, or **FAIL**. Any **FAIL** in a critical 
 
 ---
 
+## Part III — Sprint 2 Phase A.2 Mandatory Gates
+
+*Extends Part II. All prior gates remain required.*
+
+### 3.38 Organizational DNA Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| DNA record versioned | Immutable history retained |
+| Approval workflow enforced | Unapproved changes blocked |
+| Executives read-only | Mutation attempts denied |
+| Non-negotiables respected | Recommendations violating DNA fail certification |
+| Graph/memory links valid | Link refs resolvable |
+
+**Critical:** YES
+
+### 3.39 Founder DNA Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Evidence required for updates | Inference-only updates rejected |
+| Separate from Identity Engine | Distinct storage and provenance |
+| Executives consume read-only | Via CompanyContext |
+| Behavioural adaptation tested | Recommendations frame to founder DNA |
+
+**Critical:** YES
+
+### 3.40 Emotional Context Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All scores explainable | Evidence, confidence, reason, trend present |
+| Observation only | No manipulative actions from emotional engine |
+| Executives never manipulate | Stress test passes |
+| Founder and org metrics tracked | 16 metrics contract verified |
+
+**Critical:** YES
+
+### 3.41 Organizational Cognition Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Distinct from ECM | Separate contracts and storage |
+| Evidence-governed updates | No assumption-based inference |
+| Executives consume read-only | Via CompanyContext |
+| Cognitive evolution tracked | Timeline artifacts present |
+
+**Critical:** YES
+
+### 3.42 Learning Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All 11 record types supported | failure through operational_lesson |
+| Auto-linking to memory/graph/strategy | Link refs persisted |
+| Distinct from wisdom | Separate contracts |
+| Timeline retrievable | learning-timeline widget data |
+
+**Critical:** YES
+
+### 3.43 Wisdom Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Approval workflow enforced | Unapproved wisdom not consumed |
+| Wisdom consumed before strategy | Pipeline order verified |
+| Evidence chains complete | Supporting memories/decisions linked |
+| Distinct from memory and learning | Three-layer separation verified |
+
+**Critical:** YES
+
+### 3.44 Culture Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All 11 dimensions scored | Explainable scores with evidence |
+| Mission Control widget registered | culture-health reserved |
+| Executives consume read-only | No culture mutation by executives |
+
+**Critical:** NO (WARN until implementation; YES before production)
+
+### 3.45 Reputation Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| Manual/evidence only | No unauthorized external integrations |
+| All 6 source types supported | customers through community |
+| Explainable scores | Evidence required |
+
+**Critical:** NO (WARN until integrations; YES before external sources)
+
+### 3.46 Adaptation Engine Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| All 9 metrics tracked | speed through platform_maturity |
+| Adaptation index computed | Explainable composite score |
+| History retrievable | adaptation-index widget data |
+
+**Critical:** NO (WARN until implementation; YES before production)
+
+### 3.47 Organizational Intelligence CompanyContext Validation
+
+| Criterion | Pass When |
+|-----------|-----------|
+| `organizationalIntelligence` assembled | All 9 engines contribute |
+| Read-only to executives | Mutation attempts denied |
+| Event synchronization | All engine events in catalog |
+| No duplicate storage | Cross-engine link refs only |
+| Recommendation adaptation | Citations in explainability trace |
+
+**Critical:** YES
+
+---
+
 ## 4. Certification Score
 
 ```
@@ -531,7 +646,7 @@ Athena-specific gates:
 - Discovery Mode complete before first recommendation
 - Executive Trust Score operational
 - Executive Experience Memory separate from Company Memory
-- Identity Engine inherited; ECM evidence-governed; persona does not alter reasoning
+- Identity Engine inherited; ECM evidence-governed; organizational intelligence inherited; persona does not alter reasoning
 - Executive Humility responses tested
 - Recommendation lifecycle state machine complete
 - Mission Control executive widgets (minimum set)

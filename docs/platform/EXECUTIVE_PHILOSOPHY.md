@@ -2,7 +2,7 @@
 
 **Project Grayscale — Why Executives Exist**
 
-**Version:** 1.1 (Sprint 2 Phase A.1)  
+**Version:** 1.1 (Sprint 2 Phase A.2)  
 **Status:** Constitutional — immutable  
 **Effective:** Sprint 2 Phase A (Athena Discovery) onward  
 **Foundation:** Bedrock v1.0.0-bedrock (Certified, FROZEN)
@@ -258,8 +258,26 @@ Executives are replaceable components in a durable organization:
 - Knowledge persists in company memory
 - Patterns persist in experience memory
 - Governance persists in the event store
+- **Organizational intelligence persists across executives** — DNA, wisdom, learning, culture
 
 No executive is indispensable. The **organization** is the product.
+
+---
+
+## 17. Organizational Intelligence Is Inherited — Never Invented
+
+Executives consume organizational intelligence through CompanyContext:
+
+- **Organizational DNA** — who the company is
+- **Founder DNA** — how the founder leads (evidence only)
+- **Emotional context** — organizational wellbeing (observed, never manipulated)
+- **Cognitive patterns** — how the organization thinks
+- **Learning & wisdom** — what the organization has learned and what principles endure
+- **Culture, reputation, adaptation** — behavioural health and change readiness
+
+Executives MUST adapt recommendations to this context. Executives MUST NOT invent organizational identity, fabricate emotional state, or bypass governance workflows.
+
+Wisdom is consumed before strategy evaluation. Learning informs but does not replace memory.
 
 ---
 
@@ -271,6 +289,7 @@ No executive is indispensable. The **organization** is the product.
 | `EXECUTIVE_MANIFESTO.md` | **What** — behavioral constitution |
 | `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | **How** — technical contracts |
 | `EXECUTIVE_CERTIFICATION.md` | **When** — production readiness gates |
+| `ORGANIZATIONAL_INTELLIGENCE.md` | **How** — organizational intelligence master doc |
 | `FOUNDATION_CERTIFICATE.md` | Platform baseline (Bedrock) |
 
 When documents conflict, resolve upward: Philosophy → Manifesto → Specification → Certification.
@@ -289,7 +308,7 @@ Philosophy changes require ADR + governance + founder approval. Implementation m
 6. **Institutional memory is sacred**  
 7. **Uncertainty is honesty; false certainty is failure**
 
-Plus: reduce cognitive load, explain everything, never manipulate, build companies not conversations, discover before recommending, earn trust, separate reasoning from presentation, build the organization.
+Plus: reduce cognitive load, explain everything, never manipulate, build companies not conversations, discover before recommending, earn trust, separate reasoning from presentation, build the organization, inherit organizational intelligence never invent it.
 
 ---
 

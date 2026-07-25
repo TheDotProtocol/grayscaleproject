@@ -3,133 +3,64 @@
 **Codename:** ATHENA DISCOVERY  
 **Foundation:** Bedrock v1.0.0 (Certified, FROZEN)  
 **Repository:** https://github.com/TheDotProtocol/grayscaleproject.git  
-**Status:** Phase A.1 COMPLETE — Phase A.2 next
+**Status:** Phase A.2 COMPLETE — Phase A.3 next
 
 ---
 
-## Mission
+## Phase Tracker
 
-Discover Athena — the first executive and **reference implementation** for all future executives (Atlas, Ledger, Mercury, Sentinel, Forge, Navigator, and beyond).
-
-Phase A defines philosophy, identity, personality, discovery, trust, and constitutional extensions. **Athena does not generate recommendations until Discovery foundation is complete.**
-
----
-
-## Constitutional Documents
-
-| Document | Status | Purpose |
-|----------|--------|---------|
-| `EXECUTIVE_PHILOSOPHY.md` | ✅ v1.1 | Why executives exist — immutable north star |
-| `EXECUTIVE_MANIFESTO.md` | ✅ v1.2 | Part II: Identity Engine, ECM, discovery, trust, council, lifecycle |
-| `EXECUTIVE_CERTIFICATION.md` | ✅ v1.2 | Part II: mandatory gates §3.22–§3.37 |
-| `EXECUTIVE_CERTIFICATION_SPECIFICATION.md` | ✅ Bedrock | Technical contracts (unchanged) |
-| `ADR-014-athena-discovery-architecture.md` | ✅ Accepted | Constitutional discovery architecture |
+| Phase | Title | Status |
+|-------|-------|--------|
+| A.1 | Athena Discovery Architecture | ✅ Complete |
+| A.2 | Organizational Intelligence Foundation | ✅ Complete |
+| A.3 | Platform service implementations | Pending |
+| B | Athena executive implementation | Pending |
 
 ---
 
-## Phase A.1 Deliverables — COMPLETE
+## Phase A.2 Deliverables — COMPLETE
 
 ### Documentation
 
-- [x] Executive Philosophy (Identity Engine + ECM alignment)
-- [x] Manifesto extensions (§40–§52)
-- [x] Certification gate extensions (§3.22–§3.37)
-- [x] ADR-014: Athena Discovery Architecture
-- [ ] Athena role specification (`docs/executives/ATHENA.md`) — Phase A.2
+- [x] `ORGANIZATIONAL_INTELLIGENCE.md` — master architecture
+- [x] ADR-015 through ADR-022 (9 engines, 8 ADRs)
+- [x] Constitutional updates (Philosophy v1.1, Manifesto v1.3, Certification v1.3)
 
-### Platform contracts (`@grayscale/platform`)
+### Platform contracts (`packages/platform/src/organization/`)
 
-| Contract | File | Status |
-|----------|------|--------|
-| Executive Identity | `executive-identity.ts` | ✅ |
-| Identity Engine | `identity-engine.ts` | ✅ |
-| Executive Cognitive Model | `cognitive-model.ts` | ✅ |
-| Executive Trust Engine | `trust-engine.ts` | ✅ |
-| Discovery Engine | `discovery-engine.ts` | ✅ |
-| Recommendation Lifecycle | `recommendation-lifecycle.ts` | ✅ |
-| Executive Council | `executive-council.ts` | ✅ |
-| Persona Engine | `persona-engine.ts` | ✅ |
-| Executive Experience Memory | `experience-memory.ts` | ✅ |
-| Lifecycle (`discovering` state) | `lifecycle.ts` | ✅ |
-| CompanyContext extension | `context.ts` | ✅ |
-| Event catalog (reserved) | `events/catalog.ts` | ✅ |
-| Mission Control widget stubs | `mission-control/executive-widgets.ts` | ✅ |
+| Engine | File | Status |
+|--------|------|--------|
+| Organizational DNA | `organizational-dna.ts` | ✅ |
+| Founder DNA | `founder-dna.ts` | ✅ |
+| Emotional | `emotional-engine.ts` | ✅ |
+| Cognitive | `cognitive-engine.ts` | ✅ |
+| Learning | `organizational-learning.ts` | ✅ |
+| Wisdom | `wisdom-engine.ts` | ✅ |
+| Culture | `culture-engine.ts` | ✅ |
+| Reputation | `reputation-engine.ts` | ✅ |
+| Adaptation | `adaptation-engine.ts` | ✅ |
+| Context assembler | `context.ts` | ✅ |
+| CompanyContext extension | `executive/context.ts` | ✅ |
+| Event catalog (12 events) | `events/catalog.ts` | ✅ |
+| MC widget stubs (10) | `mission-control/organizational-widgets.ts` | ✅ |
 
-### Mission Control widgets (reserved — implementation Phase A.2+)
+### Explicitly NOT implemented
 
-- [x] `identity-profile`
-- [x] `executive-cognitive-profile`
-- [x] `executive-trust`
-- [x] `discovery-progress`
-- [x] `recommendation-readiness`
-- [x] `executive-experience`
-- [x] `executive-council`
-- [x] `recommendation-trace`
-- [x] `confidence-timeline`
-- [x] `learning-progress`
-
-### Athena implementation (after Discovery foundation)
-
-- [ ] CompanyContext-only reasoning pipeline
-- [ ] Discovery Mode before recommendations
-- [ ] Full explainability traces
-- [ ] Executive Certification pass
-- [ ] `EXECUTIVES_ENABLED=true` (final gate only)
+- No NestJS service implementations
+- No Prisma schemas / migrations
+- No LLM reasoning
+- No recommendation generation
+- No external reputation integrations
+- No Mission Control widget UI
+- `EXECUTIVES_ENABLED` remains `false`
 
 ---
 
-## Discovery Pipeline (Constitutional)
+## References
 
-```
-Observe → Identity Engine → ECM → Memory → Knowledge Graph → Strategy
-→ Policies → Constraints → Dependencies → Risks → Opportunities
-→ Confidence Evaluation → Recommendation Eligibility → [Recommendation Mode]
-```
-
----
-
-## Athena — Reference Executive
-
-| Field | Value |
-|-------|-------|
-| **Role** | Chief Executive Strategist |
-| **Canonical ID** | `athena` |
-| **Department** | Strategy |
-| **Mission** | Reason, plan, advise, coordinate, recommend, explain |
-| **Does NOT** | Execute business logic directly, query Prisma, call external APIs |
-
-**Inputs:** CompanyContext ONLY  
-**Outputs:** Structured recommendations with full evidence, confidence, alternatives  
-**Communication:** Executive Runtime, Bus, Inbox, Outbox only
-
----
-
-## Non-Negotiables (Phase A onward)
-
-- No direct Prisma access
-- No business logic duplication
-- CompanyContext-only consumption
-- Bus communication only
-- Everything event-driven, observable, explainable, auditable, versioned
-- No breaking Bedrock changes
-- ADR required for architectural changes
-- **No LLM reasoning or recommendation generation until Phase B**
-
----
-
-## Definition of Done — Phase A.1
-
-Phase A.1 is complete when:
-
-1. ADR-014 accepted
-2. All platform discovery contracts defined (ports + types only)
-3. Identity Engine replaces Founder Preference Engine in constitution
-4. ECM defined as separate from Memory
-5. Constitutional documents aligned
-6. No `EXECUTIVES_ENABLED=true`
-
-**Phase A.2:** Platform service implementations against contracts.  
-**Phase B:** Athena executive implementation.
+- `docs/platform/ORGANIZATIONAL_INTELLIGENCE.md`
+- `docs/architecture/ADR-015-organizational-dna-engine.md` — `ADR-022-organizational-adaptation-engine.md`
+- Phase A.1: `docs/architecture/ADR-014-athena-discovery-architecture.md`
 
 ---
 

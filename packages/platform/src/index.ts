@@ -10,4 +10,5 @@ export * from "./integration/index.js";
 export * from "./plugin/index.js";
 export * from "./mission-control/index.js";
 export * from "./operations/index.js";
+export * from "./organization/index.js";
 export type { PlatformEventType } from "./events/catalog.js";
