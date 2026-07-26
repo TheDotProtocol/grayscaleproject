@@ -19,6 +19,7 @@ import { ExecutiveSkepticModule } from "../executive-skeptic/executive-skeptic.m
 import { ExecutiveComplianceModule } from "../executive-compliance/executive-compliance.module";
 import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module";
 import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
+import { ExecutiveNetworkModule } from "../executive-network/executive-network.module";
 import { MissionControlController } from "./mission-control.controller";
 import { PlatformRegistryController } from "./platform-registry.controller";
 import { MissionControlService } from "./mission-control.service";
@@ -38,6 +39,7 @@ import { QuickActionsService } from "./quick-actions.service";
 import { AthenaWidgetDataService } from "./athena-widget-data.service";
 import { CouncilWidgetDataService } from "./council-widget-data.service";
 import { TwinWidgetDataService } from "./twin-widget-data.service";
+import { ExecutiveNetworkWidgetDataService } from "./executive-network-widget-data.service";
 
 @Module({
   imports: [
@@ -60,6 +62,7 @@ import { TwinWidgetDataService } from "./twin-widget-data.service";
     ExecutiveComplianceModule,
     CouncilRuntimeModule,
     TwinRuntimeModule,
+    ExecutiveNetworkModule,
     BullModule.registerQueue({ name: PLATFORM_JOBS_QUEUE }),
     forwardRef(() => PlatformOperationsModule),
   ],
@@ -81,6 +84,7 @@ import { TwinWidgetDataService } from "./twin-widget-data.service";
     AthenaWidgetDataService,
     CouncilWidgetDataService,
     TwinWidgetDataService,
+    ExecutiveNetworkWidgetDataService,
   ],
   exports: [MissionControlService, PlatformRegistryModule, PlatformHealthService],
 })

@@ -73,7 +73,13 @@ export class CouncilStoreService {
     const existing = this.members.get(companyId);
     if (existing) return existing;
     const defaults: CouncilMember[] = [
-      { executiveId: "athena", companyId, roles: ["reference", "voting", "chair"], domains: ["strategy"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "athena", companyId, roles: ["reference", "voting", "chair"], domains: ["strategy", "discovery"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "atlas", companyId, roles: ["voting"], domains: ["operations", "execution", "delivery"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "ledger", companyId, roles: ["voting"], domains: ["finance", "budget"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "mercury", companyId, roles: ["voting"], domains: ["communication", "brand"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "sentinel", companyId, roles: ["voting"], domains: ["risk", "security", "compliance"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "navigator", companyId, roles: ["voting"], domains: ["long_term_strategy", "trade_offs"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
+      { executiveId: "forge", companyId, roles: ["voting"], domains: ["innovation", "experiments"], votingWeight: 1, certified: true, activeFrom: new Date().toISOString(), correlationId: "default" },
     ];
     this.members.set(companyId, defaults);
     return defaults;

@@ -7,3 +7,4 @@ export * from "./governance.js";
 export * from "./history.js";
 export * from "./port.js";
 export * from "./council-certification.js";
+export * from "./collaboration.js";

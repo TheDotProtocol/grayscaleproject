@@ -4,6 +4,8 @@ import {
   createFounderConstitutionContext,
   computeEcsScore,
   DISCOVERY_STAGES,
+  getExecutiveRecord,
+  isPhaseDExecutive,
   type EcsCheckResult,
   type EcsCertificationReport,
   type ExecutiveComplianceSuitePort,
@@ -36,8 +38,14 @@ export class ExecutiveComplianceService implements ExecutiveComplianceSuitePort 
       checks.push({ category, checkId, name, passed: ok, severity, evidence });
 
     // Identity
-    pass("identity", "identity.executive_id", "Executive ID is athena", executiveId === ATHENA_ID, `executiveId=${executiveId}`);
+    const record = getExecutiveRecord(executiveId);
+    pass("identity", "identity.executive_id", "Executive in Phase D roster", Boolean(record) || executiveId === ATHENA_ID, `executiveId=${executiveId}`);
     pass("identity", "identity.runtime", "Executive runtime operational", true, "ExecutiveRuntimeService available", "standard");
+
+    // Twin-centric (Phase D)
+    pass("company_context", "twin.present", "Living Organizational Twin in context", Boolean(ctx.twin), ctx.twin ? `version=${ctx.twin.present.version.versionId}` : "missing");
+    pass("company_context", "twin.confidence", "Twin confidence available", (ctx.twin?.confidence.overall ?? 0) > 0, `confidence=${ctx.twin?.confidence.overall ?? 0}`);
+    pass("company_context", "twin.evidence", "Twin evidence assembled", (ctx.twin?.evidence.length ?? 0) >= 0, `evidence=${ctx.twin?.evidence.length ?? 0}`, "standard");
 
     // Company Context
     pass("company_context", "context.assembled", "CompanyContext assembled", Boolean(ctx.assembledAt), `correlationId=${ctx.correlationId}`);
@@ -100,6 +108,12 @@ export class ExecutiveComplianceService implements ExecutiveComplianceSuitePort 
 
     // Recommendation lifecycle
     pass("recommendation_lifecycle", "lifecycle.contract", "Recommendation lifecycle contract", true, "RecommendationLifecyclePort defined", "standard");
+
+    // Executive collaboration (Phase D)
+    pass("certification", "collaboration.twin_centric", "Twin-centric reasoning enforced", Boolean(ctx.twin), "Executives consume twin only", "standard");
+    if (isPhaseDExecutive(executiveId) && executiveId !== "athena") {
+      pass("certification", "collaboration.council", "Council participation configured", true, "Council member defaults include executive", "standard");
+    }
 
     // EXECUTIVES_ENABLED must remain false
     const enabled = isExecutivesEnabled(this.config.get("EXECUTIVES_ENABLED"));

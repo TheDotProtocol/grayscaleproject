@@ -23,3 +23,8 @@ export * from "./athena-explainability.js";
 export * from "./founder-constitution.js";
 export * from "./compliance-suite.js";
 export * from "./recommendation-pipeline.js";
+export * from "./executive-recommendation.js";
+export * from "./twin-reasoning.js";
+export * from "./executive-specialization.js";
+export * from "./executive-registry.js";
+export * from "./executive-network.js";

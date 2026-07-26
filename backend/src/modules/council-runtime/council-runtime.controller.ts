@@ -4,6 +4,7 @@ import { ApiTags, ApiBearerAuth } from "@nestjs/swagger";
 import { ExecutiveCouncilRuntimeService } from "./executive-council-runtime.service";
 import { CouncilSessionService } from "./council-session.service";
 import { CouncilCertificationService } from "./council-certification.service";
+import { CouncilCollaborationService } from "./council-collaboration.service";
 
 @ApiTags("council-runtime")
 @ApiBearerAuth()
@@ -14,6 +15,7 @@ export class CouncilRuntimeController {
     private readonly runtime: ExecutiveCouncilRuntimeService,
     private readonly sessions: CouncilSessionService,
     private readonly certification: CouncilCertificationService,
+    private readonly collaborationService: CouncilCollaborationService,
   ) {}
 
   @Get("health")
@@ -102,5 +104,20 @@ export class CouncilRuntimeController {
   @Get("sessions/:sessionId/replay")
   replay(@Param("sessionId") sessionId: string) {
     return this.runtime.replaySession(sessionId);
+  }
+
+  @Get("collaboration")
+  getCollaboration(@Param("companyId") companyId: string) {
+    return this.collaborationService.getMetrics(companyId);
+  }
+
+  @Get("collaboration/participation")
+  getCollaborationParticipation(@Param("companyId") companyId: string) {
+    return this.collaborationService.getParticipation(companyId);
+  }
+
+  @Get("collaboration/conflicts")
+  getCollaborationConflicts(@Param("companyId") companyId: string) {
+    return this.collaborationService.getResponsibilityConflicts(companyId);
   }
 }

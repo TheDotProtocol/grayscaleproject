@@ -355,6 +355,23 @@ export const EVENT_CATALOG = {
   "forecast.generated": { version: 1, category: "forecast", description: "Organizational forecast generated as hypothesis" },
   "forecast.superseded": { version: 1, category: "forecast", description: "Forecast superseded by newer hypothesis" },
   "forecast.validated": { version: 1, category: "forecast", description: "Forecast validated against reality" },
+
+  // ─── Multi-Executive Organization (Sprint 3 Phase D) ───
+  "executive.registered": { version: 1, category: "executive", description: "Executive identity registered" },
+  "executive.network.collaboration": { version: 1, category: "executive", description: "Executive network collaboration recorded" },
+  "atlas.discovery.completed": { version: 1, category: "executive", description: "Atlas discovery completed via twin" },
+  "atlas.recommendation.drafted": { version: 1, category: "executive", description: "Atlas twin-centric recommendation drafted" },
+  "ledger.discovery.completed": { version: 1, category: "executive", description: "Ledger discovery completed via twin" },
+  "ledger.recommendation.drafted": { version: 1, category: "executive", description: "Ledger twin-centric recommendation drafted" },
+  "mercury.discovery.completed": { version: 1, category: "executive", description: "Mercury discovery completed via twin" },
+  "mercury.recommendation.drafted": { version: 1, category: "executive", description: "Mercury twin-centric recommendation drafted" },
+  "sentinel.discovery.completed": { version: 1, category: "executive", description: "Sentinel discovery completed via twin" },
+  "sentinel.recommendation.drafted": { version: 1, category: "executive", description: "Sentinel twin-centric recommendation drafted" },
+  "navigator.discovery.completed": { version: 1, category: "executive", description: "Navigator discovery completed via twin" },
+  "navigator.recommendation.drafted": { version: 1, category: "executive", description: "Navigator twin-centric recommendation drafted" },
+  "forge.discovery.completed": { version: 1, category: "executive", description: "Forge discovery completed via twin" },
+  "forge.recommendation.drafted": { version: 1, category: "executive", description: "Forge twin-centric recommendation drafted" },
+  "council.collaboration.recorded": { version: 1, category: "council", description: "Council collaboration session metrics recorded" },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

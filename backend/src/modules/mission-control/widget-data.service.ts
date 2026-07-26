@@ -23,6 +23,7 @@ import { SecurityObservatoryService } from "../platform-operations/security-obse
 import { AthenaWidgetDataService } from "./athena-widget-data.service";
 import { CouncilWidgetDataService } from "./council-widget-data.service";
 import { TwinWidgetDataService } from "./twin-widget-data.service";
+import { ExecutiveNetworkWidgetDataService } from "./executive-network-widget-data.service";
 
 @Injectable()
 export class WidgetDataService implements WidgetDataPort {
@@ -50,6 +51,7 @@ export class WidgetDataService implements WidgetDataPort {
     private readonly athenaWidgets: AthenaWidgetDataService,
     private readonly councilWidgets: CouncilWidgetDataService,
     private readonly twinWidgets: TwinWidgetDataService,
+    private readonly networkWidgets: ExecutiveNetworkWidgetDataService,
   ) {}
 
   async fetchWidget(
@@ -198,6 +200,32 @@ export class WidgetDataService implements WidgetDataPort {
         return this.twinWidgets.getSynchronization(companyId);
       case "twin-learning":
         return this.twinWidgets.getLearning(companyId);
+      case "executive-network":
+        return this.networkWidgets.getNetworkOverview(companyId);
+      case "executive-health":
+        return this.networkWidgets.getHealth(companyId);
+      case "executive-trust":
+        return this.networkWidgets.getTrust(companyId);
+      case "executive-contributions":
+        return this.networkWidgets.getParticipation(companyId);
+      case "executive-confidence":
+        return this.networkWidgets.getConfidence(companyId);
+      case "executive-workload":
+        return this.networkWidgets.getWorkload(companyId);
+      case "executive-relationships":
+        return this.networkWidgets.getRelationships(companyId);
+      case "executive-dependencies":
+        return this.networkWidgets.getDependencies(companyId);
+      case "executive-coverage":
+        return this.networkWidgets.getCoverage(companyId);
+      case "council-collaboration":
+        return this.networkWidgets.getCollaboration(companyId);
+      case "organizational-capacity":
+        return this.networkWidgets.getCapacity(companyId);
+      case "decision-confidence":
+        return this.networkWidgets.getDecisionConfidence(companyId);
+      case "decision-evolution":
+        return this.networkWidgets.getDecisionEvolution(companyId);
       default:
         return null;
     }

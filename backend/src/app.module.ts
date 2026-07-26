@@ -26,6 +26,8 @@ import { ExecutiveComplianceModule } from "./modules/executive-compliance/execut
 import { ExecutiveCouncilModule } from "./modules/executive-council/executive-council.module";
 import { CouncilRuntimeModule } from "./modules/council-runtime/council-runtime.module";
 import { TwinRuntimeModule } from "./modules/twin-runtime/twin-runtime.module";
+import { DomainExecutiveModule } from "./modules/domain-executive/domain-executive.module";
+import { ExecutiveNetworkModule } from "./modules/executive-network/executive-network.module";
 import { IntegrationPlatformModule } from "./modules/integration-platform/integration-platform.module";
 import { MissionControlModule } from "./modules/mission-control/mission-control.module";
 import { PlatformOperationsModule } from "./modules/platform-operations/platform-operations.module";
@@ -55,6 +57,8 @@ import { PlatformOperationsModule } from "./modules/platform-operations/platform
     ExecutiveCouncilModule,
     CouncilRuntimeModule,
     TwinRuntimeModule,
+    DomainExecutiveModule,
+    ExecutiveNetworkModule,
     IntegrationPlatformModule,
     MissionControlModule,
     PlatformOperationsModule,

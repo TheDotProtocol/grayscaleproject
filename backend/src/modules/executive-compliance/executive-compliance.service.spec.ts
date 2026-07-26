@@ -16,6 +16,11 @@ describe("ExecutiveComplianceService", () => {
     goals: [],
     organizationalIntelligence: undefined,
     intent: undefined,
+    twin: {
+      present: { version: { versionId: "v1" } },
+      confidence: { overall: 0.8 },
+      evidence: [],
+    },
   };
 
   beforeEach(() => {
@@ -47,8 +52,15 @@ describe("ExecutiveComplianceService", () => {
     expect(report.checks.length).toBeGreaterThan(10);
   });
 
-  it("fails for non-athena executive id on critical check", async () => {
+  it("returns certification report for Phase D executive atlas", async () => {
     const report = await service.runCertification("co-1", "atlas");
+    expect(report.executiveId).toBe("atlas");
+    const idCheck = report.checks.find((c) => c.checkId === "identity.executive_id");
+    expect(idCheck?.passed).toBe(true);
+  });
+
+  it("fails for unknown executive id on critical check", async () => {
+    const report = await service.runCertification("co-1", "nova");
     const idCheck = report.checks.find((c) => c.checkId === "identity.executive_id");
     expect(idCheck?.passed).toBe(false);
   });
