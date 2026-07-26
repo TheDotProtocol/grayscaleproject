@@ -1,6 +1,9 @@
 "use client";
 
-import { PLATFORM, SECTIONS, WHY } from "./content";
+import { useState } from "react";
+import { ARCHITECTURE_LAYERS, PLATFORM, SECTIONS, WHY, type ArchitectureLayerId } from "./content";
+import { ArchitectureModal } from "./architecture-modal";
+import { FeatureDashboardPreview } from "./dashboard-previews";
 import { CheckIcon, FadeIn, LuxuryCard, Section, SectionHeader } from "./primitives";
 
 export function WhySection() {
@@ -22,6 +25,8 @@ export function WhySection() {
 }
 
 export function PlatformSection() {
+  const [activeLayer, setActiveLayer] = useState<ArchitectureLayerId | null>(null);
+
   return (
     <Section id={PLATFORM.id}>
       <SectionHeader title={PLATFORM.title} subtitle={PLATFORM.subtitle} />
@@ -45,14 +50,24 @@ export function PlatformSection() {
       </div>
 
       <FadeIn className="mt-16">
-        <div className="landing-arch-visual" aria-hidden>
-          <div className="landing-arch-layer">Architecture Lock</div>
-          <div className="landing-arch-layer">Founder Constitution</div>
-          <div className="landing-arch-layer">Organizational Runtime</div>
-          <div className="landing-arch-layer">Policy Engine · Governance Kernel</div>
-          <div className="landing-arch-layer landing-arch-layer-accent">Mission Control</div>
+        <p className="mb-4 text-center text-xs text-white/35">Click a layer to learn more</p>
+        <div className="landing-arch-visual" role="list" aria-label="Architecture layers">
+          {ARCHITECTURE_LAYERS.map((layer) => (
+            <button
+              key={layer.id}
+              type="button"
+              role="listitem"
+              className={`landing-arch-layer landing-arch-layer-btn ${layer.accent ? "landing-arch-layer-accent" : ""}`}
+              onClick={() => setActiveLayer(layer.id)}
+              aria-haspopup="dialog"
+            >
+              {layer.label}
+            </button>
+          ))}
         </div>
       </FadeIn>
+
+      <ArchitectureModal layerId={activeLayer} onClose={() => setActiveLayer(null)} />
     </Section>
   );
 }
@@ -81,39 +96,11 @@ export function FeatureSections() {
               </ul>
             </FadeIn>
             <FadeIn delay={0.08} className={index % 2 === 1 ? "lg:order-1" : undefined}>
-              <FeatureVisual id={section.id} title={section.eyebrow} />
+              <FeatureDashboardPreview id={section.id} />
             </FadeIn>
           </div>
         </Section>
       ))}
     </>
-  );
-}
-
-function FeatureVisual({ id, title }: { id: string; title: string }) {
-  return (
-    <div className="landing-feature-visual">
-      <div className="landing-feature-visual-header">
-        <span className="text-xs font-medium tracking-wider landing-gold-70 uppercase">{title}</span>
-      </div>
-      <div className="p-6">
-        <div className="space-y-3">
-          {[1, 2, 3].map((row) => (
-            <div key={row} className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.02] p-3">
-              <div className={`h-8 w-8 rounded-md landing-visual-icon-${id}`} />
-              <div className="flex-1 space-y-1.5">
-                <div className="h-2 w-3/4 rounded bg-white/10" />
-                <div className="h-1.5 w-1/2 rounded bg-white/5" />
-              </div>
-              <div className="h-5 w-12 rounded-full landing-gold-bg-10" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4 text-xs text-white/35">
-          <span>Explainable · Auditable</span>
-          <span className="landing-gold-60">Bedrock</span>
-        </div>
-      </div>
-    </div>
   );
 }

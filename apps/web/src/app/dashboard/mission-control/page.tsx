@@ -35,7 +35,7 @@ export default function MissionControlPage() {
           <button
             type="button"
             onClick={() => refresh()}
-            className="flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+            className="flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-muted-foreground hover:text-white"
           >
             <RefreshCw className={cn("h-3.5 w-3.5", loading && "animate-spin")} />
             Refresh
@@ -44,14 +44,14 @@ export default function MissionControlPage() {
       />
 
       {/* Platform health banner */}
-      <div className="mb-8 rounded-2xl border border-blue-500/30 bg-gradient-to-r from-blue-600/10 to-purple-600/10 p-6">
+      <div className="mb-8 rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 to-primary/80/10 p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-widest text-blue-400">Platform Health</p>
+            <p className="text-xs uppercase tracking-widest text-primary">Platform Health</p>
             <h1 className="mt-1 text-2xl font-bold text-white">
               {loading && !dashboard ? "Loading…" : `${health?.score ?? "—"}%`}
             </h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-400">
+            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
               Live aggregation from {dashboard ? "registered platform services" : "Core Platform APIs"}
             </p>
           </div>
@@ -64,13 +64,13 @@ export default function MissionControlPage() {
                 {health?.status ?? "—"}
               </p>
               <p className="mt-1 text-2xl font-bold text-white">{readiness?.overallScore ?? "—"}%</p>
-              <p className="text-xs uppercase tracking-widest text-slate-500">Company Readiness</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Company Readiness</p>
             </div>
             <div>
-              <p className="text-lg font-semibold text-slate-300">
+              <p className="text-lg font-semibold text-foreground/80">
                 {readiness ? `${Math.round(readiness.dataCompleteness * 100)}%` : "—"}
               </p>
-              <p className="text-xs uppercase tracking-widest text-slate-500">Data Completeness</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Data Completeness</p>
             </div>
           </div>
         </div>
@@ -95,14 +95,14 @@ export default function MissionControlPage() {
           <button
             type="button"
             onClick={() => dispatchAction("brief.refresh")}
-            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-400 hover:border-blue-500/30 hover:text-white"
+            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-muted-foreground hover:border-primary/30 hover:text-white"
           >
             Refresh Brief
           </button>
           <button
             type="button"
             onClick={() => dispatchAction("integration.retry-sync", { provider: "github" })}
-            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-400 hover:border-blue-500/30 hover:text-white"
+            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-muted-foreground hover:border-primary/30 hover:text-white"
           >
             Retry GitHub Sync
           </button>
@@ -112,7 +112,7 @@ export default function MissionControlPage() {
               const next = layout.map((w) => ({ ...w, pinned: !w.pinned }));
               saveLayout(next);
             }}
-            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-400 hover:border-purple-500/30 hover:text-white"
+            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-muted-foreground hover:border-primary/30 hover:text-white"
           >
             Toggle Pin Layout
           </button>
@@ -133,7 +133,7 @@ export default function MissionControlPage() {
                   );
                   saveLayout(next);
                 }}
-                className="absolute right-3 top-3 z-10 rounded-lg border border-white/10 bg-black/40 p-1.5 text-slate-500 hover:text-white"
+                className="absolute right-3 top-3 z-10 rounded-lg border border-white/10 bg-black/40 p-1.5 text-muted-foreground hover:text-white"
                 aria-label={inst.pinned ? "Unpin widget" : "Pin widget"}
               >
                 {inst.pinned ? <PinOff className="h-3.5 w-3.5" /> : <Pin className="h-3.5 w-3.5" />}
@@ -151,11 +151,11 @@ export default function MissionControlPage() {
       </div>
 
       {dashboard && layout.length === 0 && (
-        <p className="text-sm text-slate-500">No widgets configured.</p>
+        <p className="text-sm text-muted-foreground">No widgets configured.</p>
       )}
 
-      <p className="mt-8 flex items-center gap-1.5 text-xs text-slate-600">
-        <Activity className="h-3 w-3 animate-pulse text-blue-500" />
+      <p className="mt-8 flex items-center gap-1.5 text-xs text-muted-foreground/70">
+        <Activity className="h-3 w-3 animate-pulse text-primary" />
         Mission Control Live — polls every 30s · actions execute asynchronously via platform jobs
       </p>
     </div>

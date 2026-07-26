@@ -2,10 +2,13 @@
 
 export const NAV_LINKS = [
   { label: "Platform", href: "#platform" },
+  { label: "Documentation", href: "/docs" },
   { label: "Intelligence", href: "#intelligence" },
   { label: "Governance", href: "#governance" },
   { label: "Pricing", href: "#pricing" },
   { label: "Roadmap", href: "#roadmap" },
+  { label: "Leadership", href: "/leadership" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const HERO = {
@@ -53,6 +56,90 @@ export const PLATFORM = {
     { label: "Mission Control", desc: "Founder command surface for health, timeline, and readiness." },
   ],
 };
+
+export type ArchitectureLayerId =
+  | "architecture-lock"
+  | "founder-constitution"
+  | "organizational-runtime"
+  | "policy-governance"
+  | "mission-control";
+
+export const ARCHITECTURE_LAYERS: Array<{
+  id: ArchitectureLayerId;
+  label: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  points?: string[];
+  accent?: boolean;
+}> = [
+  {
+    id: "architecture-lock",
+    label: "Architecture Lock",
+    title: "Architecture Lock",
+    subtitle: "Constitutional foundation",
+    body: "Architecture Lock is the immutable declaration that Bedrock is frozen. No rewrites. All future capabilities extend Foundation through constitutional documents and ADRs — never through breaking changes to the certified platform.",
+    points: [
+      "Foundation certified at 96/100 — FROZEN",
+      "89 Architecture Decision Records accepted",
+      "Sprint work extends Bedrock; never replaces it",
+      "Executive and automation layers inherit Bedrock constraints",
+    ],
+  },
+  {
+    id: "founder-constitution",
+    label: "Founder Constitution",
+    title: "Founder Constitution",
+    subtitle: "Founder authority",
+    body: "The Founder Constitution defines the immutable relationship between the Founder and the platform. Founder intent survives executive evolution. Every executive inherits these principles through CompanyContext.",
+    points: [
+      "Founder retains final authority unless explicitly delegated",
+      "Overrides become organizational learning",
+      "Automation must be explicit, auditable, and reversible",
+      "Every action traces to approval, policy, or evidence",
+    ],
+  },
+  {
+    id: "organizational-runtime",
+    label: "Organizational Runtime",
+    title: "Organizational Runtime (OrgOS)",
+    subtitle: "Continuous operation",
+    body: "OrgOS is the constitutional runtime layer for continuous organizational operation — heartbeat, scheduling, certification, and explainability. It keeps the organization running without requiring constant founder intervention.",
+    points: [
+      "10-step organizational heartbeat",
+      "Runtime-owned scheduling — not executive-owned",
+      "11 certification gates for runtime readiness",
+      "Context version 2.0.0-s4a-org-runtime",
+    ],
+  },
+  {
+    id: "policy-governance",
+    label: "Policy Engine · Governance Kernel",
+    title: "Policy Engine & Governance Kernel",
+    subtitle: "Permission before execution",
+    body: "The Organizational Policy Engine evaluates what is permitted. The Governance Kernel is the final checkpoint before any action executes. Default deny. Explicit allow. No implicit permissions.",
+    points: [
+      "Policy Engine answers: permitted, prohibited, requires approval",
+      "Governance Kernel validates — never reasons",
+      "Founder, council, and executive approval routing",
+      "Append-only audit and policy history",
+    ],
+  },
+  {
+    id: "mission-control",
+    label: "Mission Control",
+    title: "Mission Control",
+    subtitle: "Founder command surface",
+    body: "Mission Control is the live operational command center for founders, COOs, and boards. Health, readiness, timeline, widgets, and search — one surface for organizational truth.",
+    points: [
+      "Live widget framework with 80+ backend contracts",
+      "Platform Health ≠ Company Readiness — distinct metrics",
+      "Unified organizational timeline and search",
+      "Founder briefing and command palette integration",
+    ],
+    accent: true,
+  },
+];
 
 export const SECTIONS = [
   {
@@ -224,9 +311,9 @@ export const ROADMAP = {
   subtitle: "Delivered with constitutional discipline",
   completed: [
     { name: "Foundation (Bedrock)", detail: "Event store, memory, graph, intelligence, Mission Control" },
-    { name: "Sprint 2", detail: "Executive Intelligence Layer" },
-    { name: "Sprint 3", detail: "Organizational Nervous System" },
-    { name: "Sprint 4", detail: "OrgOS, Council, Attention Budget, Policy Engine" },
+    { name: "EIL — Executive Intelligence Layer", detail: "Multi-executive framework, recommendation pipeline, ECS" },
+    { name: "ONS — Organizational Nervous System", detail: "Attention, twin, signals, simulation, foresight" },
+    { name: "OrgOS — Organizational Runtime", detail: "OrgOS, Council, Attention Budget, Policy Engine" },
     { name: "Grayscale OS v1.0", detail: "Commercial release — Bedrock codename" },
   ],
   upcoming: [
@@ -288,11 +375,56 @@ export const CTA = {
 export const FOOTER = {
   tagline: "Grayscale OS v1.0 · Codename Bedrock",
   links: [
-    { label: "Documentation", href: "https://github.com/TheDotProtocol/grayscaleproject" },
+    { label: "Documentation", href: "/docs" },
+    { label: "Leadership", href: "/leadership" },
+    { label: "Contact", href: "/contact" },
     { label: "Platform", href: "#platform" },
     { label: "Pricing", href: "#pricing" },
     { label: "Roadmap", href: "#roadmap" },
     { label: "Login", href: "/login" },
   ],
-  legal: "© 2026 The Dot Protocol. All rights reserved.",
+  legal: "© 2026 Project Grayscale — The Dot Protocol Company Limited — A AR Holdings Group Company",
+};
+
+export const LEADERSHIP = [
+  {
+    initials: "AK",
+    name: "Arun Kumar",
+    role: "Founder & Chairman",
+    bio: "Visionary founder whose foresight and entrepreneurial spirit laid the foundation for Project Grayscale and the Organizational Operating System vision. His legacy of innovation and strategy continues to shape the platform's constitutional culture.",
+  },
+  {
+    initials: "RD",
+    name: "Robb Duran",
+    role: "Chief Business Officer",
+    bio: "Brings operational expertise and strategic insight to Project Grayscale. With extensive experience leading complex technology and corporate initiatives, he ensures seamless execution across the platform and go-to-market.",
+  },
+  {
+    initials: "TB",
+    name: "Timothy Burton",
+    role: "Veteran Advisor",
+    bio: "Seasoned leader with decades of experience in technology, blockchain, and logistics. His expertise strengthens Project Grayscale's long-term direction and enterprise market leadership.",
+  },
+  {
+    initials: "ST",
+    name: "Saleena Thamani",
+    role: "Group CEO",
+    bio: "Pioneering technologist and architect of innovative token standards. She merges technical excellence with strategic vision, driving Grayscale OS at the intersection of enterprise intelligence and constitutional governance.",
+  },
+  {
+    initials: "RN",
+    name: "Rudra Narayanan",
+    role: "Head of Business & Strategy",
+    bio: "Leads business development, strategic partnerships, and go-to-market execution. With a background in cross-border ventures, he focuses on sustainable growth and expanding Grayscale's global footprint.",
+  },
+];
+
+export const CONTACT = {
+  emails: [
+    { label: "General inquiries", address: "info@projectgrayscale.com", desc: "Platform questions, partnerships, and press" },
+    { label: "Sales & enterprise", address: "sales@projectgrayscale.com", desc: "Enterprise plans, demos, and private deployment" },
+    { label: "Billing & accounts", address: "billing@projectgrayscale.com", desc: "Subscriptions, invoices, and account management" },
+  ],
+  company: "Project Grayscale",
+  parent: "A AR Holdings Group Company",
 };

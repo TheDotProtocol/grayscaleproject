@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles, ArrowRight, Brain, BookOpen, Receipt, Github, LayoutDashboard } from "lucide-react";
+import { ArrowRight, Brain, BookOpen, Github, LayoutDashboard, Receipt } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { GrayscaleLogo } from "@/components/landing/grayscale-logo";
+import { PrimaryButton, SecondaryButton } from "@/components/landing/os-v1/primitives";
 
 const tourSteps = [
-  { icon: LayoutDashboard, title: "Command Center", desc: "Your founder dashboard with live stats, executive status, and AI insights.", href: "/dashboard" },
-  { icon: Brain, title: "Company Memory", desc: "Capture and search institutional knowledge your AI team references.", href: "/dashboard/memory" },
-  { icon: BookOpen, title: "Daily Journal", desc: "Log your day, get AI summaries, export to PDF or DOCX.", href: "/dashboard/journal" },
+  { icon: LayoutDashboard, title: "Command Center", desc: "Your founder dashboard with live stats, executive status, and organizational insights.", href: "/dashboard" },
+  { icon: Brain, title: "Company Memory", desc: "Capture and search institutional knowledge your organization references.", href: "/dashboard/memory" },
+  { icon: BookOpen, title: "Daily Journal", desc: "Log your day, get summaries, export to PDF or DOCX.", href: "/dashboard/journal" },
   { icon: Receipt, title: "Billing Tracker", desc: "Visual bill management with overdue alerts and exports.", href: "/dashboard/billing" },
   { icon: Github, title: "GitHub Integration", desc: "Sync commits from your repo into company memory automatically.", href: "/dashboard/integrations" },
 ];
@@ -18,33 +19,26 @@ export default function ExperiencePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0A0A0F]/80 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-background/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-[4.5rem]">
           <GrayscaleLogo variant="nav" href="/" />
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-blue-400" />
-            <span className="text-sm font-medium text-white">Experience Grayscale</span>
-          </div>
+          <p className="hidden text-sm font-medium text-muted-foreground sm:block">Experience Grayscale OS</p>
           {token ? (
-            <Link href="/dashboard" className="rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">
-              Open Dashboard
-            </Link>
+            <PrimaryButton href="/dashboard">Open Dashboard</PrimaryButton>
           ) : (
-            <Link href="/login" className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 hover:bg-white/5">
-              Sign in
-            </Link>
+            <SecondaryButton href="/login">Sign in</SecondaryButton>
           )}
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 pb-16 pt-32">
+      <main className="mx-auto max-w-7xl px-6 pb-16 pt-28 md:pt-32">
         <div className="text-center">
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Interactive Tour</p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
-            Experience Grayscale
+          <p className="landing-eyebrow">Interactive Tour</p>
+          <h1 className="mt-4 text-4xl font-light tracking-tight text-foreground md:text-5xl">
+            Experience Grayscale OS
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
-            Walk through the founder OS — memory, journal, billing, and AI executives working together.
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+            Walk through the founder workspace — memory, journal, billing, and organizational intelligence working together.
           </p>
         </div>
 
@@ -53,12 +47,12 @@ export default function ExperiencePage() {
             <Link
               key={step.title}
               href={token ? step.href : "/login"}
-              className="group glass-card p-6 transition hover:border-blue-500/30 hover:bg-white/[0.04]"
+              className="group glass-card p-6 transition hover:border-primary/20"
             >
-              <step.icon className="mb-4 h-5 w-5 text-blue-400" />
-              <h3 className="font-medium text-white">{step.title}</h3>
-              <p className="mt-2 text-sm text-slate-500">{step.desc}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm text-blue-400 opacity-0 transition group-hover:opacity-100">
+              <step.icon className="icon-accent mb-4 h-5 w-5" />
+              <h3 className="font-medium text-foreground">{step.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{step.desc}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm text-primary opacity-0 transition group-hover:opacity-100">
                 Explore <ArrowRight className="h-3 w-3" />
               </span>
             </Link>
@@ -66,13 +60,9 @@ export default function ExperiencePage() {
         </div>
 
         <div className="mt-16 text-center">
-          <Link
-            href={token ? "/dashboard" : "/login"}
-            className="btn-primary inline-flex items-center gap-2 px-8 py-3.5 text-sm"
-          >
+          <PrimaryButton href={token ? "/dashboard" : "/login"}>
             {token ? "Go to Command Center" : "Sign in to explore"}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          </PrimaryButton>
         </div>
       </main>
     </div>

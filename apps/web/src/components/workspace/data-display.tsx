@@ -9,8 +9,8 @@ export function KeyValueGrid({ data }: { data: Record<string, unknown> }) {
     <dl className="grid gap-3 sm:grid-cols-2">
       {entries.map(([key, value]) => (
         <div key={key} className="rounded-lg bg-white/[0.03] px-3 py-2">
-          <dt className="text-xs uppercase tracking-wider text-slate-500">{key.replace(/([A-Z])/g, " $1")}</dt>
-          <dd className="mt-1 text-sm font-medium text-slate-200">{String(value)}</dd>
+          <dt className="text-xs uppercase tracking-wider text-muted-foreground">{key.replace(/([A-Z])/g, " $1")}</dt>
+          <dd className="mt-1 text-sm font-medium text-foreground/90">{String(value)}</dd>
         </div>
       ))}
     </dl>
@@ -26,7 +26,7 @@ export function DataList<T extends { id?: string }>({
   render: (item: T, index: number) => React.ReactNode;
   emptyMessage?: string;
 }) {
-  if (!items.length) return <p className="text-sm text-slate-500">{emptyMessage}</p>;
+  if (!items.length) return <p className="text-sm text-muted-foreground">{emptyMessage}</p>;
   return <ul className="space-y-2">{items.map((item, i) => render(item, i))}</ul>;
 }
 
@@ -39,10 +39,10 @@ export function TimelineList({
     <ul className="space-y-3 border-l border-white/10 pl-4">
       {items.map((item, i) => (
         <li key={item.id ?? i} className="relative">
-          <span className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full bg-blue-500" />
-          <p className="text-sm text-slate-200">{item.label}</p>
-          {item.sublabel && <p className="text-xs text-slate-500">{item.sublabel}</p>}
-          {item.at && <p className="text-xs text-slate-600">{item.at}</p>}
+          <span className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary" />
+          <p className="text-sm text-foreground/90">{item.label}</p>
+          {item.sublabel && <p className="text-xs text-muted-foreground">{item.sublabel}</p>}
+          {item.at && <p className="text-xs text-muted-foreground/70">{item.at}</p>}
         </li>
       ))}
     </ul>
@@ -55,13 +55,13 @@ export function ScoreBadge({ score, className }: { score: number; className?: st
 }
 
 export function GenericDataView({ data }: { data: unknown }) {
-  if (data == null) return <p className="text-sm text-slate-500">No data</p>;
+  if (data == null) return <p className="text-sm text-muted-foreground">No data</p>;
   if (Array.isArray(data)) {
-    if (data.length === 0) return <p className="text-sm text-slate-500">No items</p>;
+    if (data.length === 0) return <p className="text-sm text-muted-foreground">No items</p>;
     return (
       <ul className="max-h-80 space-y-2 overflow-y-auto">
         {data.slice(0, 20).map((item, i) => (
-          <li key={i} className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-slate-300">
+          <li key={i} className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-foreground/80">
             {typeof item === "object" && item !== null
               ? (item as { title?: string; name?: string; summary?: string; observation?: string; statement?: string }).title ??
                 (item as { name?: string }).name ??
@@ -93,12 +93,12 @@ export function GenericDataView({ data }: { data: unknown }) {
           .filter(([, v]) => Array.isArray(v))
           .map(([key, arr]) => (
             <div key={key}>
-              <p className="mb-2 text-xs uppercase tracking-wider text-slate-500">{key}</p>
+              <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">{key}</p>
               <GenericDataView data={arr} />
             </div>
           ))}
       </div>
     );
   }
-  return <p className="text-sm text-slate-300">{String(data)}</p>;
+  return <p className="text-sm text-foreground/80">{String(data)}</p>;
 }

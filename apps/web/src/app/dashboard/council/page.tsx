@@ -33,6 +33,6 @@ export default function CouncilPage() {
 
 function CouncilCertify() {
   const { data, loading } = useWorkspaceQuery((id, t) => fetchCouncil(id, t, "/certify"));
-  if (loading) return <p className="text-sm text-slate-500">Loading…</p>;
+  if (loading) return <p className="text-sm text-muted-foreground">Loading…</p>;
   return <GenericDataView data={data} />;
 }

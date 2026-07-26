@@ -105,7 +105,7 @@ export default function MemoryPage() {
           <button
             type="button"
             onClick={openCreate}
-            className="flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium hover:bg-blue-400"
+            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium hover:bg-primary/90"
           >
             <Plus className="h-4 w-4" /> New memory
           </button>
@@ -113,17 +113,17 @@ export default function MemoryPage() {
       />
 
       {loading ? (
-        <div className="text-slate-500">Loading memories…</div>
+        <div className="text-muted-foreground">Loading memories…</div>
       ) : memories.length === 0 ? (
         <div className="glass-card flex flex-col items-center justify-center p-16 text-center">
           <p className="text-lg font-medium">No memories yet</p>
-          <p className="mt-2 max-w-sm text-sm text-slate-500">
+          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
             Capture decisions, context, and institutional knowledge your executives can reference.
           </p>
           <button
             type="button"
             onClick={openCreate}
-            className="mt-6 rounded-xl bg-blue-600 px-5 py-2 text-sm font-medium"
+            className="mt-6 rounded-xl bg-primary px-5 py-2 text-sm font-medium"
           >
             Create first memory
           </button>
@@ -133,12 +133,12 @@ export default function MemoryPage() {
           {memories.map((m) => (
             <article key={m.id} className="glass-card group flex flex-col p-5">
               <div className="mb-3 flex items-start justify-between gap-2">
-                <span className="rounded-full bg-blue-600/15 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-blue-300">
+                <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-primary">
                   {m.category}
                 </span>
                 <div className="flex gap-1 opacity-0 transition group-hover:opacity-100">
                   <button type="button" onClick={() => openEdit(m)} className="rounded-lg p-1.5 hover:bg-white/[0.06]">
-                    <Pencil className="h-3.5 w-3.5 text-slate-400" />
+                    <Pencil className="h-3.5 w-3.5 text-muted-foreground" />
                   </button>
                   <button type="button" onClick={() => remove(m.id)} className="rounded-lg p-1.5 hover:bg-white/[0.06]">
                     <Trash2 className="h-3.5 w-3.5 text-red-400" />
@@ -146,17 +146,17 @@ export default function MemoryPage() {
                 </div>
               </div>
               <h3 className="font-semibold">{m.title}</h3>
-              <p className="mt-2 flex-1 text-sm text-slate-400 line-clamp-4">{m.content}</p>
+              <p className="mt-2 flex-1 text-sm text-muted-foreground line-clamp-4">{m.content}</p>
               {m.tags.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-1">
                   {m.tags.map((t) => (
-                    <span key={t} className="rounded-md bg-white/[0.06] px-2 py-0.5 text-[10px] text-slate-400">
+                    <span key={t} className="rounded-md bg-white/[0.06] px-2 py-0.5 text-[10px] text-muted-foreground">
                       #{t}
                     </span>
                   ))}
                 </div>
               )}
-              <p className="mt-3 text-xs text-slate-600">{formatDate(m.updatedAt)}</p>
+              <p className="mt-3 text-xs text-muted-foreground/70">{formatDate(m.updatedAt)}</p>
             </article>
           ))}
         </div>
@@ -170,7 +170,7 @@ export default function MemoryPage() {
                 {modal === "create" ? "New memory" : "Edit memory"}
               </h2>
               <button type="button" onClick={() => setModal(null)}>
-                <X className="h-5 w-5 text-slate-400" />
+                <X className="h-5 w-5 text-muted-foreground" />
               </button>
             </div>
             <div className="space-y-4">
@@ -178,7 +178,7 @@ export default function MemoryPage() {
                 placeholder="Title"
                 value={form.title}
                 onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary"
               />
               <select
                 value={form.category}
@@ -194,17 +194,17 @@ export default function MemoryPage() {
                 rows={6}
                 value={form.content}
                 onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary"
               />
               <input
                 placeholder="Tags (comma-separated)"
                 value={form.tags}
                 onChange={(e) => setForm((f) => ({ ...f, tags: e.target.value }))}
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary"
               />
             </div>
             <div className="mt-6 flex justify-end gap-2">
-              <button type="button" onClick={() => setModal(null)} className="rounded-xl px-4 py-2 text-sm text-slate-400">
+              <button type="button" onClick={() => setModal(null)} className="rounded-xl px-4 py-2 text-sm text-muted-foreground">
                 Cancel
               </button>
               <button
@@ -212,7 +212,7 @@ export default function MemoryPage() {
                 onClick={save}
                 disabled={!form.title || !form.content}
                 className={cn(
-                  "flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium",
+                  "flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium",
                   (!form.title || !form.content) && "opacity-50",
                 )}
               >

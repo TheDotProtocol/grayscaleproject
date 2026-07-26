@@ -209,45 +209,45 @@ export function CommandPalette() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 pt-[12vh] backdrop-blur-sm" onClick={() => setOpen(false)}>
-      <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-[#0A0A0F] shadow-2xl" onClick={(e) => e.stopPropagation()} role="dialog" aria-label="Command palette">
+      <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-card shadow-2xl" onClick={(e) => e.stopPropagation()} role="dialog" aria-label="Command palette">
         <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
-          <Search className="h-5 w-5 text-slate-500" />
+          <Search className="h-5 w-5 text-muted-foreground" />
           <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Navigate, search, create, run… (⌘K)"
-            className="flex-1 bg-transparent text-white outline-none placeholder:text-slate-600"
+            className="flex-1 bg-transparent text-white outline-none placeholder:text-muted-foreground/70"
             aria-label="Command search"
           />
-          {searching && <span className="text-xs text-slate-600">Searching…</span>}
+          {searching && <span className="text-xs text-muted-foreground/70">Searching…</span>}
         </div>
         <div className="max-h-[28rem] overflow-y-auto p-2">
           {groups.map((group) => (
             <div key={group} className="mb-2">
-              <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-slate-600">{group}</p>
+              <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-muted-foreground/70">{group}</p>
               {commands.filter((c) => c.group === group).map((cmd) => {
                 const Icon = cmd.icon ?? Pin;
                 return (
                   <button
                     key={cmd.id}
                     type="button"
-                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-300 hover:bg-white/[0.06] focus:bg-white/[0.06] focus:outline-none"
+                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-foreground/80 hover:bg-white/[0.06] focus:bg-white/[0.06] focus:outline-none"
                     onClick={cmd.onSelect}
                   >
-                    <Icon className="h-4 w-4 shrink-0 text-blue-400" />
+                    <Icon className="h-4 w-4 shrink-0 text-primary" />
                     <span className="flex-1">{cmd.label}</span>
-                    {cmd.detail && <span className="truncate text-xs text-slate-500">{cmd.detail}</span>}
+                    {cmd.detail && <span className="truncate text-xs text-muted-foreground">{cmd.detail}</span>}
                   </button>
                 );
               })}
             </div>
           ))}
           {commands.length === 0 && (
-            <p className="px-3 py-6 text-center text-sm text-slate-500">No commands match your search.</p>
+            <p className="px-3 py-6 text-center text-sm text-muted-foreground">No commands match your search.</p>
           )}
         </div>
-        <div className="border-t border-white/10 px-4 py-2 text-xs text-slate-600">
+        <div className="border-t border-white/10 px-4 py-2 text-xs text-muted-foreground/70">
           ↑↓ navigate · ↵ select · esc close
         </div>
       </div>
@@ -261,8 +261,8 @@ export function CommandPaletteTrigger({ onClick }: { onClick: () => void }) {
       type="button"
       onClick={onClick}
       className={cn(
-        "flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-slate-500",
-        "transition hover:border-white/20 hover:text-slate-300",
+        "flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-muted-foreground",
+        "transition hover:border-white/20 hover:text-foreground/80",
       )}
     >
       <Search className="h-4 w-4" />

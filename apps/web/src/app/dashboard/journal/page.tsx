@@ -88,31 +88,31 @@ export default function JournalPage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="glass-card lg:col-span-1 p-5">
-          <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-slate-500">New entry</h2>
+          <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-muted-foreground">New entry</h2>
           <textarea
             rows={8}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="What happened today? Wins, blockers, decisions…"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-blue-600"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-primary"
           />
           <input
             value={mood}
             onChange={(e) => setMood(e.target.value)}
             placeholder="Mood (optional) — focused, stressed, energized…"
-            className="mt-3 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600"
+            className="mt-3 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary"
           />
           <button
             type="button"
             onClick={createEntry}
             disabled={saving || !content.trim()}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-2.5 text-sm font-medium disabled:opacity-50"
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-2.5 text-sm font-medium disabled:opacity-50"
           >
             <Plus className="h-4 w-4" /> {saving ? "Saving…" : "Save entry"}
           </button>
 
           <div className="mt-6 border-t border-white/10 pt-4">
-            <h3 className="mb-2 text-xs font-medium uppercase tracking-wider text-slate-500">History</h3>
+            <h3 className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">History</h3>
             <ul className="max-h-64 space-y-1 overflow-y-auto">
               {entries.map((e) => (
                 <li key={e.id}>
@@ -121,7 +121,7 @@ export default function JournalPage() {
                     onClick={() => setSelected(e)}
                     className={cn(
                       "w-full rounded-lg px-3 py-2 text-left text-sm transition",
-                      selected?.id === e.id ? "bg-blue-600/15 text-blue-200" : "hover:bg-white/[0.04] text-slate-400",
+                      selected?.id === e.id ? "bg-primary/15 text-primary" : "hover:bg-white/[0.04] text-muted-foreground",
                     )}
                   >
                     {formatDate(e.entryDate)}
@@ -139,14 +139,14 @@ export default function JournalPage() {
               <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-lg font-semibold">{formatDate(selected.entryDate)}</p>
-                  {selected.mood && <p className="text-sm text-slate-500">Mood: {selected.mood}</p>}
+                  {selected.mood && <p className="text-sm text-muted-foreground">Mood: {selected.mood}</p>}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={() => summarize(selected.id)}
                     disabled={summarizing}
-                    className="flex items-center gap-1.5 rounded-xl border border-purple-600/40 bg-purple-600/10 px-3 py-1.5 text-xs font-medium text-purple-300"
+                    className="flex items-center gap-1.5 rounded-xl border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary/70"
                   >
                     <Sparkles className="h-3.5 w-3.5" />
                     {summarizing ? "Summarizing…" : "AI Summary"}
@@ -154,14 +154,14 @@ export default function JournalPage() {
                   <button
                     type="button"
                     onClick={() => exportJournalPdf(selected)}
-                    className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-1.5 text-xs text-slate-300 hover:border-blue-500/40"
+                    className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-1.5 text-xs text-foreground/80 hover:border-primary/40"
                   >
                     <FileDown className="h-3.5 w-3.5" /> PDF
                   </button>
                   <button
                     type="button"
                     onClick={() => exportJournalDocx(selected)}
-                    className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-1.5 text-xs text-slate-300 hover:border-blue-500/40"
+                    className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-1.5 text-xs text-foreground/80 hover:border-primary/40"
                   >
                     <FileDown className="h-3.5 w-3.5" /> DOCX
                   </button>
@@ -169,20 +169,20 @@ export default function JournalPage() {
               </div>
 
               {selected.summary && (
-                <div className="mb-6 rounded-xl border border-purple-600/20 bg-purple-600/5 p-4">
-                  <p className="mb-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-purple-400">
+                <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 p-4">
+                  <p className="mb-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-primary/80">
                     <Sparkles className="h-3 w-3" /> AI Summary
                   </p>
-                  <p className="text-sm leading-relaxed text-slate-300">{selected.summary}</p>
+                  <p className="text-sm leading-relaxed text-foreground/80">{selected.summary}</p>
                 </div>
               )}
 
               <div className="prose prose-invert max-w-none">
-                <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-300">{selected.content}</p>
+                <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground/80">{selected.content}</p>
               </div>
             </>
           ) : (
-            <div className="flex h-full min-h-[300px] items-center justify-center text-slate-500">
+            <div className="flex h-full min-h-[300px] items-center justify-center text-muted-foreground">
               Select an entry or write your first journal log
             </div>
           )}

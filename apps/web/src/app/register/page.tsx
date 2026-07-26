@@ -41,8 +41,8 @@ function RegisterForm() {
     <AuthShell>
       <div className="glass-card w-full max-w-lg p-8">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-semibold text-white">Launch your company OS</h1>
-          <p className="mt-1 text-sm text-slate-500">Register as founder and create your company workspace</p>
+          <h1 className="text-2xl font-medium text-foreground">Launch your company OS</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Register as founder and create your company workspace</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -53,23 +53,23 @@ function RegisterForm() {
           )}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm text-slate-500">Your name</label>
+              <label className="mb-1.5 block text-sm text-muted-foreground">Your name</label>
               <input required value={form.name} onChange={(e) => update("name", e.target.value)} className="input-field !rounded-xl" />
             </div>
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm text-slate-500">Email</label>
+              <label className="mb-1.5 block text-sm text-muted-foreground">Email</label>
               <input type="email" required value={form.email} onChange={(e) => update("email", e.target.value)} className="input-field !rounded-xl" />
             </div>
             <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm text-slate-500">Password</label>
+              <label className="mb-1.5 block text-sm text-muted-foreground">Password</label>
               <input type="password" required minLength={8} value={form.password} onChange={(e) => update("password", e.target.value)} className="input-field !rounded-xl" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm text-slate-500">Company name</label>
+              <label className="mb-1.5 block text-sm text-muted-foreground">Company name</label>
               <input required value={form.companyName} onChange={(e) => update("companyName", e.target.value)} className="input-field !rounded-xl" />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm text-slate-500">Industry</label>
+              <label className="mb-1.5 block text-sm text-muted-foreground">Industry</label>
               <input value={form.industry} onChange={(e) => update("industry", e.target.value)} placeholder="SaaS, Fintech…" className="input-field !rounded-xl" />
             </div>
           </div>
@@ -78,9 +78,9 @@ function RegisterForm() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link href="/login" className="text-blue-400 hover:text-blue-300">
+          <Link href="/login" className="link-accent">
             Sign in
           </Link>
         </p>

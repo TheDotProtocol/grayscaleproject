@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useWaitlist } from "@/hooks/use-waitlist";
 import { CTA, FAQ, FOOTER } from "./content";
@@ -94,9 +95,9 @@ export function Footer() {
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {FOOTER.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-white/45 transition hover:text-white/70">
+                  <Link href={link.href} className="text-sm text-white/45 transition hover:text-white/70">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -4,7 +4,7 @@ import { GenericDataView } from "@/components/workspace/data-display";
 
 /** Extended widget rendering for Sprint 3/4 widgets — API-backed generic views */
 export function renderExtendedWidget(widgetId: string, data: unknown, emptyState?: string): React.ReactNode {
-  if (data == null) return <p className="text-sm text-slate-500">{emptyState ?? "No data"}</p>;
+  if (data == null) return <p className="text-sm text-muted-foreground">{emptyState ?? "No data"}</p>;
 
   // Council widgets
   if (widgetId.startsWith("council-") || widgetId === "executive-council") {

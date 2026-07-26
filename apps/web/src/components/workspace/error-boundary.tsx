@@ -27,12 +27,12 @@ export class WorkspaceErrorBoundary extends Component<Props, State> {
           <AlertTriangle className="h-10 w-10 text-amber-400" />
           <div>
             <p className="font-semibold text-white">{this.props.fallbackTitle ?? "Something went wrong"}</p>
-            <p className="mt-1 text-sm text-slate-500">{this.state.message}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{this.state.message}</p>
           </div>
           <button
             type="button"
             onClick={() => this.setState({ hasError: false, message: "" })}
-            className="flex items-center gap-2 rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-white/20"
+            className="flex items-center gap-2 rounded-lg border border-white/10 px-4 py-2 text-sm text-foreground/80 hover:border-white/20"
           >
             <RefreshCw className="h-4 w-4" />
             Retry

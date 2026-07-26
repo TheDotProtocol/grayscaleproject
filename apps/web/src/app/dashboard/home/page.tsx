@@ -74,7 +74,7 @@ export default function FounderHomePage() {
           <>
             <div className="mb-6 flex flex-wrap items-center gap-3">
               {sections?.workload && <WorkloadBadge intensity={sections.workload.intensity} />}
-              <span className="text-sm text-slate-500">
+              <span className="text-sm text-muted-foreground">
                 Briefing for {brief.data?.briefingDate ?? "today"}
               </span>
             </div>
@@ -93,12 +93,12 @@ export default function FounderHomePage() {
                     <BriefingListItem key={i} label={item.title ?? "Blocked item"} detail={item.reason} urgent />
                   ))}
                   {(sections?.blockedWork ?? []).length === 0 && (
-                    <p className="text-sm text-slate-500">No blockers detected.</p>
+                    <p className="text-sm text-muted-foreground">No blockers detected.</p>
                   )}
                 </ul>
               </BriefingCard>
 
-              <BriefingCard title="What Changed Today" subtitle="Organizational timeline" icon={Sparkles} accent="purple" href="/dashboard/timeline">
+              <BriefingCard title="What Changed Today" subtitle="Organizational timeline" icon={Sparkles} accent="gold" href="/dashboard/timeline">
                 <ul>
                   {(timeline.data ?? []).slice(0, 4).map((entry) => (
                     <BriefingListItem
@@ -108,18 +108,18 @@ export default function FounderHomePage() {
                     />
                   ))}
                   {(timeline.data ?? []).length === 0 && (
-                    <p className="text-sm text-slate-500">No changes recorded today.</p>
+                    <p className="text-sm text-muted-foreground">No changes recorded today.</p>
                   )}
                 </ul>
               </BriefingCard>
 
-              <BriefingCard title="Decisions Waiting" subtitle="Recommendations & council" icon={CheckCircle2} accent="blue" href="/dashboard/council">
+              <BriefingCard title="Decisions Waiting" subtitle="Recommendations & council" icon={CheckCircle2} accent="gold" href="/dashboard/council">
                 <ul>
                   {(sections?.topRecommendations ?? []).slice(0, 4).map((rec, i) => (
                     <BriefingListItem key={i} label={rec.title} detail={rec.summary?.slice(0, 40)} />
                   ))}
                   {(sections?.topRecommendations ?? []).length === 0 && (
-                    <p className="text-sm text-slate-500">No pending decisions.</p>
+                    <p className="text-sm text-muted-foreground">No pending decisions.</p>
                   )}
                 </ul>
               </BriefingCard>
@@ -130,7 +130,7 @@ export default function FounderHomePage() {
                     <BriefingListItem key={i} label={risk.title ?? "Risk change"} detail={risk.severity} urgent />
                   ))}
                   {(sections?.riskChanges ?? []).length === 0 && (
-                    <p className="text-sm text-slate-500">No new risk escalations.</p>
+                    <p className="text-sm text-muted-foreground">No new risk escalations.</p>
                   )}
                 </ul>
               </BriefingCard>
@@ -141,12 +141,12 @@ export default function FounderHomePage() {
                     <BriefingListItem key={i} label={p.title ?? p.name ?? "Priority"} />
                   ))}
                   {(sections?.todaysPriorities ?? []).length === 0 && (
-                    <p className="text-sm text-slate-500">Priorities assembling from strategy engine.</p>
+                    <p className="text-sm text-muted-foreground">Priorities assembling from strategy engine.</p>
                   )}
                 </ul>
               </BriefingCard>
 
-              <BriefingCard title="Executive Council" subtitle="Recent conclusions" icon={Users} accent="purple" href="/dashboard/council">
+              <BriefingCard title="Executive Council" subtitle="Recent conclusions" icon={Users} accent="gold" href="/dashboard/council">
                 <ul>
                   {(sections?.recentEvents ?? [])
                     .filter((e) => e.title.toLowerCase().includes("council"))
@@ -155,44 +155,44 @@ export default function FounderHomePage() {
                       <BriefingListItem key={i} label={e.title} detail={e.summary?.slice(0, 30)} />
                     ))}
                   {(sections?.recentEvents ?? []).filter((e) => e.title.toLowerCase().includes("council")).length === 0 && (
-                    <p className="text-sm text-slate-500">No recent council activity.</p>
+                    <p className="text-sm text-muted-foreground">No recent council activity.</p>
                   )}
                 </ul>
               </BriefingCard>
             </div>
 
             <div className="mt-8 grid gap-6 lg:grid-cols-3">
-              <BriefingCard title="Simulations & Forecasts" subtitle="Future modeling" icon={FlaskConical} accent="blue" href="/dashboard/simulation">
-                <p className="text-sm text-slate-400">
+              <BriefingCard title="Simulations & Forecasts" subtitle="Future modeling" icon={FlaskConical} accent="gold" href="/dashboard/simulation">
+                <p className="text-sm text-muted-foreground">
                   {(sections?.recentEvents ?? []).filter((e) =>
                     /simulation|forecast/i.test(e.title),
                   ).length || 0}{" "}
                   active model runs ·{" "}
-                  <Link href="/dashboard/forecasts" className="text-blue-400 hover:underline">View forecasts</Link>
+                  <Link href="/dashboard/forecasts" className="text-primary hover:underline">View forecasts</Link>
                 </p>
               </BriefingCard>
 
               <BriefingCard title="Opportunities" subtitle="Discovery signals" icon={Lightbulb} accent="emerald" href="/dashboard/learning">
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-muted-foreground">
                   Review evolution milestones and learning signals in the organizational timeline.
                 </p>
               </BriefingCard>
 
               <BriefingCard title="Athena Discoveries" subtitle="Chief Executive Strategist insights" icon={TrendingUp} accent="amber" href="/dashboard/executives/athena">
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-muted-foreground">
                   {(sections?.recentEvents ?? []).slice(0, 2).map((e) => e.title).join(" · ") || "No discoveries yet."}
                 </p>
               </BriefingCard>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/dashboard/mission-control" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-blue-500/40 hover:text-white">
+              <Link href="/dashboard/mission-control" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-foreground/80 hover:border-primary/40 hover:text-white">
                 Open Mission Control
               </Link>
-              <Link href="/dashboard/timeline" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-purple-500/40 hover:text-white">
+              <Link href="/dashboard/timeline" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-foreground/80 hover:border-primary/40 hover:text-white">
                 Full Timeline
               </Link>
-              <Link href="/dashboard/activity" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-amber-500/40 hover:text-white">
+              <Link href="/dashboard/activity" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-foreground/80 hover:border-amber-500/40 hover:text-white">
                 Activity Center
               </Link>
             </div>

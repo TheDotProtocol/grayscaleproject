@@ -22,10 +22,10 @@ export function Panel({
     <section className={cn("glass-card p-6", className)}>
       <div className="mb-4 flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
-          {Icon && <Icon className="h-5 w-5 text-blue-400" />}
+          {Icon && <Icon className="icon-accent h-5 w-5" />}
           <div>
-            <h2 className="text-lg font-semibold text-white">{title}</h2>
-            {subtitle && <p className="text-sm text-slate-500">{subtitle}</p>}
+            <h2 className="text-lg font-medium text-foreground">{title}</h2>
+            {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
           </div>
         </div>
         {actions}
@@ -38,9 +38,9 @@ export function Panel({
 export function StatCard({ label, value, hint }: { label: string; value: string | number; hint?: string }) {
   return (
     <div className="glass-card p-5">
-      <p className="text-xs uppercase tracking-wider text-slate-500">{label}</p>
-      <p className="mt-2 text-3xl font-bold text-white">{value}</p>
-      {hint && <p className="mt-1 text-sm text-slate-500">{hint}</p>}
+      <p className="text-xs uppercase tracking-wider text-muted-foreground">{label}</p>
+      <p className="mt-2 text-3xl font-light text-foreground">{value}</p>
+      {hint && <p className="mt-1 text-sm text-muted-foreground">{hint}</p>}
     </div>
   );
 }
@@ -48,7 +48,7 @@ export function StatCard({ label, value, hint }: { label: string; value: string 
 export function LoadingState() {
   return (
     <div className="flex items-center justify-center py-16">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
+      <div className="spinner" />
     </div>
   );
 }
@@ -60,5 +60,5 @@ export function ErrorState({ message }: { message: string }) {
 }
 
 export function EmptyState({ message }: { message: string }) {
-  return <p className="text-sm text-slate-500">{message}</p>;
+  return <p className="text-sm text-muted-foreground">{message}</p>;
 }

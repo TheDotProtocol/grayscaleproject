@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { CSSProperties, ReactNode } from "react";
 
@@ -77,23 +78,33 @@ export function LuxuryCard({
   );
 }
 
-export function GoldAccent({ children }: { children: ReactNode }) {
-  return <span className="landing-gold-text">{children}</span>;
+export function GoldAccent({ children, className }: { children: ReactNode; className?: string }) {
+  return <span className={cn("landing-gold-text", className)}>{children}</span>;
 }
 
 export function PrimaryButton({
   children,
   onClick,
   type = "button",
+  href,
   className,
 }: {
   children: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
+  href?: string;
   className?: string;
 }) {
+  const cls = cn("landing-btn-primary", className);
+  if (href) {
+    return (
+      <Link href={href} className={cls}>
+        {children}
+      </Link>
+    );
+  }
   return (
-    <button type={type} onClick={onClick} className={cn("landing-btn-primary", className)}>
+    <button type={type} onClick={onClick} className={cls}>
       {children}
     </button>
   );

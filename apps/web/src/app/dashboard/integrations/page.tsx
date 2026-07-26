@@ -82,7 +82,7 @@ export default function IntegrationsPage() {
       />
 
       {message && (
-        <div className="mb-6 rounded-xl border border-blue-600/30 bg-blue-600/10 px-4 py-3 text-sm text-blue-200">
+        <div className="mb-6 rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary">
           {message}
         </div>
       )}
@@ -95,7 +95,7 @@ export default function IntegrationsPage() {
             </div>
             <div>
               <h2 className="text-lg font-semibold">GitHub / Cursor</h2>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-muted-foreground">
                 Import commits from your connected repo into company memory
               </p>
             </div>
@@ -111,11 +111,11 @@ export default function IntegrationsPage() {
           <div className="space-y-4">
             <div className="rounded-xl bg-white/[0.04] p-4 text-sm">
               <p>
-                <span className="text-slate-500">Repository:</span>{" "}
+                <span className="text-muted-foreground">Repository:</span>{" "}
                 {github.config.owner}/{github.config.repo}
               </p>
               {github.lastSyncAt && (
-                <p className="mt-1 text-slate-500">
+                <p className="mt-1 text-muted-foreground">
                   Last sync: {formatDate(github.lastSyncAt)}
                 </p>
               )}
@@ -125,7 +125,7 @@ export default function IntegrationsPage() {
                 type="button"
                 onClick={sync}
                 disabled={syncing}
-                className="flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium disabled:opacity-50"
+                className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium disabled:opacity-50"
               >
                 <RefreshCw className={cn("h-4 w-4", syncing && "animate-spin")} />
                 {syncing ? "Syncing…" : "Sync commits to memory"}
@@ -146,25 +146,25 @@ export default function IntegrationsPage() {
               placeholder="GitHub personal access token"
               value={form.accessToken}
               onChange={(e) => setForm((f) => ({ ...f, accessToken: e.target.value }))}
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600 sm:col-span-2"
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary sm:col-span-2"
             />
             <input
               placeholder="Owner (username or org)"
               value={form.owner}
               onChange={(e) => setForm((f) => ({ ...f, owner: e.target.value }))}
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600"
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary"
             />
             <input
               placeholder="Repository name"
               value={form.repo}
               onChange={(e) => setForm((f) => ({ ...f, repo: e.target.value }))}
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-blue-600"
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none focus:border-primary"
             />
             <button
               type="button"
               onClick={connect}
               disabled={!form.accessToken || !form.owner || !form.repo}
-              className="rounded-xl bg-blue-600 py-2.5 text-sm font-medium disabled:opacity-50 sm:col-span-2"
+              className="rounded-xl bg-primary py-2.5 text-sm font-medium disabled:opacity-50 sm:col-span-2"
             >
               Connect GitHub repository
             </button>
@@ -174,7 +174,7 @@ export default function IntegrationsPage() {
 
       <div className="mt-6 glass-card p-6">
         <h3 className="mb-2 font-semibold">Coming soon</h3>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-muted-foreground">
           Cursor workspace sync, Slack notifications, and Google Calendar timeline import.
         </p>
       </div>

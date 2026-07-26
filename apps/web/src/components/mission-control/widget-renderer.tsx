@@ -71,17 +71,17 @@ function WidgetShell({
   className?: string;
 }) {
   return (
-    <section className={cn("glass-card p-6", pinned && "ring-1 ring-blue-500/30", className)}>
+    <section className={cn("glass-card p-6", pinned && "ring-1 ring-primary/30", className)}>
       <div className="mb-4 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Icon className="h-5 w-5 text-blue-400" />
+          <Icon className="h-5 w-5 text-primary" />
           <h2 className="text-lg font-semibold text-white">{title}</h2>
         </div>
         {onRefresh && (
           <button
             type="button"
             onClick={onRefresh}
-            className="text-xs text-slate-500 hover:text-slate-300"
+            className="text-xs text-muted-foreground hover:text-foreground/80"
           >
             Refresh
           </button>
@@ -93,7 +93,7 @@ function WidgetShell({
 }
 
 function EmptyState({ message }: { message: string }) {
-  return <p className="text-sm text-slate-500">{message}</p>;
+  return <p className="text-sm text-muted-foreground">{message}</p>;
 }
 
 function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined, emptyState?: string) {
@@ -115,7 +115,7 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <div>
           <p className="text-4xl font-bold text-white">{(data as { score?: number }).score ?? 0}%</p>
-          <p className="mt-1 capitalize text-sm text-slate-400">{(data as { status?: string }).status}</p>
+          <p className="mt-1 capitalize text-sm text-muted-foreground">{(data as { status?: string }).status}</p>
         </div>
       );
     case "pulse-feed": {
@@ -124,7 +124,7 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <ul className="max-h-64 space-y-2 overflow-y-auto">
           {recent.map((p) => (
-            <li key={p.id} className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-slate-300">
+            <li key={p.id} className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-foreground/80">
               <span className="font-medium">{p.title}</span>
               {p.summary && <p className="mt-0.5 text-xs opacity-70">{p.summary}</p>}
             </li>
@@ -138,9 +138,9 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <ul className="max-h-64 space-y-2 overflow-y-auto">
           {entries.map((e) => (
-            <li key={e.id} className="text-sm text-slate-400">
-              <span className="text-slate-300">{e.title}</span>
-              <span className="ml-2 text-xs text-slate-600">{e.type}</span>
+            <li key={e.id} className="text-sm text-muted-foreground">
+              <span className="text-foreground/80">{e.title}</span>
+              <span className="ml-2 text-xs text-muted-foreground/70">{e.type}</span>
             </li>
           ))}
         </ul>
@@ -153,8 +153,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
         <ul className="space-y-2">
           {items.map((i, idx) => (
             <li key={idx} className="flex justify-between text-sm">
-              <span className="text-slate-300">{i.providerId}</span>
-              <span className="capitalize text-slate-500">{i.state}</span>
+              <span className="text-foreground/80">{i.providerId}</span>
+              <span className="capitalize text-muted-foreground">{i.state}</span>
             </li>
           ))}
         </ul>
@@ -166,7 +166,7 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <ul className="space-y-2">
           {recs.map((r) => (
-            <li key={r.id} className="text-sm text-slate-300">{r.title}</li>
+            <li key={r.id} className="text-sm text-foreground/80">{r.title}</li>
           ))}
         </ul>
       );
@@ -178,8 +178,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
         <ul className="space-y-2">
           {bills.slice(0, 8).map((b) => (
             <li key={b.id} className="flex justify-between text-sm">
-              <span className="text-slate-300">{b.name}</span>
-              <span className="text-slate-500">${(b.amountCents / 100).toFixed(2)}</span>
+              <span className="text-foreground/80">{b.name}</span>
+              <span className="text-muted-foreground">${(b.amountCents / 100).toFixed(2)}</span>
             </li>
           ))}
         </ul>
@@ -191,7 +191,7 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <ul className="space-y-2">
           {events.map((e) => (
-            <li key={e.id} className="text-sm text-slate-300">• {e.title}</li>
+            <li key={e.id} className="text-sm text-foreground/80">• {e.title}</li>
           ))}
         </ul>
       );
@@ -200,8 +200,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       const g = data as { nodeCount?: number; edgeCount?: number };
       return (
         <div className="flex gap-8 text-sm">
-          <div><p className="text-2xl font-bold text-white">{g.nodeCount ?? 0}</p><p className="text-slate-500">Nodes</p></div>
-          <div><p className="text-2xl font-bold text-white">{g.edgeCount ?? 0}</p><p className="text-slate-500">Edges</p></div>
+          <div><p className="text-2xl font-bold text-white">{g.nodeCount ?? 0}</p><p className="text-muted-foreground">Nodes</p></div>
+          <div><p className="text-2xl font-bold text-white">{g.edgeCount ?? 0}</p><p className="text-muted-foreground">Edges</p></div>
         </div>
       );
     }
@@ -212,12 +212,12 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
           {dims.slice(0, 8).map((d) => (
             <li key={d.name}>
               <div className="mb-1 flex justify-between text-sm">
-                <span className="text-slate-300">{d.name}</span>
-                <span className="text-slate-500">{d.status === "unknown" ? "—" : `${d.score}%`}</span>
+                <span className="text-foreground/80">{d.name}</span>
+                <span className="text-muted-foreground">{d.status === "unknown" ? "—" : `${d.score}%`}</span>
               </div>
               {d.status !== "unknown" && (
                 <div className="h-1.5 rounded-full bg-white/10">
-                  <div className="h-full rounded-full bg-gradient-to-r from-blue-600 to-purple-600" style={{ width: `${d.score}%` }} />
+                  <div className="h-full rounded-full bg-gradient-to-r from-primary to-primary/80" style={{ width: `${d.score}%` }} />
                 </div>
               )}
             </li>
@@ -231,7 +231,7 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return workload ? (
         <div>
           <p className="text-2xl font-bold capitalize text-white">{workload.intensity}</p>
-          <p className="text-sm text-slate-500">Workload intensity score: {workload.score}</p>
+          <p className="text-sm text-muted-foreground">Workload intensity score: {workload.score}</p>
         </div>
       ) : (
         <EmptyState message="Brief assembling…" />
@@ -244,8 +244,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
         <ul className="space-y-2">
           {plugins.map((p) => (
             <li key={p.pluginId} className="flex justify-between text-sm">
-              <span className="text-slate-300">{p.pluginId}</span>
-              <span className="text-slate-500">{p.state}</span>
+              <span className="text-foreground/80">{p.pluginId}</span>
+              <span className="text-muted-foreground">{p.state}</span>
             </li>
           ))}
         </ul>
@@ -258,8 +258,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
         <ul className="space-y-2">
           {costs.map((c, idx) => (
             <li key={idx} className="flex justify-between text-sm">
-              <span className="text-slate-300">{c.provider}</span>
-              <span className="text-slate-500">${(c.estimatedCostCents / 100).toFixed(2)}</span>
+              <span className="text-foreground/80">{c.provider}</span>
+              <span className="text-muted-foreground">${(c.estimatedCostCents / 100).toFixed(2)}</span>
             </li>
           ))}
         </ul>
@@ -273,8 +273,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
           {profiles.slice(0, 6).map((p) => (
             <li key={p.serviceId}>
               <div className="mb-1 flex justify-between text-sm">
-                <span className="text-slate-300">{p.serviceId}</span>
-                <span className="text-slate-500">{p.slo.availability.toFixed(1)}% avail</span>
+                <span className="text-foreground/80">{p.serviceId}</span>
+                <span className="text-muted-foreground">{p.slo.availability.toFixed(1)}% avail</span>
               </div>
               <div className="h-1.5 rounded-full bg-white/10">
                 <div className="h-full rounded-full bg-emerald-500" style={{ width: `${p.errorBudget.remaining}%` }} />
@@ -293,10 +293,10 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
             <div className="mb-3 flex gap-4 text-sm">
               <span className="text-red-400">{summary.critical} critical</span>
               <span className="text-amber-400">{summary.error} errors</span>
-              <span className="text-slate-400">{summary.warning} warnings</span>
+              <span className="text-muted-foreground">{summary.warning} warnings</span>
             </div>
           )}
-          <ul className="max-h-48 space-y-1 overflow-y-auto text-sm text-slate-400">
+          <ul className="max-h-48 space-y-1 overflow-y-auto text-sm text-muted-foreground">
             {(snap.findings ?? []).slice(0, 8).map((f, i) => (
               <li key={i}>• {f.title}</li>
             ))}
@@ -311,8 +311,8 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
         <ul className="space-y-2">
           {trends.slice(0, 6).map((t) => (
             <li key={t.name} className="flex justify-between text-sm">
-              <span className="text-slate-300">{t.name}</span>
-              <span className="text-slate-500">{t.p95.toFixed(2)}</span>
+              <span className="text-foreground/80">{t.name}</span>
+              <span className="text-muted-foreground">{t.p95.toFixed(2)}</span>
             </li>
           ))}
         </ul>
@@ -323,7 +323,7 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <div>
           <p className="text-2xl font-bold text-white">${((cost.totalEstimatedCents ?? 0) / 100).toFixed(2)}</p>
-          <p className="text-sm text-slate-500">Estimated platform cost (period)</p>
+          <p className="text-sm text-muted-foreground">Estimated platform cost (period)</p>
         </div>
       );
     }
@@ -334,9 +334,9 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <div>
           <p className={cn("text-2xl font-bold", ready ? "text-emerald-400" : "text-amber-400")}>{report.verdict}</p>
-          <p className="text-sm text-slate-500">Score: {report.overallScore ?? 0}/100</p>
+          <p className="text-sm text-muted-foreground">Score: {report.overallScore ?? 0}/100</p>
           {(report.blockers ?? []).length > 0 && (
-            <ul className="mt-2 text-xs text-slate-400">
+            <ul className="mt-2 text-xs text-muted-foreground">
               {report.blockers!.slice(0, 3).map((b, i) => (
                 <li key={i}>• {b.title}</li>
               ))}
@@ -349,9 +349,9 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       const evo = data as { platformVersion?: string; schemaVersion?: string; migrationVersion?: string };
       return (
         <ul className="space-y-2 text-sm">
-          <li className="flex justify-between"><span className="text-slate-400">Platform</span><span className="text-slate-300">{evo.platformVersion}</span></li>
-          <li className="flex justify-between"><span className="text-slate-400">Schema</span><span className="text-slate-300">{evo.schemaVersion}</span></li>
-          <li className="flex justify-between"><span className="text-slate-400">Migration</span><span className="text-slate-300">{evo.migrationVersion}</span></li>
+          <li className="flex justify-between"><span className="text-muted-foreground">Platform</span><span className="text-foreground/80">{evo.platformVersion}</span></li>
+          <li className="flex justify-between"><span className="text-muted-foreground">Schema</span><span className="text-foreground/80">{evo.schemaVersion}</span></li>
+          <li className="flex justify-between"><span className="text-muted-foreground">Migration</span><span className="text-foreground/80">{evo.migrationVersion}</span></li>
         </ul>
       );
     }
@@ -360,9 +360,9 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
       return (
         <div>
           <p className="text-4xl font-bold text-white">{sec.score ?? 0}</p>
-          <p className="mt-1 capitalize text-sm text-slate-400">{sec.status ?? "unknown"}</p>
+          <p className="mt-1 capitalize text-sm text-muted-foreground">{sec.status ?? "unknown"}</p>
           {(sec.findings ?? []).length > 0 && (
-            <ul className="mt-2 text-xs text-slate-500">
+            <ul className="mt-2 text-xs text-muted-foreground">
               {sec.findings!.slice(0, 4).map((f, i) => (
                 <li key={i}>{f.severity}: {f.title}</li>
               ))}

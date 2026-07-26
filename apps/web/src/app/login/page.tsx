@@ -31,8 +31,8 @@ export default function LoginPage() {
     <AuthShell>
       <div className="glass-card w-full max-w-md p-8">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
-          <p className="mt-1 text-sm text-slate-500">Sign in to your founder command center</p>
+          <h1 className="text-2xl font-medium text-foreground">Welcome back</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Sign in to your founder command center</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -42,7 +42,7 @@ export default function LoginPage() {
             </div>
           )}
           <div>
-            <label className="mb-1.5 block text-sm text-slate-500">Email</label>
+            <label className="mb-1.5 block text-sm text-muted-foreground">Email</label>
             <input
               type="email"
               required
@@ -53,7 +53,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm text-slate-500">Password</label>
+            <label className="mb-1.5 block text-sm text-muted-foreground">Password</label>
             <input
               type="password"
               required
@@ -67,9 +67,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-muted-foreground">
           No account?{" "}
-          <Link href="/register" className="text-blue-400 hover:text-blue-300">
+          <Link href="/register" className="link-accent">
             Create company
           </Link>
         </p>

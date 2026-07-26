@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GrayscaleLogo } from "../grayscale-logo";
 import { NAV_LINKS } from "./content";
@@ -7,6 +8,35 @@ import { PrimaryButton } from "./primitives";
 
 interface NavbarProps {
   onWaitlistClick: () => void;
+}
+
+function NavAnchor({
+  href,
+  label,
+  onNavigate,
+  className,
+}: {
+  href: string;
+  label: string;
+  onNavigate?: () => void;
+  className?: string;
+}) {
+  const isInternal = href.startsWith("/");
+  const cls = className ?? "landing-nav-link";
+
+  if (isInternal) {
+    return (
+      <Link href={href} className={cls} onClick={onNavigate}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={cls} onClick={onNavigate}>
+      {label}
+    </a>
+  );
 }
 
 export function Navbar({ onWaitlistClick }: NavbarProps) {
@@ -32,9 +62,7 @@ export function Navbar({ onWaitlistClick }: NavbarProps) {
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a href={link.href} className="landing-nav-link">
-                {link.label}
-              </a>
+              <NavAnchor href={link.href} label={link.label} />
             </li>
           ))}
         </ul>
@@ -67,13 +95,12 @@ export function Navbar({ onWaitlistClick }: NavbarProps) {
           <ul className="landing-container flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <a
+                <NavAnchor
                   href={link.href}
+                  label={link.label}
+                  onNavigate={() => setOpen(false)}
                   className="block rounded-lg px-3 py-2.5 text-sm text-white/80 hover:bg-white/5"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </a>
+                />
               </li>
             ))}
             <li className="mt-2 flex flex-col gap-2 border-t border-white/5 pt-4">

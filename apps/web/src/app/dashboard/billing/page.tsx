@@ -89,21 +89,21 @@ export default function BillingPage() {
             <button
               type="button"
               onClick={() => exportBillsPdf(bills)}
-              className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs text-slate-300 hover:border-blue-500/40"
+              className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs text-foreground/80 hover:border-primary/40"
             >
               <FileDown className="h-3.5 w-3.5" /> PDF
             </button>
             <button
               type="button"
               onClick={() => exportBillsExcel(bills)}
-              className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs text-slate-300 hover:border-blue-500/40"
+              className="flex items-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs text-foreground/80 hover:border-primary/40"
             >
               <FileDown className="h-3.5 w-3.5" /> Excel
             </button>
             <button
               type="button"
               onClick={() => setShowForm(true)}
-              className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium"
+              className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-sm font-medium"
             >
               <Plus className="h-4 w-4" /> Add bill
             </button>
@@ -119,7 +119,7 @@ export default function BillingPage() {
         ].map(({ label, value, color }) => (
           <div key={label} className="glass-card p-5">
             <p className={cn("text-3xl font-bold", color)}>{value}</p>
-            <p className="text-sm text-slate-500">{label}</p>
+            <p className="text-sm text-muted-foreground">{label}</p>
           </div>
         ))}
       </div>
@@ -132,7 +132,7 @@ export default function BillingPage() {
               placeholder="Bill name"
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-blue-600"
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
             />
             <input
               type="number"
@@ -140,13 +140,13 @@ export default function BillingPage() {
               placeholder="Amount (USD)"
               value={form.amount}
               onChange={(e) => setForm((f) => ({ ...f, amount: e.target.value }))}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-blue-600"
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
             />
             <input
               type="date"
               value={form.dueDate}
               onChange={(e) => setForm((f) => ({ ...f, dueDate: e.target.value }))}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-blue-600"
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
             />
             <select
               value={form.recurrence}
@@ -161,7 +161,7 @@ export default function BillingPage() {
               type="button"
               onClick={createBill}
               disabled={!form.name || !form.amount || !form.dueDate}
-              className="rounded-xl bg-blue-600 py-2 text-sm font-medium disabled:opacity-50"
+              className="rounded-xl bg-primary py-2 text-sm font-medium disabled:opacity-50"
             >
               Save bill
             </button>
@@ -185,12 +185,12 @@ export default function BillingPage() {
                 {bill.isPaid ? (
                   <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                 ) : (
-                  <Circle className="h-5 w-5 text-slate-600 hover:text-blue-400" />
+                  <Circle className="h-5 w-5 text-muted-foreground/70 hover:text-primary" />
                 )}
               </button>
               <div className="flex-1 min-w-0">
                 <p className="font-medium">{bill.name}</p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   Due {formatDate(bill.dueDate)} · {bill.recurrence}
                   {bill.category && ` · ${bill.category}`}
                 </p>
@@ -200,14 +200,14 @@ export default function BillingPage() {
                   <AlertTriangle className="h-3 w-3" /> Overdue
                 </span>
               )}
-              <p className={cn("text-lg font-semibold", bill.isPaid ? "text-slate-500 line-through" : "text-white")}>
+              <p className={cn("text-lg font-semibold", bill.isPaid ? "text-muted-foreground line-through" : "text-white")}>
                 {formatCurrency(bill.amountCents, bill.currency)}
               </p>
             </div>
           );
         })}
         {bills.length === 0 && (
-          <div className="glass-card p-12 text-center text-slate-500">
+          <div className="glass-card p-12 text-center text-muted-foreground">
             No bills yet — add your recurring expenses to stay ahead of cash flow.
           </div>
         )}

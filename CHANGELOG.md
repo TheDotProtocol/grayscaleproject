@@ -1,9 +1,44 @@
 # Changelog — Project Grayscale
 
-All notable changes to **Project Grayscale Foundation (Bedrock)** are documented here.
+All notable changes to **Project Grayscale** are documented here.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
 Foundation versioning: **Semantic + codename** (`v1.0.0-bedrock`).
+
+---
+
+## [Grayscale-OS-v1.0-Repository-Governance] — 2026-07-27
+
+**Tag:** `Grayscale-OS-v1.0-Repository-Governance`  
+**Scope:** Documentation and repository governance only — no runtime changes
+
+### Added
+
+- **`docs/public/`** — Complete public documentation library (40+ guides)
+- **Documentation Center** — Website `/docs` renders only `docs/public/` via allowlist manifest
+- **Governance docs** — `REPOSITORY_GOVERNANCE.md`, `PUBLIC_DOCUMENTATION_GUIDE.md`, `PUBLIC_REPOSITORY_STRUCTURE.md`
+- **Internal index** — `docs/internal/INTERNAL_DOCUMENTATION_INDEX.md`
+- **Licensing placeholders** — Community, Commercial, Enterprise, OEM, Partner, Marketplace editions
+- **Developer positioning** — Build on Grayscale (plugins, connectors, widgets — not platform reproduction)
+
+### Changed
+
+- **`README.md`** — Developer platform positioning for Grayscale OS v1.0
+- **`docs/internal/`** — Moved architecture, platform, engineering, executives, api, releases, sprint artifacts
+- **Docs manifest** — All routes now source from `docs/public/` only
+- **Landing nav** — Documentation link to `/docs`
+
+### Repository Structure
+
+```
+docs/public/     → Public GitHub + website documentation
+docs/internal/   → Internal IP (future private repository)
+prompts/         → Executive prompts (internal)
+```
+
+### Non-Changes
+
+- No Bedrock, API, database, executive, or runtime modifications
 
 ---
 
