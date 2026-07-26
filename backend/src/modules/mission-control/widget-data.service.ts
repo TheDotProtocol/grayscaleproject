@@ -22,6 +22,7 @@ import { PlatformEvolutionService } from "../platform-operations/platform-evolut
 import { SecurityObservatoryService } from "../platform-operations/security-observatory.service";
 import { AthenaWidgetDataService } from "./athena-widget-data.service";
 import { CouncilWidgetDataService } from "./council-widget-data.service";
+import { TwinWidgetDataService } from "./twin-widget-data.service";
 
 @Injectable()
 export class WidgetDataService implements WidgetDataPort {
@@ -48,6 +49,7 @@ export class WidgetDataService implements WidgetDataPort {
     private readonly security: SecurityObservatoryService,
     private readonly athenaWidgets: AthenaWidgetDataService,
     private readonly councilWidgets: CouncilWidgetDataService,
+    private readonly twinWidgets: TwinWidgetDataService,
   ) {}
 
   async fetchWidget(
@@ -166,6 +168,36 @@ export class WidgetDataService implements WidgetDataPort {
         return this.councilWidgets.getEscalations(companyId);
       case "council-decision-replay":
         return this.councilWidgets.getHistory(companyId);
+      case "living-organizational-twin":
+        return this.twinWidgets.getOverview(companyId);
+      case "twin-timeline":
+        return this.twinWidgets.getTimeline(companyId);
+      case "twin-evolution":
+        return this.twinWidgets.getEvolution(companyId);
+      case "twin-health":
+        return this.twinWidgets.getHealth(companyId);
+      case "twin-state":
+        return this.twinWidgets.getState(companyId);
+      case "simulation-queue":
+        return this.twinWidgets.getSimulationQueue(companyId);
+      case "simulation-results":
+        return this.twinWidgets.getSimulationResults(companyId);
+      case "scenario-library":
+        return this.twinWidgets.getScenarioLibrary();
+      case "forecast-dashboard":
+        return this.twinWidgets.getForecastDashboard(companyId);
+      case "reality-vs-forecast":
+        return this.twinWidgets.getRealityComparison(companyId);
+      case "twin-replay":
+        return this.twinWidgets.getReplay(companyId);
+      case "twin-metrics":
+        return this.twinWidgets.getMetrics(companyId);
+      case "twin-integrity":
+        return this.twinWidgets.getIntegrity(companyId);
+      case "twin-synchronization":
+        return this.twinWidgets.getSynchronization(companyId);
+      case "twin-learning":
+        return this.twinWidgets.getLearning(companyId);
       default:
         return null;
     }

@@ -341,6 +341,20 @@ export const EVENT_CATALOG = {
   "council.founder.override": { version: 1, category: "council", description: "Founder override recorded" },
   "council.audit.recorded": { version: 1, category: "council", description: "Council audit entry recorded" },
   "attention.snapshot.captured": { version: 1, category: "organization", description: "Organizational attention snapshot captured" },
+
+  // ─── Living Organizational Twin (Sprint 3 Phase C — ADR-039–041) ───
+  "twin.state.updated": { version: 1, category: "twin", description: "Living Organizational Twin state updated" },
+  "twin.snapshot.captured": { version: 1, category: "twin", description: "Twin snapshot captured at milestone" },
+  "twin.timeline.entry": { version: 1, category: "twin", description: "Twin timeline entry recorded" },
+  "twin.replay.completed": { version: 1, category: "twin", description: "Twin replay reconstruction completed" },
+  "twin.learning.recorded": { version: 1, category: "twin", description: "Twin learning entry recorded" },
+  "twin.reality.compared": { version: 1, category: "twin", description: "Reality compared against forecast/simulation" },
+  "simulation.session.created": { version: 1, category: "simulation", description: "Simulation session created" },
+  "simulation.session.completed": { version: 1, category: "simulation", description: "Simulation session completed" },
+  "simulation.session.rolled_back": { version: 1, category: "simulation", description: "Simulation rolled back — reality preserved" },
+  "forecast.generated": { version: 1, category: "forecast", description: "Organizational forecast generated as hypothesis" },
+  "forecast.superseded": { version: 1, category: "forecast", description: "Forecast superseded by newer hypothesis" },
+  "forecast.validated": { version: 1, category: "forecast", description: "Forecast validated against reality" },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

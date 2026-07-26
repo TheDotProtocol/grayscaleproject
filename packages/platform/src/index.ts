@@ -19,4 +19,7 @@ export * from "./insights/index.js";
 export * from "./council/index.js";
 export * from "./decision/index.js";
 export * from "./attention/index.js";
+export * from "./twin/index.js";
+export * from "./simulation/index.js";
+export * from "./forecast/index.js";
 export type { PlatformEventType } from "./events/catalog.js";

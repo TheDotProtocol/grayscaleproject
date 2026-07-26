@@ -25,6 +25,7 @@ import { ExecutiveNotebookModule } from "./modules/executive-notebook/executive-
 import { ExecutiveComplianceModule } from "./modules/executive-compliance/executive-compliance.module";
 import { ExecutiveCouncilModule } from "./modules/executive-council/executive-council.module";
 import { CouncilRuntimeModule } from "./modules/council-runtime/council-runtime.module";
+import { TwinRuntimeModule } from "./modules/twin-runtime/twin-runtime.module";
 import { IntegrationPlatformModule } from "./modules/integration-platform/integration-platform.module";
 import { MissionControlModule } from "./modules/mission-control/mission-control.module";
 import { PlatformOperationsModule } from "./modules/platform-operations/platform-operations.module";
@@ -53,6 +54,7 @@ import { PlatformOperationsModule } from "./modules/platform-operations/platform
     ExecutiveComplianceModule,
     ExecutiveCouncilModule,
     CouncilRuntimeModule,
+    TwinRuntimeModule,
     IntegrationPlatformModule,
     MissionControlModule,
     PlatformOperationsModule,

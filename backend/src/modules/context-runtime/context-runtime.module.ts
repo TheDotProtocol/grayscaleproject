@@ -16,6 +16,7 @@ import { TemporalEngineService } from "./temporal-engine.service";
 import { OrganizationalSignalBusService } from "./organizational-signal-bus.service";
 import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
 import { AttentionEngineService } from "./attention-engine.service";
+import { TwinEngineService } from "./twin-engine.service";
 import { IntentProjector } from "./projectors/intent.projector";
 import { SnapshotProjector } from "./projectors/snapshot.projector";
 import { SignalProjector } from "./projectors/signal.projector";
@@ -46,6 +47,7 @@ import { InsightProjector } from "./projectors/insight.projector";
     SignalProjector,
     InsightProjector,
     AttentionEngineService,
+    TwinEngineService,
   ],
   exports: [
     ContextRuntimeService,
@@ -60,6 +62,7 @@ import { InsightProjector } from "./projectors/insight.projector";
     SignalProjector,
     InsightProjector,
     AttentionEngineService,
+    TwinEngineService,
   ],
 })
 export class ContextRuntimeModule {}

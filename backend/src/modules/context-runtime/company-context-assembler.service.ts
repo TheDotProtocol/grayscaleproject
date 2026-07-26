@@ -24,8 +24,9 @@ import { TemporalEngineService } from "./temporal-engine.service";
 import { OrganizationalSignalBusService } from "./organizational-signal-bus.service";
 import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
 import { AttentionEngineService } from "./attention-engine.service";
+import { TwinEngineService } from "./twin-engine.service";
 
-const CONTEXT_VERSION = "1.5.0-s3b";
+const CONTEXT_VERSION = "1.6.0-s3c";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -47,6 +48,7 @@ export class CompanyContextAssemblerService {
     private readonly governance: GovernanceService,
     private readonly security: SecurityObservatoryService,
     private readonly attention: AttentionEngineService,
+    private readonly twinEngine: TwinEngineService,
   ) {}
 
   async assemble(
@@ -286,6 +288,14 @@ export class CompanyContextAssemblerService {
       attention: attentionSnapshot,
     };
 
+    const twinSnapshot = await wrap("twin", "1.0", () =>
+      this.twinEngine.assembleFromContext(
+        { ...base, contextRuntime: undefined } as CompanyContext,
+        `ver-${correlationId.slice(0, 8)}`,
+        correlationId,
+      ),
+    );
+
     assemblerResults.push({
       assemblerId: "readiness",
       version: "1.0",
@@ -297,6 +307,7 @@ export class CompanyContextAssemblerService {
 
     return {
       ...base,
+      twin: twinSnapshot,
       contextRuntime: {
         cacheKey,
         cached: false,

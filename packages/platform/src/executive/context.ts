@@ -172,6 +172,9 @@ export interface CompanyContext {
 
   /** Sprint 3 Phase B — organizational attention (read-only to executives) */
   attention?: import("../attention/attention-engine.js").OrganizationalAttention;
+
+  /** Sprint 3 Phase C — Living Organizational Twin (read-only to executives) */
+  twin?: import("../twin/twin-model.js").OrganizationalTwin;
 }
 
 export interface CompanyContextAssemblerPort {
