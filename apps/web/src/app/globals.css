@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "highlight.js/styles/github-dark.min.css";
 
 @source "../../src/**/*.{js,ts,jsx,tsx}";
 
@@ -231,8 +230,49 @@
   border-bottom: 1px solid hsl(0 0% 100% / 0.05);
 }
 
+.landing-nav-bar {
+  @apply grid h-16 items-center md:h-[4.5rem];
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  max-width: 80rem;
+}
+
+.landing-nav-links {
+  @apply hidden min-w-0 list-none md:flex md:items-center md:justify-center;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+.landing-nav-actions {
+  @apply hidden shrink-0 items-center md:flex;
+  gap: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid hsl(0 0% 100% / 0.08);
+}
+
+.landing-nav-signin {
+  @apply px-1;
+}
+
+.landing-nav-menu {
+  justify-self: end;
+}
+
+@media (min-width: 768px) {
+  .landing-nav-bar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .landing-nav-links {
+    grid-column: 2;
+  }
+
+  .landing-nav-actions {
+    grid-column: 3;
+  }
+}
+
 .landing-nav-link {
-  @apply text-sm transition-colors duration-200;
+  @apply text-sm whitespace-nowrap transition-colors duration-200;
   color: hsl(var(--landing-fg) / 0.55);
 }
 

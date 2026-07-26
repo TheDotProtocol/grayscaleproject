@@ -56,27 +56,29 @@ export function Navbar({ onWaitlistClick }: NavbarProps) {
         scrolled ? "landing-nav-scrolled" : "bg-transparent"
       }`}
     >
-      <nav className="landing-container flex h-16 items-center justify-between md:h-[4.5rem]" aria-label="Main">
+      <nav className="landing-container landing-nav-bar" aria-label="Main">
         <GrayscaleLogo href="/" />
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="landing-nav-links">
           {NAV_LINKS.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="shrink-0">
               <NavAnchor href={link.href} label={link.label} />
             </li>
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <a href="/login" className="landing-nav-link text-sm">
+        <div className="landing-nav-actions">
+          <Link href="/login" className="landing-nav-link landing-nav-signin whitespace-nowrap">
             Sign in
-          </a>
-          <PrimaryButton onClick={onWaitlistClick}>Request Access</PrimaryButton>
+          </Link>
+          <PrimaryButton onClick={onWaitlistClick} className="shrink-0 whitespace-nowrap">
+            Request Access
+          </PrimaryButton>
         </div>
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 md:hidden"
+          className="landing-nav-menu flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 md:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen(!open)}

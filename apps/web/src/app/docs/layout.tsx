@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "highlight.js/styles/github-dark.min.css";
 import { DocsShell } from "@/components/docs/docs-shell";
 
 export const metadata: Metadata = {
