@@ -1,15 +1,16 @@
 "use client";
 
-import { Activity, RefreshCw, Search } from "lucide-react";
+import { Activity, RefreshCw, Pin, PinOff } from "lucide-react";
 import { DashboardHeader } from "@/components/dashboard/header";
 import { WidgetRenderer } from "@/components/mission-control/widget-renderer";
 import { useMissionControl } from "@/hooks/use-mission-control";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
+import { PanelSkeleton } from "@/components/workspace/skeleton";
 
 export default function MissionControlPage() {
   const { token, company } = useAuth();
-  const { dashboard, loading, error, refresh, dispatchAction } = useMissionControl(
+  const { dashboard, loading, error, refresh, dispatchAction, saveLayout } = useMissionControl(
     company?.id,
     token,
   );
@@ -82,10 +83,10 @@ export default function MissionControlPage() {
       )}
 
       {loading && !dashboard && (
-        <p className="flex items-center gap-2 text-sm text-slate-500">
-          <Activity className="h-4 w-4 animate-pulse text-blue-500" />
-          Connecting to Mission Control…
-        </p>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <PanelSkeleton />
+          <PanelSkeleton />
+        </div>
       )}
 
       {/* Quick actions */}
@@ -105,10 +106,16 @@ export default function MissionControlPage() {
           >
             Retry GitHub Sync
           </button>
-          <span className="flex items-center gap-1 px-2 text-xs text-slate-600">
-            <Search className="h-3 w-3" />
-            Global search: use API /mission-control/search
-          </span>
+          <button
+            type="button"
+            onClick={() => {
+              const next = layout.map((w) => ({ ...w, pinned: !w.pinned }));
+              saveLayout(next);
+            }}
+            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-400 hover:border-purple-500/30 hover:text-white"
+          >
+            Toggle Pin Layout
+          </button>
         </div>
       )}
 
@@ -117,14 +124,28 @@ export default function MissionControlPage() {
         {layout.map((inst) => {
           const cat = catalogMap.get(inst.widgetId);
           return (
-            <WidgetRenderer
-              key={inst.instanceId}
-              instance={inst}
-              result={widgetDataMap.get(inst.instanceId)}
-              catalogName={cat?.name ?? inst.widgetId}
-              emptyState={cat?.emptyState}
-              onRefresh={refresh}
-            />
+            <div key={inst.instanceId} className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  const next = layout.map((w) =>
+                    w.instanceId === inst.instanceId ? { ...w, pinned: !w.pinned } : w,
+                  );
+                  saveLayout(next);
+                }}
+                className="absolute right-3 top-3 z-10 rounded-lg border border-white/10 bg-black/40 p-1.5 text-slate-500 hover:text-white"
+                aria-label={inst.pinned ? "Unpin widget" : "Pin widget"}
+              >
+                {inst.pinned ? <PinOff className="h-3.5 w-3.5" /> : <Pin className="h-3.5 w-3.5" />}
+              </button>
+              <WidgetRenderer
+                instance={inst}
+                result={widgetDataMap.get(inst.instanceId)}
+                catalogName={cat?.name ?? inst.widgetId}
+                emptyState={cat?.emptyState}
+                onRefresh={refresh}
+              />
+            </div>
           );
         })}
       </div>

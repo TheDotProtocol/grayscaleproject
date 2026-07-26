@@ -9,7 +9,7 @@ import { TwinCertificationService } from "./twin-certification.service";
 import { TwinRuntimeController } from "./twin-runtime.controller";
 
 @Module({
-  imports: [EventsModule, forwardRef(() => ContextRuntimeModule)],
+  imports: [forwardRef(() => EventsModule), forwardRef(() => ContextRuntimeModule)],
   controllers: [TwinRuntimeController],
   providers: [
     TwinStoreService,

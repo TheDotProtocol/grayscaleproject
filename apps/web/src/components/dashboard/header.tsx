@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell } from "lucide-react";
+import { NotificationCenter } from "@/components/workspace/notification-center";
 import { useAuth } from "@/lib/auth-context";
 
 interface HeaderProps {
@@ -23,13 +23,7 @@ export function DashboardHeader({ title, subtitle, actions }: HeaderProps) {
       </div>
       <div className="flex items-center gap-3">
         {actions}
-        <button
-          type="button"
-          className="relative rounded-xl border border-white/10 bg-white/[0.02] p-2.5 text-slate-400 transition hover:border-white/20 hover:text-slate-200"
-        >
-          <Bell className="h-5 w-5" />
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-blue-500" />
-        </button>
+        <NotificationCenter />
       </div>
     </header>
   );

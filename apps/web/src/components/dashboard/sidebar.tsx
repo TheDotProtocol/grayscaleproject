@@ -3,10 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { LogOut, ChevronRight } from "lucide-react";
+import { LogOut, ChevronRight, Search } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
 import { WORKSPACE_NAV, CONSTITUTIONAL_EXECUTIVES } from "@/lib/workspace/navigation";
+import { openCommandPalette } from "@/components/workspace/command-palette";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -24,6 +25,18 @@ export function Sidebar() {
             <p className="text-[10px] uppercase tracking-widest text-slate-500">Founder Workspace</p>
           </div>
         </Link>
+      </div>
+
+      <div className="border-b border-white/5 px-3 py-3">
+        <button
+          type="button"
+          onClick={() => openCommandPalette()}
+          className="flex w-full items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-slate-500 transition hover:border-white/20 hover:text-slate-300"
+        >
+          <Search className="h-4 w-4" />
+          <span className="flex-1 text-left">Command palette</span>
+          <kbd className="rounded bg-white/5 px-1.5 py-0.5 text-xs">⌘K</kbd>
+        </button>
       </div>
 
       <nav className="flex-1 overflow-y-auto p-3">

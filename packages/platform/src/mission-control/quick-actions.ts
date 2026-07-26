@@ -9,6 +9,9 @@ export const QUICK_ACTION_TARGETS = [
   "integrations",
   "reports",
   "sync",
+  "simulation",
+  "forecasts",
+  "council",
 ] as const;
 
 export type QuickActionTarget = (typeof QUICK_ACTION_TARGETS)[number];

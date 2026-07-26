@@ -21,8 +21,10 @@ import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module"
 import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
 import { ExecutiveNetworkModule } from "../executive-network/executive-network.module";
 import { OrganizationalEvolutionModule } from "../organizational-evolution/organizational-evolution.module";
+import { NotificationsModule } from "../notifications/notifications.module";
 import { MissionControlController } from "./mission-control.controller";
 import { PlatformRegistryController } from "./platform-registry.controller";
+import { FounderExperienceController } from "./founder-experience.controller";
 import { MissionControlService } from "./mission-control.service";
 import { PlatformRegistryModule } from "./platform-registry.module";
 import { CapabilityDiscoveryService } from "./capability-discovery.service";
@@ -37,6 +39,11 @@ import { FounderBriefService } from "./founder-brief.service";
 import { OperationalTimelineService } from "./operational-timeline.service";
 import { GlobalSearchService } from "./global-search.service";
 import { QuickActionsService } from "./quick-actions.service";
+import { OrganizationalTimelineService } from "./organizational-timeline.service";
+import { ActivityCenterService } from "./activity-center.service";
+import { WorkspaceSessionsService } from "./workspace-sessions.service";
+import { FounderPreferencesService } from "./founder-preferences.service";
+import { NotificationCenterService } from "./notification-center.service";
 import { AthenaWidgetDataService } from "./athena-widget-data.service";
 import { CouncilWidgetDataService } from "./council-widget-data.service";
 import { TwinWidgetDataService } from "./twin-widget-data.service";
@@ -66,10 +73,11 @@ import { EvolutionWidgetDataService } from "./evolution-widget-data.service";
     TwinRuntimeModule,
     ExecutiveNetworkModule,
     OrganizationalEvolutionModule,
+    NotificationsModule,
     BullModule.registerQueue({ name: PLATFORM_JOBS_QUEUE }),
     forwardRef(() => PlatformOperationsModule),
   ],
-  controllers: [MissionControlController, PlatformRegistryController],
+  controllers: [MissionControlController, PlatformRegistryController, FounderExperienceController],
   providers: [
     MissionControlService,
     CapabilityDiscoveryService,
@@ -84,6 +92,11 @@ import { EvolutionWidgetDataService } from "./evolution-widget-data.service";
     OperationalTimelineService,
     GlobalSearchService,
     QuickActionsService,
+    OrganizationalTimelineService,
+    ActivityCenterService,
+    WorkspaceSessionsService,
+    FounderPreferencesService,
+    NotificationCenterService,
     AthenaWidgetDataService,
     CouncilWidgetDataService,
     TwinWidgetDataService,

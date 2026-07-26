@@ -86,5 +86,15 @@ export function useMissionControl(companyId: string | undefined, token: string |
     [companyId, token, refresh],
   );
 
-  return { dashboard, loading, error, refresh, dispatchAction };
+  const saveLayout = useCallback(
+    async (widgets: WidgetInstanceConfig[]) => {
+      if (!companyId || !token) return;
+      const { saveWidgetLayout } = await import("@/lib/api/workspace");
+      await saveWidgetLayout(companyId, token, widgets);
+      await refresh();
+    },
+    [companyId, token, refresh],
+  );
+
+  return { dashboard, loading, error, refresh, dispatchAction, saveLayout };
 }

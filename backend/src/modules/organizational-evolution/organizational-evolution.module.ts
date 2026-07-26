@@ -13,7 +13,7 @@ import { EvolutionCertificationService } from "./evolution-certification.service
 import { OrganizationalEvolutionController } from "./organizational-evolution.controller";
 
 @Module({
-  imports: [EventsModule, forwardRef(() => ContextRuntimeModule), TwinRuntimeModule],
+  imports: [forwardRef(() => EventsModule), forwardRef(() => ContextRuntimeModule), TwinRuntimeModule],
   controllers: [OrganizationalEvolutionController],
   providers: [
     MemoryEvolutionService,

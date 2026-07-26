@@ -1,78 +1,204 @@
 "use client";
 
 import Link from "next/link";
+import {
+  CheckCircle2,
+  Compass,
+  FlaskConical,
+  Lightbulb,
+  Shield,
+  Sparkles,
+  TrendingUp,
+  Users,
+  Zap,
+} from "lucide-react";
 import { useWorkspaceQuery } from "@/hooks/use-workspace-query";
-import { fetchFounderHome, fetchCouncil, fetchEvolution, fetchMissionControl } from "@/lib/api/workspace";
-import { WorkspacePageShell, ApiPanel } from "@/components/workspace/workspace-page";
+import {
+  fetchFounderBrief,
+  fetchOrganizationalTimeline,
+  fetchNotifications,
+  fetchMissionControl,
+} from "@/lib/api/workspace";
+import { WorkspacePageShell } from "@/components/workspace/workspace-page";
+import { BriefingCard, BriefingListItem, WorkloadBadge } from "@/components/workspace/briefing-cards";
+import { BriefingSkeleton } from "@/components/workspace/skeleton";
+import { WorkspaceErrorBoundary } from "@/components/workspace/error-boundary";
 import { StatCard } from "@/components/workspace/panel";
-import { CONSTITUTIONAL_EXECUTIVES } from "@/lib/workspace/navigation";
-import { ArrowUpRight, Target, Users, GitBranch } from "lucide-react";
 
-interface FounderDashboard {
-  memoryCount: number;
-  journalStreak: number;
+interface FounderBrief {
+  briefingDate: string;
+  sections: {
+    todaysPriorities: Array<{ title?: string; name?: string }>;
+    blockedWork: Array<{ title?: string; reason?: string }>;
+    topRecommendations: Array<{ title: string; summary?: string }>;
+    recentEvents: Array<{ title: string; summary?: string }>;
+    riskChanges: Array<{ title?: string; severity?: string }>;
+    workload: { intensity: string; score: number; meetingCount: number; deadlineCount: number };
+    engineeringStatus: Record<string, unknown>;
+    platformHealth: { score?: number };
+  };
+}
+
+interface TimelineEntry {
+  id: string;
+  category: string;
+  title: string;
+  summary?: string;
+  occurredAt: string;
 }
 
 export default function FounderHomePage() {
-  const founder = useWorkspaceQuery<FounderDashboard>((id, t) => fetchFounderHome(id, t));
-  const council = useWorkspaceQuery((id, t) => fetchCouncil<{ status?: string }>(id, t, "/health"));
-  const evolution = useWorkspaceQuery((id, t) => fetchEvolution(id, t, "/overview"));
-  const mc = useWorkspaceQuery((id, t) => fetchMissionControl<{ platformHealth?: { score: number } }>(id, t, "/health"));
+  const brief = useWorkspaceQuery<FounderBrief>((id, t) => fetchFounderBrief(id, t));
+  const timeline = useWorkspaceQuery<TimelineEntry[]>((id, t) => fetchOrganizationalTimeline(id, t, 8));
+  const notifications = useWorkspaceQuery<Array<{ isRead: boolean }>>((id, t) => fetchNotifications(id, t, true));
+  const health = useWorkspaceQuery<{ score: number; status: string }>((id, t) =>
+    fetchMissionControl<{ score: number; status: string }>(id, t, "/health"),
+  );
 
-  const loading = founder.loading || council.loading;
+  const loading = brief.loading;
+  const sections = brief.data?.sections;
+  const unread = notifications.data?.length ?? 0;
+  const todayChanges = timeline.data?.length ?? 0;
 
   return (
-    <WorkspacePageShell
-      title="Founder Home"
-      subtitle="Understand your organization in 60 seconds"
-      loading={loading}
-      error={founder.error || council.error}
-    >
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Memories" value={founder.data?.memoryCount ?? "—"} hint="Institutional memory" />
-        <StatCard label="Platform Health" value={`${mc.data?.platformHealth?.score ?? "—"}%`} hint="Mission Control" />
-        <StatCard label="Executives" value={CONSTITUTIONAL_EXECUTIVES.length} hint="Certified dormant" />
-        <StatCard label="Journal Streak" value={`${founder.data?.journalStreak ?? 0}d`} hint="Daily reflection" />
-      </div>
+    <WorkspaceErrorBoundary fallbackTitle="Founder Home unavailable">
+      <WorkspacePageShell
+        title="Command Bridge"
+        subtitle="Executive briefing — what requires your attention today"
+        loading={loading}
+        error={brief.error}
+      >
+        {loading && !brief.data ? (
+          <BriefingSkeleton />
+        ) : (
+          <>
+            <div className="mb-6 flex flex-wrap items-center gap-3">
+              {sections?.workload && <WorkloadBadge intensity={sections.workload.intensity} />}
+              <span className="text-sm text-slate-500">
+                Briefing for {brief.data?.briefingDate ?? "today"}
+              </span>
+            </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        <Link href="/dashboard/mission-control" className="glass-card group p-6 transition hover:border-blue-600/40">
-          <Target className="h-6 w-6 text-blue-400" />
-          <p className="mt-3 font-semibold text-white">Mission Control</p>
-          <p className="text-sm text-slate-500">Operational command center</p>
-          <ArrowUpRight className="mt-2 h-4 w-4 text-slate-600 group-hover:text-blue-400" />
-        </Link>
-        <Link href="/dashboard/council" className="glass-card group p-6 transition hover:border-purple-600/40">
-          <Users className="h-6 w-6 text-purple-400" />
-          <p className="mt-3 font-semibold text-white">Executive Council</p>
-          <p className="text-sm text-slate-500">Deliberation & decisions</p>
-          <ArrowUpRight className="mt-2 h-4 w-4 text-slate-600 group-hover:text-purple-400" />
-        </Link>
-        <Link href="/dashboard/twin" className="glass-card group p-6 transition hover:border-emerald-600/40">
-          <GitBranch className="h-6 w-6 text-emerald-400" />
-          <p className="mt-3 font-semibold text-white">Organizational Twin</p>
-          <p className="text-sm text-slate-500">Single organizational truth</p>
-          <ArrowUpRight className="mt-2 h-4 w-4 text-slate-600 group-hover:text-emerald-400" />
-        </Link>
-      </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <StatCard label="Requires Attention" value={unread + (sections?.blockedWork?.length ?? 0)} hint="Notifications + blockers" />
+              <StatCard label="Changed Today" value={todayChanges} hint="Organizational timeline" />
+              <StatCard label="Decisions Waiting" value={sections?.topRecommendations?.length ?? 0} hint="Open recommendations" />
+              <StatCard label="Platform Health" value={`${health.data?.score ?? sections?.platformHealth?.score ?? "—"}%`} hint="Mission Control" />
+            </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        <ApiPanel title="Today's Brief" subtitle="Founder briefing" data={founder.data} />
-        <ApiPanel title="Organizational Evolution" subtitle="Learning, wisdom, reflection" data={evolution.data} loading={evolution.loading} />
-      </div>
+            <div className="mt-8 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+              <BriefingCard title="Requires Attention" subtitle="Blockers & urgent items" icon={Zap} accent="amber" href="/dashboard/activity">
+                <ul>
+                  {(sections?.blockedWork ?? []).slice(0, 4).map((item, i) => (
+                    <BriefingListItem key={i} label={item.title ?? "Blocked item"} detail={item.reason} urgent />
+                  ))}
+                  {(sections?.blockedWork ?? []).length === 0 && (
+                    <p className="text-sm text-slate-500">No blockers detected.</p>
+                  )}
+                </ul>
+              </BriefingCard>
 
-      <div className="mt-8">
-        <h2 className="mb-4 text-lg font-semibold text-white">Executive Highlights</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {CONSTITUTIONAL_EXECUTIVES.map((exec) => (
-            <Link key={exec.id} href={`/dashboard/executives/${exec.id}`} className="glass-card p-4 transition hover:border-white/20">
-              <p className="font-medium text-white">{exec.name}</p>
-              <p className="text-xs text-slate-500">{exec.title}</p>
-              <p className="mt-2 text-xs text-amber-400/80">Certified dormant</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </WorkspacePageShell>
+              <BriefingCard title="What Changed Today" subtitle="Organizational timeline" icon={Sparkles} accent="purple" href="/dashboard/timeline">
+                <ul>
+                  {(timeline.data ?? []).slice(0, 4).map((entry) => (
+                    <BriefingListItem
+                      key={entry.id}
+                      label={entry.title}
+                      detail={entry.category.replace(/_/g, " ")}
+                    />
+                  ))}
+                  {(timeline.data ?? []).length === 0 && (
+                    <p className="text-sm text-slate-500">No changes recorded today.</p>
+                  )}
+                </ul>
+              </BriefingCard>
+
+              <BriefingCard title="Decisions Waiting" subtitle="Recommendations & council" icon={CheckCircle2} accent="blue" href="/dashboard/council">
+                <ul>
+                  {(sections?.topRecommendations ?? []).slice(0, 4).map((rec, i) => (
+                    <BriefingListItem key={i} label={rec.title} detail={rec.summary?.slice(0, 40)} />
+                  ))}
+                  {(sections?.topRecommendations ?? []).length === 0 && (
+                    <p className="text-sm text-slate-500">No pending decisions.</p>
+                  )}
+                </ul>
+              </BriefingCard>
+
+              <BriefingCard title="Risks Increased" subtitle="Risk assessment changes" icon={Shield} accent="red" href="/dashboard/strategy">
+                <ul>
+                  {(sections?.riskChanges ?? []).slice(0, 4).map((risk, i) => (
+                    <BriefingListItem key={i} label={risk.title ?? "Risk change"} detail={risk.severity} urgent />
+                  ))}
+                  {(sections?.riskChanges ?? []).length === 0 && (
+                    <p className="text-sm text-slate-500">No new risk escalations.</p>
+                  )}
+                </ul>
+              </BriefingCard>
+
+              <BriefingCard title="Today's Priorities" subtitle="Strategic focus" icon={Compass} accent="emerald" href="/dashboard/goals">
+                <ul>
+                  {(sections?.todaysPriorities ?? []).slice(0, 4).map((p, i) => (
+                    <BriefingListItem key={i} label={p.title ?? p.name ?? "Priority"} />
+                  ))}
+                  {(sections?.todaysPriorities ?? []).length === 0 && (
+                    <p className="text-sm text-slate-500">Priorities assembling from strategy engine.</p>
+                  )}
+                </ul>
+              </BriefingCard>
+
+              <BriefingCard title="Executive Council" subtitle="Recent conclusions" icon={Users} accent="purple" href="/dashboard/council">
+                <ul>
+                  {(sections?.recentEvents ?? [])
+                    .filter((e) => e.title.toLowerCase().includes("council"))
+                    .slice(0, 3)
+                    .map((e, i) => (
+                      <BriefingListItem key={i} label={e.title} detail={e.summary?.slice(0, 30)} />
+                    ))}
+                  {(sections?.recentEvents ?? []).filter((e) => e.title.toLowerCase().includes("council")).length === 0 && (
+                    <p className="text-sm text-slate-500">No recent council activity.</p>
+                  )}
+                </ul>
+              </BriefingCard>
+            </div>
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-3">
+              <BriefingCard title="Simulations & Forecasts" subtitle="Future modeling" icon={FlaskConical} accent="blue" href="/dashboard/simulation">
+                <p className="text-sm text-slate-400">
+                  {(sections?.recentEvents ?? []).filter((e) =>
+                    /simulation|forecast/i.test(e.title),
+                  ).length || 0}{" "}
+                  active model runs ·{" "}
+                  <Link href="/dashboard/forecasts" className="text-blue-400 hover:underline">View forecasts</Link>
+                </p>
+              </BriefingCard>
+
+              <BriefingCard title="Opportunities" subtitle="Discovery signals" icon={Lightbulb} accent="emerald" href="/dashboard/learning">
+                <p className="text-sm text-slate-400">
+                  Review evolution milestones and learning signals in the organizational timeline.
+                </p>
+              </BriefingCard>
+
+              <BriefingCard title="Athena Discoveries" subtitle="Chief of Staff insights" icon={TrendingUp} accent="amber" href="/dashboard/executives/athena">
+                <p className="text-sm text-slate-400">
+                  {(sections?.recentEvents ?? []).slice(0, 2).map((e) => e.title).join(" · ") || "No discoveries yet."}
+                </p>
+              </BriefingCard>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/dashboard/mission-control" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-blue-500/40 hover:text-white">
+                Open Mission Control
+              </Link>
+              <Link href="/dashboard/timeline" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-purple-500/40 hover:text-white">
+                Full Timeline
+              </Link>
+              <Link href="/dashboard/activity" className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-amber-500/40 hover:text-white">
+                Activity Center
+              </Link>
+            </div>
+          </>
+        )}
+      </WorkspacePageShell>
+    </WorkspaceErrorBoundary>
   );
 }

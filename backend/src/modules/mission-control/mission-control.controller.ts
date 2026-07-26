@@ -3,6 +3,7 @@ import {
   Get,
   Post,
   Put,
+  Patch,
   Body,
   Param,
   Query,
@@ -21,6 +22,11 @@ import { ActionDispatcherService } from "./action-dispatcher.service";
 import { OperationalTimelineService } from "./operational-timeline.service";
 import { GlobalSearchService } from "./global-search.service";
 import { QuickActionsService } from "./quick-actions.service";
+import { OrganizationalTimelineService } from "./organizational-timeline.service";
+import { ActivityCenterService } from "./activity-center.service";
+import { WorkspaceSessionsService } from "./workspace-sessions.service";
+import { FounderPreferencesService } from "./founder-preferences.service";
+import { NotificationCenterService } from "./notification-center.service";
 import { CurrentUser } from "../auth/auth.decorators";
 
 @ApiTags("mission-control")
@@ -39,6 +45,11 @@ export class MissionControlController {
     private readonly timeline: OperationalTimelineService,
     private readonly globalSearch: GlobalSearchService,
     private readonly quickActionsService: QuickActionsService,
+    private readonly orgTimeline: OrganizationalTimelineService,
+    private readonly activityCenter: ActivityCenterService,
+    private readonly workspaceSessions: WorkspaceSessionsService,
+    private readonly founderPreferences: FounderPreferencesService,
+    private readonly notificationCenter: NotificationCenterService,
   ) {}
 
   @Get("dashboard")
@@ -140,5 +151,63 @@ export class MissionControlController {
   @Get("quick-actions")
   listQuickActions() {
     return this.quickActionsService.list();
+  }
+
+  @Get("organizational-timeline")
+  getOrganizationalTimeline(
+    @Param("companyId") companyId: string,
+    @Query("limit") limit?: string,
+    @Query("categories") categories?: string,
+  ) {
+    return this.orgTimeline.getUnifiedTimeline(companyId, {
+      limit: limit ? parseInt(limit, 10) : undefined,
+      categories: categories?.split(",").filter(Boolean) as never,
+    });
+  }
+
+  @Get("activity")
+  getActivity(
+    @Param("companyId") companyId: string,
+    @Query("limit") limit?: string,
+  ) {
+    return this.activityCenter.getFeed(companyId, {
+      limit: limit ? parseInt(limit, 10) : undefined,
+    });
+  }
+
+  @Get("workspace-session")
+  getWorkspaceSession(
+    @Param("companyId") companyId: string,
+    @CurrentUser() user: { userId: string },
+  ) {
+    return this.workspaceSessions.getSession(user.userId, companyId);
+  }
+
+  @Put("workspace-session")
+  updateWorkspaceSession(
+    @Param("companyId") companyId: string,
+    @CurrentUser() user: { userId: string },
+    @Body() body: Record<string, unknown>,
+  ) {
+    return this.workspaceSessions.updateSession(user.userId, companyId, body as never);
+  }
+
+  @Get("notifications")
+  listNotifications(
+    @Param("companyId") companyId: string,
+    @CurrentUser() user: { userId: string },
+    @Query("unreadOnly") unreadOnly?: string,
+  ) {
+    return this.notificationCenter.list(companyId, user.userId, {
+      unreadOnly: unreadOnly === "true",
+    });
+  }
+
+  @Patch("notifications/:notificationId/read")
+  markNotificationRead(
+    @Param("notificationId") notificationId: string,
+    @CurrentUser() user: { userId: string },
+  ) {
+    return this.notificationCenter.markRead(notificationId, user.userId);
   }
 }

@@ -45,6 +45,8 @@ import { IntelligenceController } from "./intelligence.controller";
     StrategyEngineService,
     RecommendationEngineService,
     GoalEngineService,
+    ScenarioService,
+    PolicyService,
     StrategicGraphProjector,
     IntelligenceEngineRegistryService,
   ],

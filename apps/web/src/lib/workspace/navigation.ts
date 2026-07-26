@@ -20,6 +20,8 @@ import {
   Plug,
   Settings,
   User,
+  History,
+  Activity,
 } from "lucide-react";
 
 export interface NavItem {
@@ -31,6 +33,8 @@ export interface NavItem {
 
 export const WORKSPACE_NAV: NavItem[] = [
   { href: "/dashboard/home", label: "Home", icon: Home, section: "Founder" },
+  { href: "/dashboard/timeline", label: "Timeline", icon: History, section: "Founder" },
+  { href: "/dashboard/activity", label: "Activity Center", icon: Activity, section: "Founder" },
   { href: "/dashboard/organization", label: "Organization", icon: Building2, section: "Founder" },
   { href: "/dashboard/mission-control", label: "Mission Control", icon: Target, section: "Operations" },
   { href: "/dashboard/council", label: "Executive Council", icon: Users, section: "Operations" },

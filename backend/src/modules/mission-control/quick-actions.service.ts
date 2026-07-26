@@ -8,6 +8,9 @@ const QUICK_ACTIONS: QuickActionDefinition[] = [
   { id: "quick.plugin.install", name: "Install Plugin", target: "plugins", actionId: "plugin.install", permission: "platform.plugins.write", description: "Install a platform plugin" },
   { id: "quick.integration.sync", name: "Retry Sync", target: "sync", actionId: "integration.retry-sync", permission: "platform.integrations.sync", description: "Retry integration sync" },
   { id: "quick.report.brief", name: "Generate Brief", target: "reports", actionId: "brief.refresh", permission: "operations.dashboard", description: "Refresh founder brief" },
+  { id: "quick.simulation.run", name: "Run Simulation", target: "simulation", actionId: "simulation.run", permission: "operations.dashboard", description: "Start organizational simulation" },
+  { id: "quick.forecast.generate", name: "Generate Forecast", target: "forecasts", actionId: "forecast.generate", permission: "operations.dashboard", description: "Generate organizational forecast" },
+  { id: "quick.council.start", name: "Start Council", target: "council", actionId: "council.start", permission: "operations.dashboard", description: "Open executive council session" },
 ];
 
 @Injectable()
