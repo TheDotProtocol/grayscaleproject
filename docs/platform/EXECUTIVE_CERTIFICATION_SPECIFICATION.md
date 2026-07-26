@@ -26,7 +26,7 @@ Applies to all executive roles defined in Sprint 2:
 
 | Executive | Domain | Primary Inbox |
 |-----------|--------|---------------|
-| Chief of Staff | Operations coordination | `executive.inbox.chief-of-staff` |
+| Chief Executive Strategist (Athena) | Strategy & council coordination | `executive.inbox.chief-of-staff` |
 | CTO | Engineering & architecture | `executive.inbox.cto` |
 | CFO | Finance & billing | `executive.inbox.cfo` |
 | CMO | Growth & communications | `executive.inbox.cmo` |
@@ -232,10 +232,10 @@ Inbox operations MUST be idempotent via `PlatformIdempotencyKey`.
 
 | Condition | Escalation Target | Action |
 |-----------|-------------------|--------|
-| Capability denied | Chief of Staff | Log + notify founder |
+| Capability denied | Executive Council | Log + notify founder |
 | SLO breach (executive) | Platform ops | Suspend if burn rate > 2x |
 | Security finding (critical) | General Counsel + Platform | Immediate suspend |
-| Cross-executive conflict | Chief of Staff | Mediate or defer |
+| Cross-executive conflict | Executive Council | Mediate or defer |
 | Unresolved inbox > SLA | Founder Pulse | `founder.escalation` pulse |
 
 ### 8.2 Escalation Record
@@ -267,7 +267,7 @@ interface ExecutiveOutput {
 
 | Executive | Required Outputs |
 |-----------|------------------|
-| Chief of Staff | Daily ops brief, escalation summary |
+| Chief Executive Strategist (Athena) | Daily strategic brief, council escalation summary |
 | CTO | Architecture review, tech debt report |
 | CFO | Cash flow snapshot, bill forecast |
 | CMO | Campaign status, channel metrics |

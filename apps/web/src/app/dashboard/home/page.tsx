@@ -178,7 +178,7 @@ export default function FounderHomePage() {
                 </p>
               </BriefingCard>
 
-              <BriefingCard title="Athena Discoveries" subtitle="Chief of Staff insights" icon={TrendingUp} accent="amber" href="/dashboard/executives/athena">
+              <BriefingCard title="Athena Discoveries" subtitle="Chief Executive Strategist insights" icon={TrendingUp} accent="amber" href="/dashboard/executives/athena">
                 <p className="text-sm text-slate-400">
                   {(sections?.recentEvents ?? []).slice(0, 2).map((e) => e.title).join(" · ") || "No discoveries yet."}
                 </p>

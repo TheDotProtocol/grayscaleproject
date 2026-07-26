@@ -46,9 +46,9 @@ function buildRecord(
 
 export const EXECUTIVE_REGISTRY: Record<PhaseDExecutiveId, ExecutiveIdentityRecord> = {
   athena: buildRecord("athena", {
-    title: "Chief of Staff",
+    title: "Chief Executive Strategist",
     department: "operations",
-    mission: "Reference executive — discovery, recommendation, and constitutional governance.",
+    mission: "Reference executive — discovery, recommendation, and constitutional governance through the Executive Council.",
   }),
   atlas: buildRecord("atlas", {
     title: "Chief Operations Executive",

@@ -43,7 +43,7 @@ GET /companies/:id/executive-network/dependencies/:executiveId
 
 | ID | Title |
 |----|-------|
-| athena | Chief of Staff (reference) |
+| athena | Chief Executive Strategist (reference) |
 | atlas | Chief Operations Executive |
 | ledger | Chief Financial Executive |
 | mercury | Chief Communications Executive |

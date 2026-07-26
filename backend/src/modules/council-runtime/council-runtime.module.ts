@@ -13,6 +13,7 @@ import { CouncilHistoryService, CouncilReplayService, CouncilAttentionService } 
 import { ExecutiveCouncilRuntimeService } from "./executive-council-runtime.service";
 import { CouncilCertificationService } from "./council-certification.service";
 import { CouncilCollaborationService } from "./council-collaboration.service";
+import { CouncilContextAssemblerService } from "./council-context-assembler.service";
 import { CouncilRuntimeController } from "./council-runtime.controller";
 
 @Module({
@@ -33,6 +34,7 @@ import { CouncilRuntimeController } from "./council-runtime.controller";
     ExecutiveCouncilRuntimeService,
     CouncilCertificationService,
     CouncilCollaborationService,
+    CouncilContextAssemblerService,
   ],
   exports: [
     ExecutiveCouncilRuntimeService,
@@ -42,6 +44,7 @@ import { CouncilRuntimeController } from "./council-runtime.controller";
     CouncilDecisionClassifierService,
     CouncilStoreService,
     CouncilCollaborationService,
+    CouncilContextAssemblerService,
   ],
 })
 export class CouncilRuntimeModule {}

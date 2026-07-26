@@ -33,7 +33,10 @@ export type ExecutiveSpecializationDomain =
 
 export interface ExecutiveSpecialization {
   executiveId: ExecutiveCanonicalId | "athena";
+  /** Canonical executive title */
   title: string;
+  /** Optional persona/presentation label (Identity Engine) — not canonical identity */
+  personaLabel?: string;
   domains: ExecutiveSpecializationDomain[];
   decisionClasses: string[];
   /** Executives this role depends on */
@@ -45,7 +48,8 @@ export interface ExecutiveSpecialization {
 export const EXECUTIVE_SPECIALIZATIONS: Record<string, ExecutiveSpecialization> = {
   athena: {
     executiveId: "athena",
-    title: "Chief of Staff (Reference Executive)",
+    title: "Chief Executive Strategist",
+    personaLabel: "Chief of Staff",
     domains: ["strategy", "discovery"],
     decisionClasses: ["strategic", "governance"],
     dependsOn: ["navigator", "sentinel"],

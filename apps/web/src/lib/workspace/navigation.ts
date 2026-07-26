@@ -57,7 +57,7 @@ export const WORKSPACE_NAV: NavItem[] = [
 ];
 
 export const CONSTITUTIONAL_EXECUTIVES = [
-  { id: "athena", name: "Athena", title: "Chief of Staff", department: "operations" },
+  { id: "athena", name: "Athena", title: "Chief Executive Strategist", department: "operations" },
   { id: "atlas", name: "Atlas", title: "Chief Operations Executive", department: "operations" },
   { id: "ledger", name: "Ledger", title: "Chief Financial Executive", department: "finance" },
   { id: "mercury", name: "Mercury", title: "Chief Communications Executive", department: "communications" },

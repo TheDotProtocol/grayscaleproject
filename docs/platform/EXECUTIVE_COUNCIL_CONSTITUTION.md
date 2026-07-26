@@ -7,7 +7,7 @@
 **Foundation:** Bedrock v1.0.0-bedrock (Certified, FROZEN)  
 **Sprint:** 3 Phase A — Executive Council Foundation
 
----
+> **Alias:** [EXECUTIVE_COUNCIL.md](./EXECUTIVE_COUNCIL.md) points here. This file is the single canonical source.
 
 ## Preamble
 

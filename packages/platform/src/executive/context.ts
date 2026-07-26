@@ -175,6 +175,13 @@ export interface CompanyContext {
 
   /** Sprint 3 Phase C — Living Organizational Twin (read-only to executives) */
   twin?: import("../twin/twin-model.js").OrganizationalTwin;
+
+  /** Sprint 3 Phase A alignment — read-only council snapshots (assembled from runtime, not duplicated) */
+  executiveCouncil?: import("../council/context-snapshot.js").ExecutiveCouncilSnapshot;
+  councilHealth?: import("../council/governance.js").CouncilHealth;
+  activeCouncilSessions?: import("../council/context-snapshot.js").CouncilSessionSummary[];
+  organizationalConsensus?: import("../council/context-snapshot.js").OrganizationalConsensusSummary[];
+  pendingVotes?: import("../council/context-snapshot.js").PendingVoteSummary[];
 }
 
 export interface CompanyContextAssemblerPort {

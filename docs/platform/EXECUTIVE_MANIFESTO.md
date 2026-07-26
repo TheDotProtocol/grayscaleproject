@@ -235,7 +235,7 @@ No executive receives Admin capabilities in Sprint 2 unless ADR-approved.
 
 When executives disagree:
 
-1. Peer escalation to **Chief of Staff** (Sprint 2+)
+1. Peer escalation to the **Executive Council** (chaired by Chief Executive Strategist / Athena)
 2. Policy evaluation determines precedence
 3. Founder escalation if unresolved within SLA
 4. All conflict resolution logged with full trace
@@ -248,11 +248,11 @@ Executives MUST NOT override peer decisions without authority.
 
 | Condition | Target | Action |
 |-----------|--------|--------|
-| Capability denied | Chief of Staff | Log + notify founder |
+| Capability denied | Executive Council | Log + notify founder |
 | Security critical finding | General Counsel + Platform | Suspend executive |
 | SLO breach (executive) | Platform ops | Suspend if burn rate > 2× |
 | Unresolved inbox > SLA | Founder Pulse | `founder.escalation` |
-| Cross-executive conflict | Chief of Staff | Mediate or defer |
+| Cross-executive conflict | Executive Council | Mediate or defer |
 
 ---
 
@@ -691,7 +691,7 @@ Council actions:
 | **Approve** | Endorse peer recommendation |
 | **Disagree** | Evidence-backed dissent |
 | **Delegate** | Transfer ownership within authority |
-| **Escalate** | Raise to founder or Chief of Staff |
+| **Escalate** | Raise to Founder or Executive Council |
 | **Request Clarification** | Missing evidence |
 | **Support** | Co-sign with shared evidence |
 

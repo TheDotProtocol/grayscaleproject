@@ -25,8 +25,9 @@ import { OrganizationalSignalBusService } from "./organizational-signal-bus.serv
 import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
 import { AttentionEngineService } from "./attention-engine.service";
 import { TwinEngineService } from "./twin-engine.service";
+import { CouncilContextAssemblerService } from "../council-runtime/council-context-assembler.service";
 
-const CONTEXT_VERSION = "1.7.0-s4";
+const CONTEXT_VERSION = "1.7.1-s3a-alignment";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -49,6 +50,7 @@ export class CompanyContextAssemblerService {
     private readonly security: SecurityObservatoryService,
     private readonly attention: AttentionEngineService,
     private readonly twinEngine: TwinEngineService,
+    private readonly councilContext: CouncilContextAssemblerService,
   ) {}
 
   async assemble(
@@ -158,6 +160,10 @@ export class CompanyContextAssemblerService {
       wrap("security", "1.0", () => this.security.assess(companyId)),
       wrap("attention", "1.0", () => this.attention.assemble(companyId)),
     ]);
+
+    const councilSnapshot = await wrap("council", "1.0", async () =>
+      Promise.resolve(this.councilContext.assemble(companyId)),
+    );
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
       throw new Error("Required context assemblers failed");
@@ -286,6 +292,7 @@ export class CompanyContextAssemblerService {
       insights: insightSnapshot,
       founderConstitution: createFounderConstitutionContext(),
       attention: attentionSnapshot,
+      ...(councilSnapshot ?? {}),
     };
 
     const twinSnapshot = await wrap("twin", "1.0", () =>

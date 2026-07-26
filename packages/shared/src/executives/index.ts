@@ -3,9 +3,9 @@ export const EXECUTIVES = {
   ATHENA: {
     id: "athena",
     name: "Athena",
-    title: "Chief of Staff",
+    title: "Chief Executive Strategist",
     department: "operations",
-    description: "Coordinates priorities, meetings, and founder focus.",
+    description: "Reference executive — strategic discovery, recommendation, and council governance.",
   },
   ATLAS: {
     id: "atlas",

@@ -22,6 +22,7 @@ import { SnapshotProjector } from "./projectors/snapshot.projector";
 import { SignalProjector } from "./projectors/signal.projector";
 import { InsightProjector } from "./projectors/insight.projector";
 import { OrganizationalEvolutionModule } from "../organizational-evolution/organizational-evolution.module";
+import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module";
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { OrganizationalEvolutionModule } from "../organizational-evolution/organ
     forwardRef(() => PlatformOperationsModule),
     forwardRef(() => EventsModule),
     forwardRef(() => OrganizationalEvolutionModule),
+    forwardRef(() => CouncilRuntimeModule),
   ],
   providers: [
     ContextCacheService,
