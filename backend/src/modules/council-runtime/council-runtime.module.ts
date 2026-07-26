@@ -2,6 +2,7 @@ import { Module, forwardRef } from "@nestjs/common";
 import { EventsModule } from "../events/events.module";
 import { ExecutiveModule } from "../executive/executive.module";
 import { ContextRuntimeModule } from "../context-runtime/context-runtime.module";
+import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
 import { CouncilStoreService } from "./council-store.service";
 import { CouncilDecisionClassifierService } from "./council-decision-classifier.service";
 import { CouncilSessionService } from "./council-session.service";
@@ -15,9 +16,19 @@ import { CouncilCertificationService } from "./council-certification.service";
 import { CouncilCollaborationService } from "./council-collaboration.service";
 import { CouncilContextAssemblerService } from "./council-context-assembler.service";
 import { CouncilRuntimeController } from "./council-runtime.controller";
+import { CouncilSchedulerService } from "./council-scheduler.service";
+import { CouncilDeliberationEngineService } from "./council-deliberation-engine.service";
+import { CouncilMemoryService } from "./council-memory.service";
+import { ExecutiveCollaborationNetworkService } from "./executive-collaboration-network.service";
+import { ExecutiveCollaborationCertificationService } from "./executive-collaboration-certification.service";
 
 @Module({
-  imports: [forwardRef(() => EventsModule), ExecutiveModule, forwardRef(() => ContextRuntimeModule)],
+  imports: [
+    forwardRef(() => EventsModule),
+    ExecutiveModule,
+    forwardRef(() => ContextRuntimeModule),
+    forwardRef(() => OrganizationalRuntimeModule),
+  ],
   controllers: [CouncilRuntimeController],
   providers: [
     CouncilStoreService,
@@ -35,6 +46,11 @@ import { CouncilRuntimeController } from "./council-runtime.controller";
     CouncilCertificationService,
     CouncilCollaborationService,
     CouncilContextAssemblerService,
+    CouncilSchedulerService,
+    CouncilDeliberationEngineService,
+    CouncilMemoryService,
+    ExecutiveCollaborationNetworkService,
+    ExecutiveCollaborationCertificationService,
   ],
   exports: [
     ExecutiveCouncilRuntimeService,
@@ -45,6 +61,11 @@ import { CouncilRuntimeController } from "./council-runtime.controller";
     CouncilStoreService,
     CouncilCollaborationService,
     CouncilContextAssemblerService,
+    CouncilSchedulerService,
+    CouncilDeliberationEngineService,
+    CouncilMemoryService,
+    ExecutiveCollaborationNetworkService,
+    ExecutiveCollaborationCertificationService,
   ],
 })
 export class CouncilRuntimeModule {}

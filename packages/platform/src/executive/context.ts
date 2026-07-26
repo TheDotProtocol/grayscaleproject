@@ -219,6 +219,8 @@ export interface CompanyContext {
   activeCouncilSessions?: import("../council/context-snapshot.js").CouncilSessionSummary[];
   organizationalConsensus?: import("../council/context-snapshot.js").OrganizationalConsensusSummary[];
   pendingVotes?: import("../council/context-snapshot.js").PendingVoteSummary[];
+  activeDeliberations?: import("../council/context-snapshot.js").ActiveDeliberationSummary[];
+  collaborationNetwork?: import("../council/context-snapshot.js").CollaborationNetworkSummary;
 
   /** Sprint 4 Phase A — Organizational Runtime (OrgOS orchestration, read-only) */
   organizationalRuntime?: import("../runtime/organizational-runtime.js").OrganizationalRuntimeSnapshot;

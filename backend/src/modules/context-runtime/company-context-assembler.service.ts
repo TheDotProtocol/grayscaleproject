@@ -39,7 +39,7 @@ import { RuntimeContextService } from "../runtime/runtime-context.service";
 import { RuntimeCoordinatorService } from "../runtime/runtime-coordinator.service";
 import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
 
-const CONTEXT_VERSION = "2.0.0-s4a-org-runtime";
+const CONTEXT_VERSION = "2.1.0-s4b-exec-collaboration";
 
 @Injectable()
 export class CompanyContextAssemblerService {

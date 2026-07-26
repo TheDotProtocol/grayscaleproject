@@ -19,6 +19,7 @@ export class CouncilSessionService {
     participatingExecutiveIds: string[];
     quorumRequired?: number;
     correlationId: string;
+    scheduleMode?: CouncilSession["scheduleMode"];
   }): Promise<CouncilSession> {
     const compliance: CouncilSessionCompliance = {
       founderConstitution: true,
@@ -33,6 +34,7 @@ export class CouncilSessionService {
       companyId: input.companyId,
       title: input.title,
       status: "active",
+      scheduleMode: input.scheduleMode,
       participatingExecutiveIds: input.participatingExecutiveIds,
       quorumRequired: input.quorumRequired ?? 1,
       correlationId: input.correlationId,

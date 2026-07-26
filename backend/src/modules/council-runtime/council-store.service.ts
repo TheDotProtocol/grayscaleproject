@@ -44,6 +44,14 @@ export class CouncilStoreService {
   readonly replayEvents = new Map<string, CouncilReplayEvent[]>();
   readonly classifications = new Map<string, ClassifiedDecision>();
   readonly members = new Map<string, CouncilMember[]>();
+  readonly proposals = new Map<string, import("@grayscale/platform").ExecutiveDeliberationProposal>();
+  readonly memoryEntries = new Map<string, import("@grayscale/platform").CouncilMemoryEntry[]>();
+  readonly minutes = new Map<string, import("@grayscale/platform").CouncilMinutes>();
+  readonly collaborationRequests = new Map<string, import("@grayscale/platform").CollaborationRequest>();
+  readonly collaborationResponses = new Map<string, import("@grayscale/platform").CollaborationResponse>();
+  readonly consensusVotes = new Map<string, import("@grayscale/platform").ConsensusVoteRequest>();
+  readonly minorityReports = new Map<string, import("@grayscale/platform").MinorityOpinionReport>();
+  readonly dissentReports = new Map<string, import("@grayscale/platform").DissentReport>();
 
   private id(prefix: string): string {
     return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;

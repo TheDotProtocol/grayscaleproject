@@ -1,10 +1,12 @@
 import type { CouncilIssueStatus, CouncilSessionStatus } from "./constitution.js";
+import type { CouncilScheduleMode } from "./council-scheduling.js";
 
 export interface CouncilSession {
   id: string;
   companyId: string;
   title: string;
   status: CouncilSessionStatus;
+  scheduleMode?: CouncilScheduleMode;
   chairExecutiveId?: string;
   participatingExecutiveIds: string[];
   quorumRequired: number;

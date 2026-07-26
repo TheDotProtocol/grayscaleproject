@@ -31,6 +31,21 @@ export interface OrganizationalConsensusSummary {
   measuredAt: string;
 }
 
+export interface ActiveDeliberationSummary {
+  proposalId: string;
+  sessionId: string;
+  issueId: string;
+  currentStage: string;
+  status: string;
+}
+
+export interface CollaborationNetworkSummary {
+  activeRequests: number;
+  openChallenges: number;
+  pendingEscalations: number;
+  assembledAt: string;
+}
+
 /** Optional read-only council fields on CompanyContext — assembled at context build time */
 export interface ExecutiveCouncilContextFields {
   executiveCouncil?: ExecutiveCouncilSnapshot;
@@ -38,4 +53,6 @@ export interface ExecutiveCouncilContextFields {
   activeCouncilSessions?: CouncilSessionSummary[];
   organizationalConsensus?: OrganizationalConsensusSummary[];
   pendingVotes?: PendingVoteSummary[];
+  activeDeliberations?: ActiveDeliberationSummary[];
+  collaborationNetwork?: CollaborationNetworkSummary;
 }

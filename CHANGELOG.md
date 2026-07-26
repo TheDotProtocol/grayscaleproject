@@ -129,6 +129,51 @@ Executive gate spec: `docs/platform/EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
 
 ---
 
+## [Sprint-4-Phase-B-ExecutiveCollaboration-v1.0] — 2026-07-26
+
+**Context Version:** `2.1.0-s4b-exec-collaboration`  
+**Council Runtime:** `2.0.0`  
+**Status:** EXECUTIVE COLLABORATION CERTIFIED — `EXECUTIVES_ENABLED=false`
+
+### Added
+
+- **Executive Collaboration Constitution** — `EXECUTIVE_COLLABORATION.md`
+- **Continuous Executive Council** — 7 schedule modes, runtime-owned scheduling
+- **Executive Deliberation Engine** — 12-stage deterministic pipeline (no skipping)
+- **Executive Collaboration Network** — 11 request kinds; all communication routed
+- **Council Memory v2** — immutable searchable minutes, evidence, votes, replay
+- **Collaboration Certification** — 12 ECS gates
+- **Mission Control** — 15 collaboration widget contracts (UI deferred)
+- **ADRs 075–079**
+
+### Verification
+
+- `pnpm typecheck` — PASS
+- `pnpm test` — 153 tests PASS
+
+---
+
+## [Sprint-4-Phase-A-OrganizationalRuntime-v1.0] — 2026-07-26
+
+**Context Version:** `2.0.0-s4a-org-runtime`  
+**Status:** ORGANIZATIONAL RUNTIME CERTIFIED — `EXECUTIVES_ENABLED=false`
+
+### Added
+
+- **Organizational Runtime Constitution** — `ORGANIZATIONAL_RUNTIME.md`
+- **OrgOS Platform Contracts** — 16 runtime ports, heartbeat, scheduler, explainability
+- **Backend Runtime Module** — coordinator, heartbeat (10 steps), certification (11 gates)
+- **Mission Control** — 19 runtime widget contracts
+- **CompanyContext** — `organizationalRuntime`, `runtimeHealth`, `runtimeMetrics`
+- **ADRs 070–074**
+
+### Verification
+
+- `pnpm typecheck` — PASS
+- `pnpm test` — 150 tests PASS
+
+---
+
 ## Upcoming — Sprint 2 (Not in Bedrock)
 
 - **Athena** — Chief Executive Strategist (reference executive)

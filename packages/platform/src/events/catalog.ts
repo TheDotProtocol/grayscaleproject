@@ -377,6 +377,16 @@ export const EVENT_CATALOG = {
   "forge.recommendation.drafted": { version: 1, category: "executive", description: "Forge twin-centric recommendation drafted" },
   "council.collaboration.recorded": { version: 1, category: "council", description: "Council collaboration session metrics recorded" },
 
+  // ─── Executive Collaboration (Sprint 4 Phase B) ───
+  "council.scheduled": { version: 1, category: "council", description: "Council session scheduled by organizational runtime" },
+  "council.deliberation.started": { version: 1, category: "council", description: "Executive deliberation proposal started" },
+  "council.deliberation.stage.advanced": { version: 1, category: "council", description: "Deliberation stage advanced deterministically" },
+  "council.deliberation.completed": { version: 1, category: "council", description: "All 12 deliberation stages completed" },
+  "collaboration.request.sent": { version: 1, category: "executive", description: "Executive collaboration request sent via network" },
+  "collaboration.request.responded": { version: 1, category: "executive", description: "Executive collaboration request responded" },
+  "collaboration.certified": { version: 1, category: "council", description: "Executive collaboration certification passed" },
+  "council.memory.appended": { version: 1, category: "council", description: "Immutable council memory entry appended" },
+
   // ─── Organizational Evolution (Sprint 4 — ADR-046–051) ───
   "memory-evolution.layer.created": { version: 1, category: "organization", description: "Memory evolution layer added without mutating source memory" },
   "organizational-learning.validated": { version: 1, category: "organization", description: "Organizational learning validated with evidence" },
