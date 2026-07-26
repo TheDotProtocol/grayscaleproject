@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, forwardRef } from "@nestjs/common";
 import { EventsService } from "../events/events.service";
 import type { RuntimeAuditEntry, RuntimeHeartbeatCycle, RuntimeHeartbeatStep, RuntimeId } from "@grayscale/platform";
 import { ContextRuntimeService } from "../context-runtime/context-runtime.service";
@@ -25,6 +25,7 @@ export class RuntimeHeartbeatService {
 
   constructor(
     private readonly store: RuntimeStoreService,
+    @Inject(forwardRef(() => ContextRuntimeService))
     private readonly context: ContextRuntimeService,
     private readonly events: EventsService,
     private readonly explainability: RuntimeExplainabilityService,

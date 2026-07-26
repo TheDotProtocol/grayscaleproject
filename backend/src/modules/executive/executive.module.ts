@@ -25,7 +25,7 @@ import { ExecutiveController } from "./executive.controller";
     MemoryIndexModule,
     PulseModule,
     PluginsModule,
-    ContextRuntimeModule,
+    forwardRef(() => ContextRuntimeModule),
     forwardRef(() => EventsModule),
   ],
   controllers: [ExecutiveController],

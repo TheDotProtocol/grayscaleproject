@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, forwardRef } from "@nestjs/common";
 import type { ForecastContextSnapshot } from "@grayscale/platform";
 import { FORECAST_ENGINE_VERSION } from "@grayscale/platform";
 import { ForecastIntelligenceService } from "../twin-runtime/forecast-intelligence.service";
@@ -6,7 +6,10 @@ import { ForecastIntelligenceService } from "../twin-runtime/forecast-intelligen
 /** Assembles forecast context for CompanyContext — no duplicate storage */
 @Injectable()
 export class ForecastContextService {
-  constructor(private readonly forecast: ForecastIntelligenceService) {}
+  constructor(
+    @Inject(forwardRef(() => ForecastIntelligenceService))
+    private readonly forecast: ForecastIntelligenceService,
+  ) {}
 
   async assemble(companyId: string): Promise<ForecastContextSnapshot> {
     const latestForecasts = await this.forecast.list(companyId);

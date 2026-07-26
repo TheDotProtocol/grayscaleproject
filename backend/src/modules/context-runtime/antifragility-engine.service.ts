@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, forwardRef } from "@nestjs/common";
 import type { OrganizationalAntifragility } from "@grayscale/platform";
 import { ANTIFRAGILITY_ENGINE_VERSION } from "@grayscale/platform";
 import { HomeostasisEngineService } from "./homeostasis-engine.service";
@@ -10,6 +10,7 @@ import { foresightMetric } from "./organizational-reasoning.util";
 export class AntifragilityEngineService {
   constructor(
     private readonly homeostasis: HomeostasisEngineService,
+    @Inject(forwardRef(() => SimulationContextService))
     private readonly simulation: SimulationContextService,
   ) {}
 

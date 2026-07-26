@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, forwardRef } from "@nestjs/common";
 import { EventsService } from "../events/events.service";
 import type {
   OrganizationalTwin,
@@ -26,7 +26,9 @@ import { TwinStoreService } from "./twin-store.service";
 @Injectable()
 export class OrganizationalTwinService implements OrganizationalTwinPort {
   constructor(
+    @Inject(forwardRef(() => ContextRuntimeService))
     private readonly context: ContextRuntimeService,
+    @Inject(forwardRef(() => TwinEngineService))
     private readonly twinEngine: TwinEngineService,
     private readonly store: TwinStoreService,
     private readonly events: EventsService,

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, forwardRef } from "@nestjs/common";
 import type {
   OrganizationalTwin,
   SimulationAuditEntry,
@@ -50,6 +50,7 @@ const SCENARIO_STRESS_MULTIPLIER: Record<string, number> = {
 export class SimulationRunnerService {
   constructor(
     private readonly store: TwinStoreService,
+    @Inject(forwardRef(() => HomeostasisEngineService))
     private readonly homeostasis: HomeostasisEngineService,
   ) {}
 

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, forwardRef } from "@nestjs/common";
 import { EventsService } from "../events/events.service";
 import type { ForecastExplanation, ForecastIntelligencePort, TwinForecast } from "@grayscale/platform";
 import { TwinStoreService } from "./twin-store.service";
@@ -8,6 +8,7 @@ import { OrganizationalTwinService } from "./organizational-twin.service";
 export class ForecastIntelligenceService implements ForecastIntelligencePort {
   constructor(
     private readonly store: TwinStoreService,
+    @Inject(forwardRef(() => OrganizationalTwinService))
     private readonly twin: OrganizationalTwinService,
     private readonly events: EventsService,
   ) {}
