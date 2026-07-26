@@ -22,17 +22,17 @@ jobs:
         ports: ["6379:6379"]
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v5
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: pnpm
 
       - run: pnpm install
-      - run: pnpm --filter @grayscale/shared build
-      - run: pnpm --filter @grayscale/platform build
-      - run: pnpm --filter @grayscale/agents build
+      - run: pnpm turbo run build --filter=@grayscale/agents...
 
       - name: Prisma migrate
         run: pnpm --filter @grayscale/backend exec prisma migrate deploy
