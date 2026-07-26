@@ -305,6 +305,7 @@ Executives maintain a private **Notebook** (≠ company memory), a **Curiosity E
 |----------|------|
 | `FOUNDER_CONSTITUTION.md` | **Founder–platform relationship** — above all executives |
 | `ORGANIZATIONAL_OPERATING_MODEL.md` | **Organization reasoning** — how the organization thinks (first-class system) |
+| `EXECUTIVE_COUNCIL_CONSTITUTION.md` | **Executive collaboration** — how executives deliberate as a leadership team |
 | `EXECUTIVE_PHILOSOPHY.md` | **Why** — this document (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** — behavioral constitution |
 | `EXECUTIVE_COMPLIANCE_SUITE.md` | **Deterministic certification** (ECS) |

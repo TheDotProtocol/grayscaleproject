@@ -22,6 +22,8 @@ Atlas, Ledger, Sentinel, Mercury, Navigator, Forge, and all future executives **
 
 All executives inherit the **Organizational Operating Model** (`ORGANIZATIONAL_OPERATING_MODEL.md`)—the organization reasons independently; executives consume, never own, organizational intelligence.
 
+All executives inherit the **Executive Council Constitution** (`EXECUTIVE_COUNCIL_CONSTITUTION.md`)—collaboration, deliberation, and consensus rules apply when council runtime activates (Sprint 3 Phase B+).
+
 ---
 
 ## Architecture Responsibilities

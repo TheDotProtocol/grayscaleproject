@@ -834,6 +834,7 @@ Store in `docs/engineering/certification/{executive-id}-{version}.md`
 |----------|-------|
 | `FOUNDER_CONSTITUTION.md` | **Founder–platform relationship** (above all executives) |
 | `ORGANIZATIONAL_OPERATING_MODEL.md` | **Organization reasoning** (first-class system; independent of executives) |
+| `EXECUTIVE_COUNCIL_CONSTITUTION.md` | **Executive collaboration governance** (council deliberation and consensus) |
 | `EXECUTIVE_PHILOSOPHY.md` | **Why** executives exist (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** executives must be (constitution) |
 | `EXECUTIVE_COMPLIANCE_SUITE.md` | **Deterministic certification** (ECS) |

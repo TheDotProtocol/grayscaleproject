@@ -16,4 +16,5 @@ export * from "./context-runtime/index.js";
 export * from "./temporal/index.js";
 export * from "./signals/index.js";
 export * from "./insights/index.js";
+export * from "./council/index.js";
 export type { PlatformEventType } from "./events/catalog.js";

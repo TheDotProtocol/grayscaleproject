@@ -97,6 +97,7 @@ Unacceptable answers:
 ARCHITECTURE_LOCK.md              ← this document (immutable rules)
 FOUNDER_CONSTITUTION.md           ← founder–platform relationship
 ORGANIZATIONAL_OPERATING_MODEL.md ← organization reasoning (first-class system)
+EXECUTIVE_COUNCIL_CONSTITUTION.md ← executive collaboration governance
 EXECUTIVE_PHILOSOPHY.md           ← why
 EXECUTIVE_MANIFESTO.md            ← what
 ADR-001–034+                      ← how (decisions)

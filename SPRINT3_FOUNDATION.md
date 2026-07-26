@@ -42,10 +42,8 @@ But: how does the **organization** operate as a first-class system inside Graysc
 
 Multi-executive collaboration with evidence-based debate, consensus detection, conflict resolution, minority opinions, and synthesized recommendations.
 
-- Atlas, Ledger, Mercury, Sentinel, Navigator, Forge join Athena
-- Council deliberation runtime (extends Sprint 2 council prep)
-- No executive dominates without evidence
-- Council outputs traceable to organizational intent
+- **Phase A (complete):** Constitutional foundation + platform contracts (`EXECUTIVE_COUNCIL_CONSTITUTION.md`, `@grayscale/platform/council`)
+- **Phase B (next):** Council runtime implementation
 
 ### 2. Organizational Digital Twin
 
