@@ -191,6 +191,17 @@ export interface CompanyContext {
   /** Sprint 3 Phase B / ONS — organizational homeostasis */
   homeostasis?: import("../homeostasis/homeostasis-engine.js").OrganizationalHomeostasis;
 
+  /** Sprint 3 Phase B / ONS — alias */
+  organizationalHomeostasis?: import("../homeostasis/homeostasis-engine.js").OrganizationalHomeostasis;
+
+  /** Sprint 3 Phase C — simulation context (read-only, assembled) */
+  simulation?: import("../simulation/simulation-runtime-ports.js").SimulationContextSnapshot;
+  activeSimulations?: import("../simulation/simulation-engine.js").SimulationHistoryEntry[];
+  simulationHealth?: import("../simulation/simulation-runtime-ports.js").SimulationHealth;
+  simulationHistory?: import("../simulation/simulation-engine.js").SimulationHistoryEntry[];
+  simulationCapabilities?: import("../simulation/simulation-runtime-ports.js").SimulationCapabilities;
+  simulationMetrics?: { totalSessions: number; completedSessions: number; averageDurationMs: number };
+
   /** Sprint 3 Phase A alignment — read-only council snapshots (assembled from runtime, not duplicated) */
   executiveCouncil?: import("../council/context-snapshot.js").ExecutiveCouncilSnapshot;
   councilHealth?: import("../council/governance.js").CouncilHealth;

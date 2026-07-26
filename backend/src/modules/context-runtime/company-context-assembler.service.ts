@@ -28,8 +28,9 @@ import { TwinEngineService } from "./twin-engine.service";
 import { CouncilContextAssemblerService } from "../council-runtime/council-context-assembler.service";
 import { SignalCorrelationService } from "./signal-correlation.service";
 import { HomeostasisEngineService } from "./homeostasis-engine.service";
+import { SimulationContextService } from "../twin-runtime/simulation-context.service";
 
-const CONTEXT_VERSION = "1.7.2-s3b-ons";
+const CONTEXT_VERSION = "1.8.0-s3c-simulation";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -55,6 +56,7 @@ export class CompanyContextAssemblerService {
     private readonly councilContext: CouncilContextAssemblerService,
     private readonly signalCorrelation: SignalCorrelationService,
     private readonly homeostasis: HomeostasisEngineService,
+    private readonly simulationContext: SimulationContextService,
   ) {}
 
   async assemble(
@@ -173,8 +175,12 @@ export class CompanyContextAssemblerService {
       this.signalCorrelation.correlate(companyId),
     );
 
-    const homeostasisSnapshot = await wrap("homeostasis", "1.0", () =>
+    const homeostasisSnapshot = await wrap("homeostasis", "1.1", () =>
       this.homeostasis.assess(companyId),
+    );
+
+    const simulationSnapshot = await wrap("simulation", "1.1", () =>
+      this.simulationContext.assemble(companyId),
     );
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
@@ -344,6 +350,19 @@ export class CompanyContextAssemblerService {
       twinState: twinSnapshot?.present,
       signalCorrelation: signalCorrelationSnapshot,
       homeostasis: homeostasisSnapshot,
+      organizationalHomeostasis: homeostasisSnapshot,
+      simulation: simulationSnapshot,
+      activeSimulations: simulationSnapshot?.activeSimulations,
+      simulationHealth: simulationSnapshot?.simulationHealth,
+      simulationHistory: simulationSnapshot?.recentSessions,
+      simulationCapabilities: simulationSnapshot?.simulationCapabilities,
+      simulationMetrics: simulationSnapshot
+        ? {
+            totalSessions: simulationSnapshot.recentSessions.length,
+            completedSessions: simulationSnapshot.recentSessions.filter((s) => s.status === "completed").length,
+            averageDurationMs: 0,
+          }
+        : undefined,
       contextRuntime: {
         cacheKey,
         cached: false,

@@ -1,22 +1,32 @@
 # Simulation Engine
 
-**Sprint 3 Phase C** | ADR-040
+**Sprint 3 Phase C** | ADR-040, ADR-059
+
+> **Canonical constitutional source:** [ORGANIZATIONAL_SIMULATION_ENGINE.md](./ORGANIZATIONAL_SIMULATION_ENGINE.md)
 
 ## Purpose
 
-Simulation explores alternative possibilities. It is NOT prediction.
+Simulation explores alternative organizational possibilities. It is NOT prediction. The **organization** is the simulation subject — not Athena, not executives.
 
 ## Principles
 
 - Simulations consume the Living Organizational Twin
 - Simulations never modify reality (`realityModified: false`)
-- Deterministic outcomes from assumptions + constraints + twin state
+- Deterministic outcomes from assumptions + constraints + twin state + homeostasis
 - Full audit trail and replay support
+- No LLM dependency; no recommendation generation
 
 ## Lifecycle
 
-`created → assumptions_set → constraints_applied → running → outcomes_generated → compared → explained → archived`
+See `SIMULATION_PIPELINE_STAGES` in platform contracts.
 
 ## Scenario Types
 
-growth, market_change, hiring, layoffs, budget_change, infrastructure_failure, security_incident, vendor_outage, revenue_decline, rapid_expansion, new_product_launch, regulatory_change, executive_loss, unknown_event, custom
+15 types — see [SIMULATION_SCENARIOS.md](./SIMULATION_SCENARIOS.md)
+
+## Related
+
+- [SIMULATION_RUNTIME.md](./SIMULATION_RUNTIME.md)
+- [SIMULATION_EXPLAINABILITY.md](./SIMULATION_EXPLAINABILITY.md)
+- [SIMULATION_CERTIFICATION.md](./SIMULATION_CERTIFICATION.md)
+- [HOMEOSTASIS_ENGINE.md](./HOMEOSTASIS_ENGINE.md)

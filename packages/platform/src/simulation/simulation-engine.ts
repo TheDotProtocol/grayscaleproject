@@ -1,6 +1,7 @@
 /** Simulation Framework — contracts (Sprint 3 Phase C, ADR-040) */
 
-export const SIMULATION_ENGINE_VERSION = "1.0.0";
+export const SIMULATION_ENGINE_VERSION = "1.1.0";
+export const SIMULATION_PIPELINE_VERSION = "1.0.0";
 
 export type SimulationStatus = "draft" | "running" | "completed" | "rolled_back" | "archived";
 
@@ -8,7 +9,7 @@ export interface SimulationAssumption {
   id: string;
   label: string;
   value: unknown;
-  source: "founder" | "executive" | "twin" | "scenario";
+  source: "founder" | "executive" | "twin" | "scenario" | "homeostasis";
 }
 
 export interface SimulationConstraint {
@@ -38,6 +39,18 @@ export interface SimulationOutcome {
   metrics: Record<string, number>;
   confidence: number;
   explanation: string;
+}
+
+export interface SimulationRiskAssessment {
+  level: "low" | "moderate" | "high" | "critical";
+  score: number;
+  factors: string[];
+}
+
+export interface SimulationOpportunityAssessment {
+  level: "low" | "moderate" | "high";
+  score: number;
+  factors: string[];
 }
 
 export interface SimulationComparison {
@@ -94,12 +107,25 @@ export interface SimulationReplay {
 
 export type SimulationLifecycleStage =
   | "created"
+  | "snapshot"
+  | "context_assembled"
+  | "scenario_injected"
+  | "signal_propagation"
+  | "twin_update"
+  | "organizational_response"
+  | "homeostasis_update"
+  | "executive_observation"
+  | "outcomes_generated"
+  | "risk_assessment"
+  | "opportunity_assessment"
   | "assumptions_set"
   | "constraints_applied"
   | "running"
-  | "outcomes_generated"
   | "compared"
   | "explained"
+  | "audited"
+  | "versioned"
+  | "certified"
   | "archived";
 
 export interface SimulationLifecycle {
@@ -145,8 +171,15 @@ export interface SimulationSession {
   confidence: SimulationConfidence;
   explanation?: SimulationExplanation;
   lifecycle: SimulationLifecycle;
+  auditTrail: SimulationAuditEntry[];
+  riskAssessment?: SimulationRiskAssessment;
+  opportunityAssessment?: SimulationOpportunityAssessment;
+  homeostasisBefore?: Record<string, number>;
+  homeostasisAfter?: Record<string, number>;
   realityModified: false;
   correlationId: string;
+  engineVersion: string;
+  pipelineVersion: string;
   createdAt: string;
   completedAt?: string;
 }
@@ -176,3 +209,22 @@ export interface SimulationEnginePort {
   replay(sessionId: string): Promise<SimulationReplay>;
   getMetrics(sessionId: string): Promise<SimulationMetrics>;
 }
+
+/** Constitutional pipeline stages — organization is the simulation subject */
+export const SIMULATION_PIPELINE_STAGES: SimulationLifecycleStage[] = [
+  "snapshot",
+  "context_assembled",
+  "scenario_injected",
+  "signal_propagation",
+  "twin_update",
+  "organizational_response",
+  "homeostasis_update",
+  "executive_observation",
+  "outcomes_generated",
+  "risk_assessment",
+  "opportunity_assessment",
+  "explained",
+  "audited",
+  "versioned",
+  "certified",
+];

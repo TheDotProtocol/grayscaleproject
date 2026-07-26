@@ -4,6 +4,9 @@ import { ContextRuntimeModule } from "../context-runtime/context-runtime.module"
 import { TwinStoreService } from "./twin-store.service";
 import { OrganizationalTwinService } from "./organizational-twin.service";
 import { SimulationSessionService } from "./simulation-session.service";
+import { SimulationRunnerService } from "./simulation-runner.service";
+import { SimulationContextService } from "./simulation-context.service";
+import { SimulationCertificationService } from "./simulation-certification.service";
 import { ForecastIntelligenceService } from "./forecast-intelligence.service";
 import { TwinCertificationService } from "./twin-certification.service";
 import { TwinRuntimeController } from "./twin-runtime.controller";
@@ -14,10 +17,22 @@ import { TwinRuntimeController } from "./twin-runtime.controller";
   providers: [
     TwinStoreService,
     OrganizationalTwinService,
+    SimulationRunnerService,
     SimulationSessionService,
+    SimulationContextService,
+    SimulationCertificationService,
     ForecastIntelligenceService,
     TwinCertificationService,
   ],
-  exports: [OrganizationalTwinService, SimulationSessionService, ForecastIntelligenceService, TwinCertificationService, TwinStoreService],
+  exports: [
+    OrganizationalTwinService,
+    SimulationSessionService,
+    SimulationRunnerService,
+    SimulationContextService,
+    SimulationCertificationService,
+    ForecastIntelligenceService,
+    TwinCertificationService,
+    TwinStoreService,
+  ],
 })
 export class TwinRuntimeModule {}

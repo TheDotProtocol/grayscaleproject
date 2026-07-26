@@ -11,34 +11,33 @@ import type {
   SimulationSession,
   SimulationScenarioType,
 } from "@grayscale/platform";
+import {
+  SIMULATION_ENGINE_VERSION,
+  SIMULATION_PIPELINE_VERSION,
+  SIMULATION_SCENARIO_LIBRARY,
+} from "@grayscale/platform";
 import { TwinStoreService } from "./twin-store.service";
+import { SimulationRunnerService } from "./simulation-runner.service";
 
-const SCENARIO_LIBRARY: Array<{ type: SimulationScenarioType; label: string; description: string }> = [
-  { type: "growth", label: "Growth", description: "Explore scaling operations and capacity" },
-  { type: "market_change", label: "Market Change", description: "Model shifting market conditions" },
-  { type: "hiring", label: "Hiring", description: "Simulate team expansion" },
-  { type: "layoffs", label: "Layoffs", description: "Simulate workforce reduction" },
-  { type: "budget_change", label: "Budget Change", description: "Model budget reallocation" },
-  { type: "infrastructure_failure", label: "Infrastructure Failure", description: "Simulate platform outage" },
-  { type: "security_incident", label: "Security Incident", description: "Simulate breach response" },
-  { type: "vendor_outage", label: "Vendor Outage", description: "Simulate third-party failure" },
-  { type: "revenue_decline", label: "Revenue Decline", description: "Model revenue contraction" },
-  { type: "rapid_expansion", label: "Rapid Expansion", description: "Simulate accelerated growth" },
-  { type: "new_product_launch", label: "New Product Launch", description: "Simulate product launch impact" },
-  { type: "regulatory_change", label: "Regulatory Change", description: "Model compliance shift" },
-  { type: "executive_loss", label: "Executive Loss", description: "Simulate leadership transition" },
-  { type: "unknown_event", label: "Unknown Event", description: "Explore black swan scenarios" },
-];
+function deterministicId(prefix: string, seed: string): string {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return `${prefix}-${seed.slice(0, 12).replace(/[^a-z0-9]/gi, "")}-${(h >>> 0) % 1e6}`;
+}
 
 @Injectable()
 export class SimulationSessionService implements SimulationEnginePort {
   constructor(
     private readonly store: TwinStoreService,
     private readonly events: EventsService,
+    private readonly runner: SimulationRunnerService,
   ) {}
 
   listScenarios() {
-    return SCENARIO_LIBRARY;
+    return SIMULATION_SCENARIO_LIBRARY.map(({ type, label, description }) => ({ type, label, description }));
   }
 
   async createSession(input: {
@@ -47,14 +46,15 @@ export class SimulationSessionService implements SimulationEnginePort {
     scenario: { type: SimulationScenarioType; label: string; description: string; assumptions?: unknown[]; constraints?: unknown[] };
     correlationId?: string;
   }): Promise<SimulationSession> {
-    const sessionId = this.store.newId("sim");
+    const seed = `${input.companyId}:${input.twinVersionId}:${input.scenario.type}`;
+    const sessionId = deterministicId("sim", seed + Date.now());
     const correlationId = input.correlationId ?? crypto.randomUUID();
     const session: SimulationSession = {
       sessionId,
       companyId: input.companyId,
       twinVersionId: input.twinVersionId,
       scenario: {
-        scenarioId: this.store.newId("scn"),
+        scenarioId: deterministicId("scn", seed),
         type: input.scenario.type,
         label: input.scenario.label,
         description: input.scenario.description,
@@ -70,8 +70,11 @@ export class SimulationSessionService implements SimulationEnginePort {
         currentStage: "created",
         stages: [{ stage: "created", completedAt: new Date().toISOString() }],
       },
+      auditTrail: [],
       realityModified: false,
       correlationId,
+      engineVersion: SIMULATION_ENGINE_VERSION,
+      pipelineVersion: SIMULATION_PIPELINE_VERSION,
       createdAt: new Date().toISOString(),
     };
     this.store.simulations.set(sessionId, session);
@@ -80,32 +83,14 @@ export class SimulationSessionService implements SimulationEnginePort {
   }
 
   async runSession(sessionId: string): Promise<SimulationSession> {
-    const session = this.store.simulations.get(sessionId);
-    if (!session) throw new Error("Simulation session not found");
-
-    session.status = "running";
-    session.lifecycle.currentStage = "running";
-    session.lifecycle.stages.push({ stage: "running", completedAt: new Date().toISOString() });
-
-    const baselineId = this.store.newId("out");
-    const altId = this.store.newId("out");
-    session.branches = [
-      { branchId: "baseline", label: "Baseline", probability: 0.6 },
-      { branchId: "alternative", label: "Alternative", probability: 0.4 },
-    ];
-    session.outcomes = [
-      { outcomeId: baselineId, label: "Baseline outcome", metrics: { impact: 0.5, cost: 100 }, confidence: 0.7, explanation: "Deterministic baseline from twin state" },
-      { outcomeId: altId, label: "Alternative outcome", metrics: { impact: 0.8, cost: 150 }, confidence: 0.55, explanation: "Alternative branch exploration" },
-    ];
-    session.confidence = { overall: 0.65, evidenceWeight: 0.7, assumptionRisk: 0.3 };
-    session.status = "completed";
-    session.completedAt = new Date().toISOString();
-    session.lifecycle.currentStage = "outcomes_generated";
-    session.lifecycle.stages.push({ stage: "outcomes_generated", completedAt: session.completedAt });
-
-    this.store.simulations.set(sessionId, session);
-    await this.events.publish("simulation.session.completed", session.companyId, { sessionId }, { correlationId: session.correlationId });
-    return session;
+    const completed = await this.runner.runPipeline(sessionId);
+    await this.events.publish(
+      "simulation.session.completed",
+      completed.companyId,
+      { sessionId, scenarioType: completed.scenario.type },
+      { correlationId: completed.correlationId },
+    );
+    return completed;
   }
 
   async compareOutcomes(sessionId: string, baselineId: string, alternativeId: string): Promise<SimulationComparison> {
@@ -119,20 +104,25 @@ export class SimulationSessionService implements SimulationEnginePort {
         delta[key] = (alternative.metrics[key] ?? 0) - (baseline.metrics[key] ?? 0);
       }
     }
-    return { baselineOutcomeId: baselineId, alternativeOutcomeId: alternativeId, delta, preferred: "inconclusive" };
+    const preferred =
+      alternative && baseline && alternative.metrics.organizational_stress < baseline.metrics.organizational_stress
+        ? "alternative"
+        : "baseline";
+    return { baselineOutcomeId: baselineId, alternativeOutcomeId: alternativeId, delta, preferred };
   }
 
   async explain(sessionId: string): Promise<SimulationExplanation> {
     const session = this.store.simulations.get(sessionId);
     if (!session) throw new Error("Simulation session not found");
+    if (session.explanation) return session.explanation;
     return {
       sessionId,
-      summary: `Simulation of ${session.scenario.label} — reality preserved`,
+      summary: `Simulation of ${session.scenario.label} — organization as subject, reality preserved`,
       assumptions: session.scenario.assumptions,
       constraints: session.scenario.constraints,
       evidence: [],
       alternatives: session.branches.map((b) => b.label),
-      unknowns: ["Market response timing", "Resource availability"],
+      unknowns: ["Market response timing"],
     };
   }
 
@@ -140,13 +130,22 @@ export class SimulationSessionService implements SimulationEnginePort {
     const session = this.store.simulations.get(sessionId);
     if (!session) throw new Error("Simulation session not found");
     session.status = "rolled_back";
+    session.auditTrail.push({
+      entryId: deterministicId("aud", `${sessionId}:rollback`),
+      action: "rolled_back",
+      actorId: "simulation-runtime",
+      recordedAt: new Date().toISOString(),
+      details: { reason },
+    });
     this.store.simulations.set(sessionId, session);
+    await this.events.publish("simulation.session.rolled_back", session.companyId, { sessionId, reason }, { correlationId: session.correlationId });
     return { sessionId, rolledBackAt: new Date().toISOString(), reason, realityPreserved: true };
   }
 
   async getHistory(companyId: string): Promise<SimulationHistoryEntry[]> {
     return [...this.store.simulations.values()]
       .filter((s) => s.companyId === companyId)
+      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
       .map((s) => ({
         sessionId: s.sessionId,
         scenarioType: s.scenario.type,
@@ -157,7 +156,17 @@ export class SimulationSessionService implements SimulationEnginePort {
   }
 
   async replay(sessionId: string): Promise<SimulationReplay> {
-    return { sessionId, events: [{ sequence: 1, type: "simulation.session.created", payload: {} }] };
+    const session = this.store.simulations.get(sessionId);
+    if (!session) throw new Error("Simulation session not found");
+    const events = session.auditTrail.map((entry, i) => ({
+      sequence: i + 1,
+      type: entry.action,
+      payload: entry.details as Record<string, unknown>,
+    }));
+    if (events.length === 0) {
+      events.push({ sequence: 1, type: "simulation.session.created", payload: { sessionId } });
+    }
+    return { sessionId, events };
   }
 
   async getMetrics(sessionId: string): Promise<SimulationMetrics> {
@@ -169,6 +178,20 @@ export class SimulationSessionService implements SimulationEnginePort {
       branchCount: session.branches.length,
       outcomeCount: session.outcomes.length,
       realityModified: false,
+    };
+  }
+
+  async getAggregateMetrics(companyId: string) {
+    const sessions = [...this.store.simulations.values()].filter((s) => s.companyId === companyId);
+    const completed = sessions.filter((s) => s.status === "completed");
+    const totalDuration = completed.reduce((sum, s) => {
+      if (!s.completedAt) return sum;
+      return sum + (new Date(s.completedAt).getTime() - new Date(s.createdAt).getTime());
+    }, 0);
+    return {
+      totalSessions: sessions.length,
+      completedSessions: completed.length,
+      averageDurationMs: completed.length ? Math.round(totalDuration / completed.length) : 0,
     };
   }
 }
