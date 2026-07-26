@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { EventsModule } from "../events/events.module";
 import { ExecutiveModule } from "../executive/executive.module";
 import { ContextRuntimeModule } from "../context-runtime/context-runtime.module";
@@ -15,7 +15,7 @@ import { CouncilCertificationService } from "./council-certification.service";
 import { CouncilRuntimeController } from "./council-runtime.controller";
 
 @Module({
-  imports: [EventsModule, ExecutiveModule, ContextRuntimeModule],
+  imports: [forwardRef(() => EventsModule), ExecutiveModule, forwardRef(() => ContextRuntimeModule)],
   controllers: [CouncilRuntimeController],
   providers: [
     CouncilStoreService,
@@ -32,6 +32,13 @@ import { CouncilRuntimeController } from "./council-runtime.controller";
     ExecutiveCouncilRuntimeService,
     CouncilCertificationService,
   ],
-  exports: [ExecutiveCouncilRuntimeService, CouncilCertificationService, CouncilSessionService, CouncilAttentionService],
+  exports: [
+    ExecutiveCouncilRuntimeService,
+    CouncilCertificationService,
+    CouncilSessionService,
+    CouncilAttentionService,
+    CouncilDecisionClassifierService,
+    CouncilStoreService,
+  ],
 })
 export class CouncilRuntimeModule {}

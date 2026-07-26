@@ -21,7 +21,7 @@ import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module"
 import { MissionControlController } from "./mission-control.controller";
 import { PlatformRegistryController } from "./platform-registry.controller";
 import { MissionControlService } from "./mission-control.service";
-import { PlatformServiceRegistryService } from "./platform-service-registry.service";
+import { PlatformRegistryModule } from "./platform-registry.module";
 import { CapabilityDiscoveryService } from "./capability-discovery.service";
 import { PlatformHealthService } from "./platform-health.service";
 import { WidgetCatalogService } from "./widget-catalog.service";
@@ -39,16 +39,17 @@ import { CouncilWidgetDataService } from "./council-widget-data.service";
 
 @Module({
   imports: [
+    PlatformRegistryModule,
     PrismaModule,
-    EventsModule,
+    forwardRef(() => EventsModule),
     PulseModule,
     MemoryModule,
     GraphModule,
-    IntelligenceModule,
+    forwardRef(() => IntelligenceModule),
     IntegrationPlatformModule,
     TimelineModule,
     BillingModule,
-    ContextRuntimeModule,
+    forwardRef(() => ContextRuntimeModule),
     AthenaModule,
     ExecutiveModule,
     ExecutiveNotebookModule,
@@ -62,7 +63,6 @@ import { CouncilWidgetDataService } from "./council-widget-data.service";
   controllers: [MissionControlController, PlatformRegistryController],
   providers: [
     MissionControlService,
-    PlatformServiceRegistryService,
     CapabilityDiscoveryService,
     PlatformHealthService,
     WidgetCatalogService,
@@ -78,6 +78,6 @@ import { CouncilWidgetDataService } from "./council-widget-data.service";
     AthenaWidgetDataService,
     CouncilWidgetDataService,
   ],
-  exports: [MissionControlService, PlatformServiceRegistryService, PlatformHealthService],
+  exports: [MissionControlService, PlatformRegistryModule, PlatformHealthService],
 })
 export class MissionControlModule {}

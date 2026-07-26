@@ -7,5 +7,6 @@ import { EventsModule } from "../events/events.module";
   imports: [EventsModule],
   controllers: [TimelineController],
   providers: [TimelineService],
+  exports: [TimelineService],
 })
 export class TimelineModule {}

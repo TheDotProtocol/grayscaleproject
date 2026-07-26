@@ -1,7 +1,7 @@
 import { Module, forwardRef } from "@nestjs/common";
 import { PrismaModule } from "../../prisma/prisma.module";
 import { EventsModule } from "../events/events.module";
-import { MissionControlModule } from "../mission-control/mission-control.module";
+import { PlatformRegistryModule } from "../mission-control/platform-registry.module";
 import { PulseModule } from "../pulse/pulse.module";
 import { PlatformOperationsController } from "./platform-operations.controller";
 import { ReliabilityEngineService } from "./reliability-engine.service";
@@ -16,7 +16,7 @@ import { PlatformEvolutionService } from "./platform-evolution.service";
 import { PulseV2Service } from "./pulse-v2.service";
 
 @Module({
-  imports: [PrismaModule, EventsModule, forwardRef(() => MissionControlModule), PulseModule],
+  imports: [PrismaModule, forwardRef(() => EventsModule), PlatformRegistryModule, PulseModule],
   controllers: [PlatformOperationsController],
   providers: [
     ReliabilityEngineService,
@@ -35,9 +35,11 @@ import { PulseV2Service } from "./pulse-v2.service";
     DiagnosticsEngineService,
     PerformanceObservatoryService,
     RecoveryService,
+    PlatformCostObservatoryService,
     ReadinessReportGeneratorService,
     SecurityObservatoryService,
     GovernanceService,
+    PlatformEvolutionService,
     PulseV2Service,
   ],
 })
