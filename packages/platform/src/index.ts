@@ -30,4 +30,5 @@ export * from "./alignment/index.js";
 export * from "./scenario/index.js";
 export * from "./runtime/index.js";
 export * from "./attention-budget/index.js";
+export * from "./policy/index.js";
 export type { PlatformEventType } from "./events/catalog.js";

@@ -12,6 +12,7 @@ import {
   RUNTIME_WIDGET_DEFINITIONS,
   COLLABORATION_WIDGET_DEFINITIONS,
   ATTENTION_BUDGET_WIDGET_DEFINITIONS,
+  POLICY_WIDGET_DEFINITIONS,
 } from "@grayscale/platform";
 
 const ATHENA_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = RESERVED_ATHENA_MC_WIDGETS.map(
@@ -136,6 +137,22 @@ const PHASE_D_MC_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = PHASE_D_
     defaultWidth: 1 as const,
     defaultHeight: "standard" as const,
     order: 165 + i,
+    collapsible: true,
+    resizable: true,
+    exportable: true,
+  },
+  supportsMultipleInstances: false,
+  deepLinkPath: `/dashboard/mission-control?widget=${w.id}`,
+}));
+
+const POLICY_MC_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = POLICY_WIDGET_DEFINITIONS.map((w, i) => ({
+  ...w,
+  refreshPolicy: { mode: "polling" as const, intervalSeconds: 60 },
+  permissions: [],
+  layout: {
+    defaultWidth: 1 as const,
+    defaultHeight: "standard" as const,
+    order: 135 + i,
     collapsible: true,
     resizable: true,
     exportable: true,
@@ -427,6 +444,7 @@ export const DEFAULT_WIDGETS: MissionControlWidgetDefinition[] = [
   },
   ...ATHENA_WIDGET_DEFINITIONS,
   ...RUNTIME_MC_WIDGET_DEFINITIONS,
+  ...POLICY_MC_WIDGET_DEFINITIONS,
   ...ATTENTION_BUDGET_MC_WIDGET_DEFINITIONS,
   ...COLLABORATION_MC_WIDGET_DEFINITIONS,
   ...COUNCIL_WIDGET_DEFINITIONS,

@@ -37,6 +37,7 @@ export const CONTEXT_ASSEMBLER_IDS = [
   "forecast",
   "organizational-runtime",
   "attention-budget",
+  "policy-engine",
 ] as const;
 
 export type ContextAssemblerId = (typeof CONTEXT_ASSEMBLER_IDS)[number];

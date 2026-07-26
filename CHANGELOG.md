@@ -129,6 +129,28 @@ Executive gate spec: `docs/platform/EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
 
 ---
 
+## [Sprint-4-Phase-D-PolicyEngine-v1.0] — 2026-07-26
+
+**Context Version:** `2.3.0-s4d-policy-engine`  
+**Status:** POLICY ENGINE + GOVERNANCE KERNEL CERTIFIED — `EXECUTIVES_ENABLED=false`, `AUTONOMOUS_EXECUTION_ENABLED=false`
+
+### Added
+
+- **Organizational Policy Engine** — `ORGANIZATIONAL_POLICY_ENGINE.md`
+- **Organizational Governance Kernel** — `ORGANIZATIONAL_GOVERNANCE_KERNEL.md`
+- **Policy Engine Module** — evaluation, constraints, approvals, audit, history, governance checkpoint
+- **CompanyContext** — 10 read-only policy/governance fields
+- **Mission Control** — 15 policy/governance widget contracts
+- **ECS Extension** — 10 Phase D compliance gates
+- **ADRs 085–089**
+
+### Verification
+
+- `pnpm typecheck` — PASS
+- `pnpm test` — PASS
+
+---
+
 ## [Sprint-4-Phase-C-AttentionBudget-v1.0] — 2026-07-26
 
 **Context Version:** `2.2.0-s4c-attention-budget`  

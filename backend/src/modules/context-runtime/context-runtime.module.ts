@@ -34,6 +34,7 @@ import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module"
 import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
 import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
 import { AttentionBudgetModule } from "../attention-budget/attention-budget.module";
+import { PolicyEngineModule } from "../policy-engine/policy-engine.module";
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { AttentionBudgetModule } from "../attention-budget/attention-budget.modu
     forwardRef(() => TwinRuntimeModule),
     forwardRef(() => OrganizationalRuntimeModule),
     forwardRef(() => AttentionBudgetModule),
+    forwardRef(() => PolicyEngineModule),
   ],
   providers: [
     ContextCacheService,

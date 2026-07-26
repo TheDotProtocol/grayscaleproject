@@ -236,6 +236,18 @@ export interface CompanyContext {
   attentionBudgetHealth?: import("../attention-budget/organizational-attention-budget.js").AttentionBudgetHealth;
   attentionAllocation?: import("../attention-budget/organizational-attention-budget.js").AttentionAllocationSnapshot;
   attentionMetrics?: import("../attention-budget/organizational-attention-budget.js").AttentionBudgetMetrics;
+
+  /** Sprint 4 Phase D — Organizational Policy Engine (read-only, assembled) */
+  organizationalPolicies?: import("../policy/organizational-policy-engine.js").OrganizationalPolicySnapshot;
+  policyHealth?: import("../policy/organizational-policy-engine.js").PolicyHealth;
+  policyConstraints?: import("../policy/organizational-policy-engine.js").PolicyConstraintSnapshot;
+  policyApprovals?: import("../policy/organizational-policy-engine.js").PolicyApprovalSnapshot;
+  policyExceptions?: import("../policy/organizational-policy-engine.js").PolicyExceptionSnapshot;
+  governanceState?: import("../policy/governance-kernel.js").GovernanceState;
+  governanceHealth?: import("../policy/governance-kernel.js").GovernanceHealth;
+  governanceMetrics?: import("../policy/governance-kernel.js").GovernanceMetrics;
+  policyExplainability?: import("../policy/policy-explainability.js").PolicyExplainability;
+  policyHistory?: import("../policy/policy-history.js").PolicyHistory;
 }
 
 export interface CompanyContextAssemblerPort {

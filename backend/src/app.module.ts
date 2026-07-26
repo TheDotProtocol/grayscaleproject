@@ -31,6 +31,7 @@ import { ExecutiveNetworkModule } from "./modules/executive-network/executive-ne
 import { OrganizationalEvolutionModule } from "./modules/organizational-evolution/organizational-evolution.module";
 import { OrganizationalRuntimeModule } from "./modules/runtime/runtime.module";
 import { AttentionBudgetModule } from "./modules/attention-budget/attention-budget.module";
+import { PolicyEngineModule } from "./modules/policy-engine/policy-engine.module";
 import { IntegrationPlatformModule } from "./modules/integration-platform/integration-platform.module";
 import { MissionControlModule } from "./modules/mission-control/mission-control.module";
 import { PlatformOperationsModule } from "./modules/platform-operations/platform-operations.module";
@@ -65,6 +66,7 @@ import { PlatformOperationsModule } from "./modules/platform-operations/platform
     OrganizationalEvolutionModule,
     OrganizationalRuntimeModule,
     AttentionBudgetModule,
+    PolicyEngineModule,
     IntegrationPlatformModule,
     MissionControlModule,
     PlatformOperationsModule,

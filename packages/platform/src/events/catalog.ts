@@ -394,6 +394,13 @@ export const EVENT_CATALOG = {
   "attention-budget.recovery.assessed": { version: 1, category: "organization", description: "Attention recovery assessed" },
   "autonomy.governance.validated": { version: 1, category: "organization", description: "Autonomous execution governance validated (not enabled)" },
 
+  // ─── Organizational Policy Engine (Sprint 4 Phase D) ───
+  "policy.evaluated": { version: 1, category: "organization", description: "Organizational policy evaluation completed" },
+  "policy.certified": { version: 1, category: "organization", description: "Policy engine certification passed" },
+  "governance.checkpoint.completed": { version: 1, category: "organization", description: "Governance kernel checkpoint completed" },
+  "governance.certified": { version: 1, category: "organization", description: "Governance kernel certification passed" },
+  "policy.approval.routed": { version: 1, category: "organization", description: "Policy approval routed to authority" },
+
   // ─── Organizational Evolution (Sprint 4 — ADR-046–051) ───
   "memory-evolution.layer.created": { version: 1, category: "organization", description: "Memory evolution layer added without mutating source memory" },
   "organizational-learning.validated": { version: 1, category: "organization", description: "Organizational learning validated with evidence" },

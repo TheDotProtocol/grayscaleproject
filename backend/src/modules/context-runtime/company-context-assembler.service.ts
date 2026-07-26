@@ -40,8 +40,10 @@ import { RuntimeCoordinatorService } from "../runtime/runtime-coordinator.servic
 import { AttentionBudgetContextService } from "../attention-budget/attention-budget-context.service";
 import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
 import { AttentionBudgetModule } from "../attention-budget/attention-budget.module";
+import { PolicyEngineModule } from "../policy-engine/policy-engine.module";
+import { PolicyEngineContextService } from "../policy-engine/policy-engine-context.service";
 
-const CONTEXT_VERSION = "2.2.0-s4c-attention-budget";
+const CONTEXT_VERSION = "2.3.0-s4d-policy-engine";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -77,6 +79,7 @@ export class CompanyContextAssemblerService {
     private readonly runtimeContext: RuntimeContextService,
     private readonly runtimeCoordinator: RuntimeCoordinatorService,
     private readonly attentionBudgetContext: AttentionBudgetContextService,
+    private readonly policyEngineContext: PolicyEngineContextService,
   ) {}
 
   async assemble(
@@ -221,6 +224,10 @@ export class CompanyContextAssemblerService {
 
     const attentionBudgetBundle = await wrap("attention-budget", "1.0", () =>
       this.attentionBudgetContext.assemble(companyId),
+    );
+
+    const policyEngineBundle = await wrap("policy-engine", "1.0", () =>
+      this.policyEngineContext.assemble(companyId),
     );
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
@@ -416,6 +423,7 @@ export class CompanyContextAssemblerService {
       runtimeHealth: runtimeBundle?.snapshot?.health,
       runtimeMetrics: runtimeBundle?.metrics,
       ...attentionBudgetBundle,
+      ...policyEngineBundle,
       contextRuntime: {
         cacheKey,
         cached: false,

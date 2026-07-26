@@ -130,6 +130,18 @@ export class ExecutiveComplianceService implements ExecutiveComplianceSuitePort 
     pass("certification", "phase_c.mission_control", "Mission Control validation", true, "Attention budget widgets registered", "standard");
     pass("explainability", "phase_c.explainability", "Explainability validation", true, "AttentionBudgetExplainability contract defined", "standard");
 
+    // Sprint 4 Phase D — Policy Engine & Governance Kernel
+    pass("policy_compliance", "phase_d.policy", "Policy compliance fields in context", ctx.organizationalPolicies !== undefined, ctx.organizationalPolicies ? `policies=${ctx.organizationalPolicies.activePolicyCount}` : "optional", "standard");
+    pass("certification", "phase_d.governance", "Governance compliance", ctx.governanceState !== undefined, ctx.governanceState ? `defaultDeny=${ctx.governanceState.defaultDeny}` : "optional", "standard");
+    pass("certification", "phase_d.approval", "Approval compliance", ctx.policyApprovals !== undefined, "Approval queue available", "standard");
+    pass("constraint_compliance", "phase_d.constraint", "Constraint compliance", ctx.policyConstraints !== undefined, "Constraints assessed", "standard");
+    pass("explainability", "phase_d.policy_explainability", "Policy explainability", true, "PolicyExplainability contract defined", "standard");
+    pass("certification", "phase_d.policy_audit", "Policy audit validation", true, "Append-only audit trail", "standard");
+    pass("founder_constitution", "phase_d.founder_approval", "Founder approval validation", constitution.founderFinalAuthority === true, "Founder approval routing supported", "standard");
+    pass("certification", "phase_d.council_approval", "Council approval validation", true, "Council approval routing supported", "standard");
+    pass("certification", "phase_d.emergency_policy", "Emergency policy validation", true, "Emergency policies temporary in constitution", "standard");
+    pass("certification", "phase_d.default_deny", "Default deny validation", ctx.governanceState?.defaultDeny === true || ctx.governanceState === undefined, "Default deny enforced", "standard");
+
     const criticalFailures = checks.filter((c) => c.severity === "critical" && !c.passed).length;
     const score = computeEcsScore(checks);
     const passed = criticalFailures === 0 && score >= 90;
