@@ -129,6 +129,26 @@ Executive gate spec: `docs/platform/EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
 
 ---
 
+## [Grayscale-OS-v1.0] — 2026-07-26
+
+**Codename:** Bedrock  
+**Status:** GRAYSCALE OS v1.0 DECLARED — Commercial Launch Preparation
+
+### Added
+
+- **Grayscale OS v1.0** — official product declaration (`docs/releases/GRAYSCALE_OS_V1.md`)
+- **Enterprise landing page** — corporate premium redesign at www.projectgrayscale.com
+- **Pricing** — Explorer, Builder, Scale, Enterprise, Founding Member
+- **Public roadmap** — Foundation through Sprint 4 + upcoming initiatives
+- **Trust signals** — certification timeline, constitutional governance, explainability
+
+### Unchanged
+
+- Bedrock frozen — no backend, API, runtime, or architecture modifications
+- `EXECUTIVES_ENABLED=false`, `AUTONOMOUS_EXECUTION_ENABLED=false`
+
+---
+
 ## [Sprint-4-Phase-D-PolicyEngine-v1.0] — 2026-07-26
 
 **Context Version:** `2.3.0-s4d-policy-engine`  
