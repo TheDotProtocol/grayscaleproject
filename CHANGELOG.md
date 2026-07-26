@@ -7,6 +7,44 @@ Foundation versioning: **Semantic + codename** (`v1.0.0-bedrock`).
 
 ---
 
+## [Grayscale-OS-v1.0-Deployment-Playbook] — 2026-07-27
+
+**Tag:** `Grayscale-OS-v1.0-Deployment-Playbook`  
+**Scope:** Production deployment documentation only — no runtime changes
+
+### Added
+
+- **`docs/deployment/`** — Official production deployment playbook (13 documents)
+- **DEPLOYMENT_GUIDE.md** — Step-by-step founder deployment manual (15 validated steps)
+- **DEPLOYMENT_CHECKLIST.md** — Printable deployment checklist
+- **ROLLBACK_GUIDE.md** — Per-service rollback procedures
+- **ENVIRONMENT_VARIABLES.md** — Complete env inventory (frontend, backend, secrets)
+- **INFRASTRUCTURE.md** — Full dependency audit with required vs optional
+- **PRODUCTION_VALIDATION.md** — Production smoke test checklist
+- **GO_LIVE_CHECKLIST.md** — Launch gates and sign-off
+- **POST_DEPLOYMENT.md** — Operations and monitoring after launch
+- **FUTURE_CLOUD.md** — TauCloud / Grayscale Cloud migration strategy (planning only)
+- **PRODUCTION_DEPLOYMENT_PLAN.md** — Executive deployment plan and timeline
+- **PRODUCTION_READINESS_REPORT.md** — Service readiness dashboard template
+- **DEPLOYMENT_CERTIFICATE.md** — Production sign-off certificate
+
+### Documented Architecture
+
+- **Frontend:** Vercel (Next.js 15)
+- **Backend:** Render (NestJS 11 + BullMQ)
+- **Database:** PostgreSQL 16 + pgvector (Supabase Postgres recommended as host)
+- **Cache/queue:** Redis 7
+- **Payments:** Stripe Payment Links (manual setup — no SDK in v1.0)
+- **Auth:** Custom JWT (not Supabase Auth)
+
+### Non-Changes
+
+- No automatic deployment
+- No Bedrock, executive runtime, or API modifications
+- Executives remain dormant (`EXECUTIVES_ENABLED=false`)
+
+---
+
 ## [Grayscale-OS-v1.0-Repository-Governance] — 2026-07-27
 
 **Tag:** `Grayscale-OS-v1.0-Repository-Governance`  
