@@ -34,3 +34,15 @@ export interface OrganizationalTwinPort {
   compareReality(input: Omit<TwinRealityComparison, "comparedAt" | "realityWins">): Promise<TwinRealityComparison>;
   listVersions(companyId: string): Promise<TwinVersion[]>;
 }
+
+/** Sprint 3 Phase B/ONS — alias naming */
+export type TwinRuntimePort = OrganizationalTwinPort;
+
+/** Assembles twin from CompanyContext without direct storage access */
+export interface TwinAssemblerPort {
+  assembleFromContext(
+    companyId: string,
+    context: import("../executive/context.js").CompanyContext,
+    options?: { correlationId?: string; versionId?: string },
+  ): Promise<OrganizationalTwin>;
+}

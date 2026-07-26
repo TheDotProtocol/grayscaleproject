@@ -6,6 +6,7 @@ import {
   RESERVED_ATHENA_MC_WIDGETS,
   RESERVED_COUNCIL_MC_WIDGETS,
   TWIN_WIDGET_DEFINITIONS,
+  ONS_WIDGET_DEFINITIONS,
 } from "@grayscale/platform";
 
 const ATHENA_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = RESERVED_ATHENA_MC_WIDGETS.map(
@@ -82,6 +83,22 @@ const TWIN_MC_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = TWIN_WIDGET
     defaultWidth: 1 as const,
     defaultHeight: "standard" as const,
     order: 175 + i,
+    collapsible: true,
+    resizable: true,
+    exportable: true,
+  },
+  supportsMultipleInstances: false,
+  deepLinkPath: `/dashboard/mission-control?widget=${w.id}`,
+}));
+
+const ONS_MC_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = ONS_WIDGET_DEFINITIONS.map((w, i) => ({
+  ...w,
+  refreshPolicy: { mode: "polling" as const, intervalSeconds: 60 },
+  permissions: [],
+  layout: {
+    defaultWidth: 1 as const,
+    defaultHeight: "standard" as const,
+    order: 160 + i,
     collapsible: true,
     resizable: true,
     exportable: true,
@@ -325,6 +342,7 @@ export const DEFAULT_WIDGETS: MissionControlWidgetDefinition[] = [
   },
   ...ATHENA_WIDGET_DEFINITIONS,
   ...COUNCIL_WIDGET_DEFINITIONS,
+  ...ONS_MC_WIDGET_DEFINITIONS,
   ...TWIN_MC_WIDGET_DEFINITIONS,
   ...NETWORK_WIDGET_DEFINITIONS,
   ...EVOLUTION_WIDGET_DEFINITIONS,

@@ -27,6 +27,7 @@ Every executive (Athena, Atlas, Ledger, Sentinel, Mercury, Navigator, Forge, and
 ARCHITECTURE_LOCK.md
 FOUNDER_CONSTITUTION.md
 ORGANIZATIONAL_OPERATING_MODEL.md
+ORGANIZATIONAL_NERVOUS_SYSTEM.md           ← perception layer (Sprint 3 Phase B)
 EXECUTIVE_COUNCIL_CONSTITUTION.md    ← this document
 EXECUTIVE_PHILOSOPHY.md
 EXECUTIVE_MANIFESTO.md
@@ -54,12 +55,13 @@ The Council is an **organizational governance system**—not a multi-agent chat.
 
 1. Deliberation begins only after **evidence collection** and **discovery** are recorded.
 2. Each executive contributes from their **declared council role** and domain responsibility.
-3. Positions must cite **evidence references**—memory, graph, signals, notebook, or investigations.
+3. Positions must cite **evidence references**—memory, graph, signals, notebook, investigations, or **Organizational Twin** state.
 4. Deliberation is **structured**, not free-form conversation. Sessions have issues, stages, and closure.
 5. **Silence without evidence** is valid; **confidence without evidence** is not.
 6. Deliberation records are **immutable append-only**—corrections add; they do not erase.
+7. Council deliberation consumes **Organizational Twin** and **Attention Queue** from CompanyContext—not raw events (ONS, ADR-058).
 
-*Companion:* `COUNCIL_DECISION_LIFECYCLE.md`, `EXECUTIVE_COUNCIL_ARCHITECTURE.md`
+*Companion:* `COUNCIL_DECISION_LIFECYCLE.md`, `EXECUTIVE_COUNCIL_ARCHITECTURE.md`, `ORGANIZATIONAL_NERVOUS_SYSTEM.md`
 
 ---
 

@@ -26,6 +26,8 @@ export const CONTEXT_ASSEMBLER_IDS = [
   "attention",
   "twin",
   "council",
+  "homeostasis",
+  "signal-correlation",
 ] as const;
 
 export type ContextAssemblerId = (typeof CONTEXT_ASSEMBLER_IDS)[number];

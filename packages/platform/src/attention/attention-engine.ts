@@ -100,6 +100,82 @@ export interface AttentionTrend {
   delta: number;
 }
 
+export type AttentionDomain = string;
+
+export interface AttentionItem {
+  id: string;
+  label: string;
+  domain: AttentionDomain;
+  score: number;
+  urgency: number;
+  source: AttentionPriority["source"];
+  evidenceRefs?: string[];
+}
+
+export interface AttentionQueue {
+  companyId: string;
+  items: AttentionItem[];
+  capacity: number;
+  assembledAt: string;
+}
+
+export interface AttentionScore {
+  overall: number;
+  urgency: number;
+  importance: number;
+  freshness: number;
+  confidence: number;
+}
+
+export interface AttentionRule {
+  id: string;
+  condition: string;
+  action: "allocate" | "escalate" | "suppress" | "defer";
+  domain?: AttentionDomain;
+}
+
+export interface AttentionPolicy {
+  companyId: string;
+  rules: AttentionRule[];
+  escalationThreshold: number;
+  version: string;
+}
+
+export interface AttentionThreshold {
+  domain: AttentionDomain;
+  warnAt: number;
+  criticalAt: number;
+}
+
+export interface AttentionExplanation {
+  summary: string;
+  factors: Array<{ label: string; weight: number; evidence?: string }>;
+  blindSpots?: string[];
+  founderInterrupts?: string[];
+  executiveInterrupts?: string[];
+}
+
+export interface AttentionHistoryEntry {
+  capturedAt: string;
+  saturationLevel: number;
+  topDomains: string[];
+  correlationId: string;
+}
+
+export interface AttentionHistory {
+  companyId: string;
+  entries: AttentionHistoryEntry[];
+}
+
+export interface AttentionEngineMetrics {
+  companyId: string;
+  itemsProcessed: number;
+  signalsFiltered: number;
+  escalationsTriggered: number;
+  periodStart: string;
+  periodEnd: string;
+}
+
 /** Contract only — implementation in Sprint 3 Phase C Digital Twin */
 export interface AttentionForecast {
   horizonDays: number;
@@ -155,4 +231,10 @@ export interface OrganizationalAttentionEnginePort {
   assemble(companyId: string): Promise<OrganizationalAttention>;
   getSnapshot(companyId: string): Promise<AttentionSnapshot>;
   getHealth(companyId: string): Promise<AttentionHealth>;
+  getQueue?(companyId: string): Promise<AttentionQueue>;
+  getHistory?(companyId: string): Promise<AttentionHistory>;
 }
+
+/** Alias — ONS specification naming */
+export type OrganizationalAttentionPort = OrganizationalAttentionEnginePort;
+export type AttentionEngine = OrganizationalAttentionEnginePort;

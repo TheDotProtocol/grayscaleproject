@@ -299,12 +299,23 @@ Executives maintain a private **Notebook** (≠ company memory), a **Curiosity E
 
 ---
 
+## 19. Executives Consume Attention — Not Raw Events
+
+The **Organizational Nervous System** (`ORGANIZATIONAL_NERVOUS_SYSTEM.md`) is the perception layer. Events are infinite; attention is scarce.
+
+Executives receive Organizational Twin, Attention Queue, Signal Correlation, and Homeostasis from `CompanyContext`. They MUST NOT consume raw event streams.
+
+*Companion:* `ORGANIZATIONAL_ATTENTION_ENGINE.md`, `SIGNAL_CORRELATION.md`, `TWIN_RUNTIME.md` (ADR-058).
+
+---
+
 ## Constitutional Hierarchy
 
 | Document | Role |
 |----------|------|
 | `FOUNDER_CONSTITUTION.md` | **Founder–platform relationship** — above all executives |
 | `ORGANIZATIONAL_OPERATING_MODEL.md` | **Organization reasoning** — how the organization thinks (first-class system) |
+| `ORGANIZATIONAL_NERVOUS_SYSTEM.md` | **Organizational perception** — attention, twin, signal correlation (ADR-058) |
 | `EXECUTIVE_COUNCIL_CONSTITUTION.md` | **Executive collaboration** — how executives deliberate as a leadership team |
 | `EXECUTIVE_PHILOSOPHY.md` | **Why** — this document (north star) |
 | `EXECUTIVE_MANIFESTO.md` | **What** — behavioral constitution |

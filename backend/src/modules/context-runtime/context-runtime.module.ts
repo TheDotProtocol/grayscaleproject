@@ -17,6 +17,8 @@ import { OrganizationalSignalBusService } from "./organizational-signal-bus.serv
 import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
 import { AttentionEngineService } from "./attention-engine.service";
 import { TwinEngineService } from "./twin-engine.service";
+import { SignalCorrelationService } from "./signal-correlation.service";
+import { HomeostasisEngineService } from "./homeostasis-engine.service";
 import { IntentProjector } from "./projectors/intent.projector";
 import { SnapshotProjector } from "./projectors/snapshot.projector";
 import { SignalProjector } from "./projectors/signal.projector";
@@ -52,6 +54,8 @@ import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module"
     InsightProjector,
     AttentionEngineService,
     TwinEngineService,
+    SignalCorrelationService,
+    HomeostasisEngineService,
   ],
   exports: [
     ContextRuntimeService,
@@ -67,6 +71,8 @@ import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module"
     InsightProjector,
     AttentionEngineService,
     TwinEngineService,
+    SignalCorrelationService,
+    HomeostasisEngineService,
   ],
 })
 export class ContextRuntimeModule {}

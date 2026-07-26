@@ -21,3 +21,4 @@ export * from "./council-widgets.js";
 export * from "./twin-widgets.js";
 export * from "./executive-network-widgets.js";
 export * from "./evolution-widgets.js";
+export * from "./ons-widgets.js";

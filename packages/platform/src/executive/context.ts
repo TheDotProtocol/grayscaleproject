@@ -173,8 +173,23 @@ export interface CompanyContext {
   /** Sprint 3 Phase B — organizational attention (read-only to executives) */
   attention?: import("../attention/attention-engine.js").OrganizationalAttention;
 
+  /** Sprint 3 Phase B / ONS — alias and derived read-only snapshots */
+  organizationalAttention?: import("../attention/attention-engine.js").OrganizationalAttention;
+  attentionHealth?: import("../attention/attention-engine.js").AttentionHealth;
+
   /** Sprint 3 Phase C — Living Organizational Twin (read-only to executives) */
   twin?: import("../twin/twin-model.js").OrganizationalTwin;
+
+  /** Sprint 3 Phase B / ONS — alias and derived twin snapshots */
+  organizationalTwin?: import("../twin/twin-model.js").OrganizationalTwin;
+  twinHealth?: import("../twin/twin-model.js").TwinHealth;
+  twinState?: import("../twin/twin-model.js").TwinPresentState;
+
+  /** Sprint 3 Phase B / ONS — signal correlation snapshot */
+  signalCorrelation?: import("../signals/signal-correlation.js").SignalCorrelationSnapshot;
+
+  /** Sprint 3 Phase B / ONS — organizational homeostasis */
+  homeostasis?: import("../homeostasis/homeostasis-engine.js").OrganizationalHomeostasis;
 
   /** Sprint 3 Phase A alignment — read-only council snapshots (assembled from runtime, not duplicated) */
   executiveCouncil?: import("../council/context-snapshot.js").ExecutiveCouncilSnapshot;

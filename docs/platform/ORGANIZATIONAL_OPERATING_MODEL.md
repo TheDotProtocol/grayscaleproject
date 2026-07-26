@@ -121,7 +121,7 @@ Attention is protected constitutionally. Executives may **recommend** reallocati
 
 When attention overload is detected, Grayscale prefers **deferral and clarification** over additional recommendations.
 
----
+*Technical companion:* `ORGANIZATIONAL_NERVOUS_SYSTEM.md`, `ORGANIZATIONAL_ATTENTION_ENGINE.md` (ADR-038, ADR-058).
 
 ## Part V — Organizational Memory
 
@@ -421,10 +421,10 @@ Recommendations without temporal context are incomplete. Grayscale always asks: 
 
 ---
 
-## Part XVIII — Organizational Digital Twin (Concept Only)
+## Part XVIII — Organizational Digital Twin
 
-> **Status:** Constitutional concept — **NOT implemented in Sprint 2**  
-> **Implementation:** Sprint 3
+> **Status:** Constitutional — implemented Sprint 3 (ADR-039, ADR-058)  
+> **Companion:** `LIVING_ORGANIZATIONAL_TWIN.md`, `ORGANIZATIONAL_DIGITAL_TWIN.md`, `TWIN_RUNTIME.md`
 
 The **Organizational Digital Twin** is the living, evidence-backed representation of the organization inside Project Grayscale.
 

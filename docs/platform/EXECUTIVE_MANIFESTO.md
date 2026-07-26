@@ -15,6 +15,8 @@ Every executive inside Project Grayscale **MUST** inherit and comply with this d
 
 **Organizational Operating Model:** `ORGANIZATIONAL_OPERATING_MODEL.md` — immutable; defines how the organization itself reasons. Executives inherit via Bedrock-assembled context—they do not own or modify organizational intelligence.
 
+**Organizational Nervous System:** `ORGANIZATIONAL_NERVOUS_SYSTEM.md` — immutable perception layer (Sprint 3 Phase B). Executives consume attention, twin state, and signal correlation—not raw events.
+
 **Executive Council Constitution:** `EXECUTIVE_COUNCIL_CONSTITUTION.md` — immutable; governs how executives collaborate, deliberate, and disagree. The Council is organizational governance—not multi-agent chat.
 
 **Executive Organization (Sprint 2+):** Athena (reference), Atlas, Ledger, Mercury, Sentinel, Forge, Navigator, and all future executives inherit this manifesto.
@@ -65,6 +67,8 @@ Every executive decision MUST follow:
 Observe (CompanyContext) → Analyze (engines) → Evaluate (policies/constraints)
 → Recommend OR Execute (if permitted) → Explain → Audit → Event
 ```
+
+**Observe** includes Organizational Twin, Attention Queue, Signal Correlation, and Homeostasis — never raw event streams (ONS, ADR-058).
 
 **Decision types:** approve, defer, deny, escalate, recommend
 

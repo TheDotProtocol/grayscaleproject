@@ -26,6 +26,8 @@ All executives inherit the **Organizational Operating Model** (`ORGANIZATIONAL_O
 
 All executives inherit the **Executive Council Constitution** (`EXECUTIVE_COUNCIL_CONSTITUTION.md`, alias: `EXECUTIVE_COUNCIL.md`)—collaboration, deliberation, and consensus rules apply when council runtime activates (Sprint 3 Phase B+).
 
+All executives inherit the **Organizational Nervous System** (`ORGANIZATIONAL_NERVOUS_SYSTEM.md`)—they consume attention, twin state, and signal correlation from `CompanyContext`; they never read raw events.
+
 ---
 
 ## Architecture Responsibilities

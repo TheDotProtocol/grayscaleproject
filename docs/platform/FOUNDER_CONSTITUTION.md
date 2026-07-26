@@ -82,6 +82,7 @@ No executive, automation, or runtime service may modify this constitution.
 ARCHITECTURE_LOCK.md
 FOUNDER_CONSTITUTION.md
 ORGANIZATIONAL_OPERATING_MODEL.md  ← organization reasoning
+ORGANIZATIONAL_NERVOUS_SYSTEM.md   ← perception layer (attention, twin, signals)
 EXECUTIVE_COUNCIL_CONSTITUTION.md    ← executive collaboration governance
 EXECUTIVE_PHILOSOPHY.md
 EXECUTIVE_MANIFESTO.md

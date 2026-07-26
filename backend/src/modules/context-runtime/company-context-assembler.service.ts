@@ -26,8 +26,10 @@ import { OrganizationalInsightEngineService } from "./organizational-insight-eng
 import { AttentionEngineService } from "./attention-engine.service";
 import { TwinEngineService } from "./twin-engine.service";
 import { CouncilContextAssemblerService } from "../council-runtime/council-context-assembler.service";
+import { SignalCorrelationService } from "./signal-correlation.service";
+import { HomeostasisEngineService } from "./homeostasis-engine.service";
 
-const CONTEXT_VERSION = "1.7.1-s3a-alignment";
+const CONTEXT_VERSION = "1.7.2-s3b-ons";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -51,6 +53,8 @@ export class CompanyContextAssemblerService {
     private readonly attention: AttentionEngineService,
     private readonly twinEngine: TwinEngineService,
     private readonly councilContext: CouncilContextAssemblerService,
+    private readonly signalCorrelation: SignalCorrelationService,
+    private readonly homeostasis: HomeostasisEngineService,
   ) {}
 
   async assemble(
@@ -163,6 +167,14 @@ export class CompanyContextAssemblerService {
 
     const councilSnapshot = await wrap("council", "1.0", async () =>
       Promise.resolve(this.councilContext.assemble(companyId)),
+    );
+
+    const signalCorrelationSnapshot = await wrap("signal-correlation", "1.0", () =>
+      this.signalCorrelation.correlate(companyId),
+    );
+
+    const homeostasisSnapshot = await wrap("homeostasis", "1.0", () =>
+      this.homeostasis.assess(companyId),
     );
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
@@ -303,6 +315,16 @@ export class CompanyContextAssemblerService {
       ),
     );
 
+    const attentionHealthSnapshot = attentionSnapshot
+      ? {
+          companyId,
+          score: 1 - attentionSnapshot.saturation.level,
+          saturation: attentionSnapshot.saturation,
+          driftDetected: !!attentionSnapshot.drift,
+          assessedAt: new Date().toISOString(),
+        }
+      : undefined;
+
     assemblerResults.push({
       assemblerId: "readiness",
       version: "1.0",
@@ -315,6 +337,13 @@ export class CompanyContextAssemblerService {
     return {
       ...base,
       twin: twinSnapshot,
+      organizationalTwin: twinSnapshot,
+      organizationalAttention: attentionSnapshot,
+      attentionHealth: attentionHealthSnapshot,
+      twinHealth: twinSnapshot?.health,
+      twinState: twinSnapshot?.present,
+      signalCorrelation: signalCorrelationSnapshot,
+      homeostasis: homeostasisSnapshot,
       contextRuntime: {
         cacheKey,
         cached: false,
