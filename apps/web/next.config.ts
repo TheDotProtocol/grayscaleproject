@@ -25,6 +25,10 @@ loadRootEnv();
 const nextConfig: NextConfig = {
   transpilePackages: ["@grayscale/shared"],
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    "/docs": ["../../docs/public/**/*"],
+    "/docs/*": ["../../docs/public/**/*"],
+  },
 };
 
 export default nextConfig;
