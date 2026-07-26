@@ -24,6 +24,7 @@ import { AthenaWidgetDataService } from "./athena-widget-data.service";
 import { CouncilWidgetDataService } from "./council-widget-data.service";
 import { TwinWidgetDataService } from "./twin-widget-data.service";
 import { ExecutiveNetworkWidgetDataService } from "./executive-network-widget-data.service";
+import { EvolutionWidgetDataService } from "./evolution-widget-data.service";
 
 @Injectable()
 export class WidgetDataService implements WidgetDataPort {
@@ -52,6 +53,7 @@ export class WidgetDataService implements WidgetDataPort {
     private readonly councilWidgets: CouncilWidgetDataService,
     private readonly twinWidgets: TwinWidgetDataService,
     private readonly networkWidgets: ExecutiveNetworkWidgetDataService,
+    private readonly evolutionWidgets: EvolutionWidgetDataService,
   ) {}
 
   async fetchWidget(
@@ -226,6 +228,38 @@ export class WidgetDataService implements WidgetDataPort {
         return this.networkWidgets.getDecisionConfidence(companyId);
       case "decision-evolution":
         return this.networkWidgets.getDecisionEvolution(companyId);
+      case "organizational-evolution":
+        return this.evolutionWidgets.getOverview(companyId);
+      case "learning-timeline-evolution":
+        return this.evolutionWidgets.getLearningTimeline(companyId);
+      case "wisdom-timeline":
+        return this.evolutionWidgets.getWisdomTimeline(companyId);
+      case "reflection-dashboard":
+        return this.evolutionWidgets.getReflection(companyId);
+      case "reality-vs-learning":
+        return this.evolutionWidgets.getRealityVsLearning(companyId);
+      case "forecast-accuracy":
+        return this.evolutionWidgets.getForecastAccuracy(companyId);
+      case "simulation-accuracy":
+        return this.evolutionWidgets.getSimulationAccuracy(companyId);
+      case "autonomy-status":
+        return this.evolutionWidgets.getAutonomyStatus(companyId);
+      case "organizational-maturity":
+        return this.evolutionWidgets.getMaturity(companyId);
+      case "organizational-intelligence-summary":
+        return this.evolutionWidgets.getIntelligence(companyId);
+      case "institutional-knowledge":
+        return this.evolutionWidgets.getInstitutionalKnowledge(companyId);
+      case "evolution-history":
+        return this.evolutionWidgets.getHistory(companyId);
+      case "learning-health":
+        return this.evolutionWidgets.getLearningHealth(companyId);
+      case "wisdom-growth":
+        return this.evolutionWidgets.getWisdomGrowth(companyId);
+      case "reflection-metrics":
+        return this.evolutionWidgets.getReflectionMetrics(companyId);
+      case "autonomy-readiness":
+        return this.evolutionWidgets.getAutonomyReadiness(companyId);
       default:
         return null;
     }

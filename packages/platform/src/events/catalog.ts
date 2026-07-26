@@ -372,6 +372,18 @@ export const EVENT_CATALOG = {
   "forge.discovery.completed": { version: 1, category: "executive", description: "Forge discovery completed via twin" },
   "forge.recommendation.drafted": { version: 1, category: "executive", description: "Forge twin-centric recommendation drafted" },
   "council.collaboration.recorded": { version: 1, category: "council", description: "Council collaboration session metrics recorded" },
+
+  // ─── Organizational Evolution (Sprint 4 — ADR-046–051) ───
+  "memory-evolution.layer.created": { version: 1, category: "organization", description: "Memory evolution layer added without mutating source memory" },
+  "organizational-learning.validated": { version: 1, category: "organization", description: "Organizational learning validated with evidence" },
+  "organizational-wisdom.institutionalized": { version: 1, category: "organization", description: "Wisdom promoted to institutional principle" },
+  "strategy-evolution.proposed": { version: 1, category: "organization", description: "Strategy evolution proposal created" },
+  "strategy-evolution.reviewed": { version: 1, category: "organization", description: "Strategy evolution proposal reviewed" },
+  "organizational-reflection.completed": { version: 1, category: "organization", description: "Periodic organizational reflection completed" },
+  "organizational-autonomy.policy.approved": { version: 1, category: "organization", description: "Autonomy policy approved by Founder" },
+  "organizational-autonomy.action.recorded": { version: 1, category: "organization", description: "Autonomous action recorded with audit" },
+  "org-intelligence-graph.updated": { version: 1, category: "organization", description: "Organizational intelligence graph updated" },
+  "organizational-evolution.certified": { version: 1, category: "organization", description: "Organizational evolution certification completed" },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

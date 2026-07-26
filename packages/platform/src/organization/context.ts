@@ -23,6 +23,16 @@ export interface OrganizationalIntelligenceContext {
   culture?: OrganizationalCultureSnapshot;
   reputation?: OrganizationalReputationSnapshot;
   adaptation?: OrganizationalAdaptationSnapshot;
+
+  /** Sprint 4 — organizational evolution slice */
+  memoryEvolutionLayerCount?: number;
+  learningHealthScore?: number;
+  wisdomGrowthScore?: number;
+  reflectionObservationCount?: number;
+  strategyEvolutionProposals?: number;
+  autonomyReadinessScore?: number;
+  institutionalKnowledgeCount?: number;
+  maturityScore?: number;
 }
 
 export interface OrganizationalIntelligenceAssemblerPort {

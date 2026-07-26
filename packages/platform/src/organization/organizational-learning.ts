@@ -29,6 +29,11 @@ export interface OrganizationalLearningRecord extends VersionedEngineRecord {
   links: EngineLinkRef;
   recordedBy: string;
   recordedAt: string;
+  /** Sprint 4 — organization-owned learning metadata */
+  confidence?: number;
+  validationStatus?: "pending" | "validated" | "rejected";
+  impact?: string;
+  source?: string;
 }
 
 export interface OrganizationalLearningEnginePort {

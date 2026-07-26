@@ -66,12 +66,17 @@ export class TwinEngineService {
             priorityCount: ctx.intent.rootIntents.length,
           }
         : undefined,
-      wisdom: ctx.insights
+      wisdom: ctx.organizationalIntelligence?.approvedWisdom?.length
         ? {
-            insights: ctx.insights.insights.slice(0, 5).map((i) => i.observation),
-            learnedPatterns: [],
+            insights: ctx.organizationalIntelligence.approvedWisdom.map((w) => w.statement),
+            learnedPatterns: ctx.organizationalIntelligence.recentLearnings?.map((l) => l.takeaway) ?? [],
           }
-        : undefined,
+        : ctx.insights
+          ? {
+              insights: ctx.insights.insights.slice(0, 5).map((i) => i.observation),
+              learnedPatterns: [],
+            }
+          : undefined,
       decisionHistory: {
         decisionCount: ctx.decisions.length,
         recentDecisions: ctx.decisions.slice(0, 5).map((d) => ({

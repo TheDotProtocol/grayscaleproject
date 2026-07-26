@@ -26,7 +26,7 @@ import { OrganizationalInsightEngineService } from "./organizational-insight-eng
 import { AttentionEngineService } from "./attention-engine.service";
 import { TwinEngineService } from "./twin-engine.service";
 
-const CONTEXT_VERSION = "1.6.0-s3c";
+const CONTEXT_VERSION = "1.7.0-s4";
 
 @Injectable()
 export class CompanyContextAssemblerService {

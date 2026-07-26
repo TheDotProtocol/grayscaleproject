@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import type { MissionControlWidgetDefinition, WidgetInstanceConfig } from "@grayscale/platform";
-import { EXECUTIVE_NETWORK_WIDGETS, RESERVED_ATHENA_MC_WIDGETS } from "@grayscale/platform";
+import { EXECUTIVE_NETWORK_WIDGETS, EVOLUTION_WIDGETS, RESERVED_ATHENA_MC_WIDGETS } from "@grayscale/platform";
 
 const ATHENA_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = RESERVED_ATHENA_MC_WIDGETS.map(
   (w, i) => ({
@@ -28,6 +28,22 @@ const NETWORK_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = EXECUTIVE_N
     defaultWidth: 1 as const,
     defaultHeight: "standard" as const,
     order: 200 + i,
+    collapsible: true,
+    resizable: true,
+    exportable: true,
+  },
+  supportsMultipleInstances: false,
+  deepLinkPath: `/dashboard/mission-control?widget=${w.id}`,
+}));
+
+const EVOLUTION_WIDGET_DEFINITIONS: MissionControlWidgetDefinition[] = EVOLUTION_WIDGETS.map((w, i) => ({
+  ...w,
+  refreshPolicy: { mode: "polling" as const, intervalSeconds: 60 },
+  permissions: [],
+  layout: {
+    defaultWidth: 1 as const,
+    defaultHeight: "standard" as const,
+    order: 300 + i,
     collapsible: true,
     resizable: true,
     exportable: true,
@@ -271,6 +287,7 @@ export const DEFAULT_WIDGETS: MissionControlWidgetDefinition[] = [
   },
   ...ATHENA_WIDGET_DEFINITIONS,
   ...NETWORK_WIDGET_DEFINITIONS,
+  ...EVOLUTION_WIDGET_DEFINITIONS,
 ];
 
 @Injectable()

@@ -21,6 +21,7 @@ import { IntentProjector } from "./projectors/intent.projector";
 import { SnapshotProjector } from "./projectors/snapshot.projector";
 import { SignalProjector } from "./projectors/signal.projector";
 import { InsightProjector } from "./projectors/insight.projector";
+import { OrganizationalEvolutionModule } from "../organizational-evolution/organizational-evolution.module";
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { InsightProjector } from "./projectors/insight.projector";
     PluginsModule,
     forwardRef(() => PlatformOperationsModule),
     forwardRef(() => EventsModule),
+    forwardRef(() => OrganizationalEvolutionModule),
   ],
   providers: [
     ContextCacheService,

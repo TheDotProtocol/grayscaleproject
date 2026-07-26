@@ -15,3 +15,4 @@ export * from "./athena-widgets.js";
 export * from "./council-widgets.js";
 export * from "./twin-widgets.js";
 export * from "./executive-network-widgets.js";
+export * from "./evolution-widgets.js";
