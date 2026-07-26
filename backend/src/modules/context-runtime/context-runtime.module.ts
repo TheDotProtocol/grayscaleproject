@@ -32,6 +32,7 @@ import { InsightProjector } from "./projectors/insight.projector";
 import { OrganizationalEvolutionModule } from "../organizational-evolution/organizational-evolution.module";
 import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module";
 import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
+import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
     forwardRef(() => OrganizationalEvolutionModule),
     forwardRef(() => CouncilRuntimeModule),
     forwardRef(() => TwinRuntimeModule),
+    forwardRef(() => OrganizationalRuntimeModule),
   ],
   providers: [
     ContextCacheService,

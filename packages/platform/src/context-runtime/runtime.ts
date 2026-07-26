@@ -35,6 +35,7 @@ export const CONTEXT_ASSEMBLER_IDS = [
   "alignment",
   "scenario-planning",
   "forecast",
+  "organizational-runtime",
 ] as const;
 
 export type ContextAssemblerId = (typeof CONTEXT_ASSEMBLER_IDS)[number];

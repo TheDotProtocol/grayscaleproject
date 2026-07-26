@@ -31,6 +31,7 @@ The Organization exists independently of its executives. No executive owns this 
 ARCHITECTURE_LOCK.md
 FOUNDER_CONSTITUTION.md
 ORGANIZATIONAL_OPERATING_MODEL.md    ← this document
+ORGANIZATIONAL_RUNTIME.md            ← continuous operation (OrgOS)
 EXECUTIVE_PHILOSOPHY.md
 EXECUTIVE_MANIFESTO.md
 EXECUTIVE_CERTIFICATION.md

@@ -29,6 +29,7 @@ import { TwinRuntimeModule } from "./modules/twin-runtime/twin-runtime.module";
 import { DomainExecutiveModule } from "./modules/domain-executive/domain-executive.module";
 import { ExecutiveNetworkModule } from "./modules/executive-network/executive-network.module";
 import { OrganizationalEvolutionModule } from "./modules/organizational-evolution/organizational-evolution.module";
+import { OrganizationalRuntimeModule } from "./modules/runtime/runtime.module";
 import { IntegrationPlatformModule } from "./modules/integration-platform/integration-platform.module";
 import { MissionControlModule } from "./modules/mission-control/mission-control.module";
 import { PlatformOperationsModule } from "./modules/platform-operations/platform-operations.module";
@@ -61,6 +62,7 @@ import { PlatformOperationsModule } from "./modules/platform-operations/platform
     DomainExecutiveModule,
     ExecutiveNetworkModule,
     OrganizationalEvolutionModule,
+    OrganizationalRuntimeModule,
     IntegrationPlatformModule,
     MissionControlModule,
     PlatformOperationsModule,

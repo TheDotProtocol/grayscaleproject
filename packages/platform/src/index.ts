@@ -28,4 +28,5 @@ export * from "./antifragility/index.js";
 export * from "./decision-economy/index.js";
 export * from "./alignment/index.js";
 export * from "./scenario/index.js";
+export * from "./runtime/index.js";
 export type { PlatformEventType } from "./events/catalog.js";

@@ -35,8 +35,11 @@ import { DecisionEconomyEngineService } from "./decision-economy-engine.service"
 import { AlignmentEngineService } from "./alignment-engine.service";
 import { ScenarioPlanningService } from "./scenario-planning.service";
 import { ForecastContextService } from "./forecast-context.service";
+import { RuntimeContextService } from "../runtime/runtime-context.service";
+import { RuntimeCoordinatorService } from "../runtime/runtime-coordinator.service";
+import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
 
-const CONTEXT_VERSION = "1.9.0-s3d-scenario-forecast";
+const CONTEXT_VERSION = "2.0.0-s4a-org-runtime";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -69,6 +72,8 @@ export class CompanyContextAssemblerService {
     private readonly alignment: AlignmentEngineService,
     private readonly scenarioPlanning: ScenarioPlanningService,
     private readonly forecastContext: ForecastContextService,
+    private readonly runtimeContext: RuntimeContextService,
+    private readonly runtimeCoordinator: RuntimeCoordinatorService,
   ) {}
 
   async assemble(
@@ -204,6 +209,12 @@ export class CompanyContextAssemblerService {
         wrap("scenario-planning", "1.0", () => this.scenarioPlanning.plan(companyId, { twinVersionId: undefined })),
         wrap("forecast", "1.1", () => this.forecastContext.assemble(companyId)),
       ]);
+
+    const runtimeBundle = await wrap("organizational-runtime", "1.0", async () => {
+      const snapshot = await this.runtimeContext.assemble(companyId);
+      const metrics = await this.runtimeCoordinator.getMetrics(companyId);
+      return { snapshot, metrics };
+    });
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
       throw new Error("Required context assemblers failed");
@@ -394,6 +405,9 @@ export class CompanyContextAssemblerService {
       scenarioPlanning: scenarioPlanningSnapshot,
       forecast: forecastSnapshot,
       forecastContext: forecastSnapshot,
+      organizationalRuntime: runtimeBundle?.snapshot,
+      runtimeHealth: runtimeBundle?.snapshot?.health,
+      runtimeMetrics: runtimeBundle?.metrics,
       contextRuntime: {
         cacheKey,
         cached: false,
