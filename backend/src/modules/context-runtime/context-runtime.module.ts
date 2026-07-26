@@ -19,6 +19,12 @@ import { AttentionEngineService } from "./attention-engine.service";
 import { TwinEngineService } from "./twin-engine.service";
 import { SignalCorrelationService } from "./signal-correlation.service";
 import { HomeostasisEngineService } from "./homeostasis-engine.service";
+import { ForesightEngineService } from "./foresight-engine.service";
+import { AntifragilityEngineService } from "./antifragility-engine.service";
+import { DecisionEconomyEngineService } from "./decision-economy-engine.service";
+import { AlignmentEngineService } from "./alignment-engine.service";
+import { ScenarioPlanningService } from "./scenario-planning.service";
+import { ForecastContextService } from "./forecast-context.service";
 import { IntentProjector } from "./projectors/intent.projector";
 import { SnapshotProjector } from "./projectors/snapshot.projector";
 import { SignalProjector } from "./projectors/signal.projector";
@@ -58,6 +64,12 @@ import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
     TwinEngineService,
     SignalCorrelationService,
     HomeostasisEngineService,
+    ForesightEngineService,
+    AntifragilityEngineService,
+    DecisionEconomyEngineService,
+    AlignmentEngineService,
+    ScenarioPlanningService,
+    ForecastContextService,
   ],
   exports: [
     ContextRuntimeService,
@@ -75,6 +87,12 @@ import { TwinRuntimeModule } from "../twin-runtime/twin-runtime.module";
     TwinEngineService,
     SignalCorrelationService,
     HomeostasisEngineService,
+    ForesightEngineService,
+    AntifragilityEngineService,
+    DecisionEconomyEngineService,
+    AlignmentEngineService,
+    ScenarioPlanningService,
+    ForecastContextService,
   ],
 })
 export class ContextRuntimeModule {}

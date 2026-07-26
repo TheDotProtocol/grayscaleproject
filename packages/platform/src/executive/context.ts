@@ -202,6 +202,17 @@ export interface CompanyContext {
   simulationCapabilities?: import("../simulation/simulation-runtime-ports.js").SimulationCapabilities;
   simulationMetrics?: { totalSessions: number; completedSessions: number; averageDurationMs: number };
 
+  /** Sprint 3 Phase D — organizational reasoning stack (read-only, assembled) */
+  foresight?: import("../foresight/foresight-engine.js").OrganizationalForesight;
+  organizationalForesight?: import("../foresight/foresight-engine.js").OrganizationalForesight;
+  antifragility?: import("../antifragility/antifragility-engine.js").OrganizationalAntifragility;
+  decisionEconomy?: import("../decision-economy/decision-economy-engine.js").OrganizationalDecisionEconomy;
+  alignment?: import("../alignment/alignment-engine.js").OrganizationalAlignment;
+  organizationalAlignment?: import("../alignment/alignment-engine.js").OrganizationalAlignment;
+  scenarioPlanning?: import("../scenario/scenario-planning.js").ScenarioPlanningSnapshot;
+  forecast?: import("../forecast/forecast-engine.js").ForecastContextSnapshot;
+  forecastContext?: import("../forecast/forecast-engine.js").ForecastContextSnapshot;
+
   /** Sprint 3 Phase A alignment — read-only council snapshots (assembled from runtime, not duplicated) */
   executiveCouncil?: import("../council/context-snapshot.js").ExecutiveCouncilSnapshot;
   councilHealth?: import("../council/governance.js").CouncilHealth;

@@ -1,6 +1,6 @@
-/** Forecast Intelligence — contracts (Sprint 3 Phase C, ADR-041) */
+/** Forecast Intelligence — contracts (Sprint 3 Phase D, ADR-041) */
 
-export const FORECAST_ENGINE_VERSION = "1.0.0";
+export const FORECAST_ENGINE_VERSION = "1.1.0";
 
 export type ForecastStatus = "draft" | "published" | "superseded" | "validated" | "invalidated";
 
@@ -24,11 +24,20 @@ export interface ForecastAlternative {
   outcome: string;
 }
 
+export interface ForecastDependency {
+  id: string;
+  label: string;
+  source: "twin" | "foresight" | "alignment" | "decision-economy" | "antifragility" | "temporal" | "simulation";
+  required: boolean;
+}
+
 export interface ForecastConfidence {
   overall: number;
   evidence: number;
   temporal: number;
   signal: number;
+  foresight?: number;
+  alignment?: number;
 }
 
 export interface ForecastExplanation {
@@ -37,6 +46,7 @@ export interface ForecastExplanation {
   assumptions: ForecastAssumption[];
   evidence: ForecastEvidence[];
   alternatives: ForecastAlternative[];
+  dependencies: ForecastDependency[];
   unknowns: string[];
   isHypothesis: true;
   overwritesReality: false;
@@ -56,6 +66,15 @@ export interface TwinForecast {
   supersededBy?: string;
 }
 
+export interface ForecastContextSnapshot {
+  companyId: string;
+  assembledAt: string;
+  version: string;
+  latestForecasts: TwinForecast[];
+  aggregateConfidence: number;
+  hypothesisCount: number;
+}
+
 export interface ForecastIntelligencePort {
   generate(input: {
     companyId: string;
@@ -67,4 +86,8 @@ export interface ForecastIntelligencePort {
   supersede(forecastId: string, reason: string): Promise<TwinForecast>;
   list(companyId: string): Promise<TwinForecast[]>;
   explain(forecastId: string): Promise<ForecastExplanation>;
+}
+
+export interface ForecastContextPort {
+  assemble(companyId: string): Promise<ForecastContextSnapshot>;
 }

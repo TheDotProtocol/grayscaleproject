@@ -1,26 +1,38 @@
 # Forecast Intelligence
 
-**Sprint 3 Phase C** | ADR-041
+**Version:** 1.1.0 (Sprint 3 Phase D)  
+**ADR:** ADR-041, ADR-069
+
+> **Constitutional:** Forecasts are hypotheses — not facts. Reality always wins.
 
 ## Purpose
 
-Forecasts are hypotheses — not facts. Reality always wins.
+Forecast Intelligence projects organizational futures while consuming the full reasoning stack.
 
 ## Inputs
 
-- Temporal Intelligence
-- Organizational Attention
-- Signals, Insights, Intent
-- Memory, Knowledge Graph, Strategy
-- Executive Council Decisions
-- Historical Twin States
+Simulation, Twin, Foresight, Alignment, Decision Economy, Antifragility, Temporal Intelligence.
 
 ## Outputs
 
-Every forecast exposes: confidence, evidence, assumptions, alternatives, unknowns.
+Every forecast includes: evidence, confidence, assumptions, dependencies, unknowns, alternative futures.
 
-Forecasts never overwrite reality. Supersession is explicit via `supersededBy`.
+`isHypothesis: true`, `overwritesReality: false` — always.
+
+## Contracts
+
+- `TwinForecast` — individual forecast
+- `ForecastContextSnapshot` — assembled context slice
+- `ForecastIntelligencePort` — generate, validate, supersede, list, explain
+- `ForecastContextPort` — assemble for CompanyContext
+
+## Integration
+
+- **CompanyContext.forecast** / **forecastContext**
+- Mission Control: `forecast-dashboard`, `forecast-confidence`, `future-timeline`
+
+Forecasts never become recommendations. Recommendations remain exclusively with certified executives.
 
 ## AttentionForecast
 
-The `AttentionForecast` contract (Phase B stub) is populated by Forecast Intelligence when horizon includes attention projections.
+`AttentionForecast` contract populated when horizon includes attention projections (via forecast service integration).

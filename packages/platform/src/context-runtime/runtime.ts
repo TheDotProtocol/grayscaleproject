@@ -29,6 +29,12 @@ export const CONTEXT_ASSEMBLER_IDS = [
   "homeostasis",
   "signal-correlation",
   "simulation",
+  "foresight",
+  "antifragility",
+  "decision-economy",
+  "alignment",
+  "scenario-planning",
+  "forecast",
 ] as const;
 
 export type ContextAssemblerId = (typeof CONTEXT_ASSEMBLER_IDS)[number];

@@ -29,8 +29,14 @@ import { CouncilContextAssemblerService } from "../council-runtime/council-conte
 import { SignalCorrelationService } from "./signal-correlation.service";
 import { HomeostasisEngineService } from "./homeostasis-engine.service";
 import { SimulationContextService } from "../twin-runtime/simulation-context.service";
+import { ForesightEngineService } from "./foresight-engine.service";
+import { AntifragilityEngineService } from "./antifragility-engine.service";
+import { DecisionEconomyEngineService } from "./decision-economy-engine.service";
+import { AlignmentEngineService } from "./alignment-engine.service";
+import { ScenarioPlanningService } from "./scenario-planning.service";
+import { ForecastContextService } from "./forecast-context.service";
 
-const CONTEXT_VERSION = "1.8.0-s3c-simulation";
+const CONTEXT_VERSION = "1.9.0-s3d-scenario-forecast";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -57,6 +63,12 @@ export class CompanyContextAssemblerService {
     private readonly signalCorrelation: SignalCorrelationService,
     private readonly homeostasis: HomeostasisEngineService,
     private readonly simulationContext: SimulationContextService,
+    private readonly foresight: ForesightEngineService,
+    private readonly antifragility: AntifragilityEngineService,
+    private readonly decisionEconomy: DecisionEconomyEngineService,
+    private readonly alignment: AlignmentEngineService,
+    private readonly scenarioPlanning: ScenarioPlanningService,
+    private readonly forecastContext: ForecastContextService,
   ) {}
 
   async assemble(
@@ -182,6 +194,16 @@ export class CompanyContextAssemblerService {
     const simulationSnapshot = await wrap("simulation", "1.1", () =>
       this.simulationContext.assemble(companyId),
     );
+
+    const [foresightSnapshot, antifragilitySnapshot, decisionEconomySnapshot, alignmentSnapshot, scenarioPlanningSnapshot, forecastSnapshot] =
+      await Promise.all([
+        wrap("foresight", "1.0", () => this.foresight.assemble(companyId)),
+        wrap("antifragility", "1.0", () => this.antifragility.assess(companyId)),
+        wrap("decision-economy", "1.0", () => this.decisionEconomy.assess(companyId)),
+        wrap("alignment", "1.0", () => this.alignment.assess(companyId)),
+        wrap("scenario-planning", "1.0", () => this.scenarioPlanning.plan(companyId, { twinVersionId: undefined })),
+        wrap("forecast", "1.1", () => this.forecastContext.assemble(companyId)),
+      ]);
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
       throw new Error("Required context assemblers failed");
@@ -363,6 +385,15 @@ export class CompanyContextAssemblerService {
             averageDurationMs: 0,
           }
         : undefined,
+      foresight: foresightSnapshot,
+      organizationalForesight: foresightSnapshot,
+      antifragility: antifragilitySnapshot,
+      decisionEconomy: decisionEconomySnapshot,
+      alignment: alignmentSnapshot,
+      organizationalAlignment: alignmentSnapshot,
+      scenarioPlanning: scenarioPlanningSnapshot,
+      forecast: forecastSnapshot,
+      forecastContext: forecastSnapshot,
       contextRuntime: {
         cacheKey,
         cached: false,

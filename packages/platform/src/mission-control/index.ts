@@ -23,3 +23,4 @@ export * from "./executive-network-widgets.js";
 export * from "./evolution-widgets.js";
 export * from "./ons-widgets.js";
 export * from "./simulation-widgets.js";
+export * from "./phase-d-widgets.js";

@@ -46,6 +46,10 @@ export class ForecastIntelligenceService implements ForecastIntelligencePort {
           { alternativeId: "alt1", label: "Accelerated growth", probability: 0.25, outcome: "Higher resource demand" },
           { alternativeId: "alt2", label: "Conservative path", probability: 0.35, outcome: "Stable operations" },
         ],
+        dependencies: [
+          { id: "dep-twin", label: "Living Organizational Twin", source: "twin", required: true },
+          { id: "dep-temporal", label: "Temporal Intelligence", source: "temporal", required: true },
+        ],
         unknowns: ["Market timing", "Regulatory shifts"],
         isHypothesis: true,
         overwritesReality: false,
