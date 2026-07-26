@@ -92,7 +92,12 @@ export class DiscoveryEngineService implements DiscoveryEnginePort {
     await this.start(executiveId, ctx.companyId);
 
     const stageEvidence: Record<DiscoveryStage, Record<string, unknown>> = {
-      observe: { eventCount: ctx.recentEvents.length, assembledAt: ctx.assembledAt },
+      observe: {
+        eventCount: ctx.recentEvents.length,
+        assembledAt: ctx.assembledAt,
+        attentionSaturation: ctx.attention?.saturation.status ?? "unknown",
+        attentionDrift: ctx.attention?.drift?.driftScore ?? 0,
+      },
       identity_engine: { hasIdentity: Boolean(ctx.identity) },
       cognitive_model: { hasCognitiveModel: Boolean(ctx.cognitiveModel) },
       memory_engine: { memoryCount: ctx.memory.length },

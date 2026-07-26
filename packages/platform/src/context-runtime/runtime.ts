@@ -23,6 +23,7 @@ export const CONTEXT_ASSEMBLER_IDS = [
   "platform-reliability",
   "security",
   "governance",
+  "attention",
 ] as const;
 
 export type ContextAssemblerId = (typeof CONTEXT_ASSEMBLER_IDS)[number];

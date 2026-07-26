@@ -15,6 +15,7 @@ import { IntentEngineService } from "./intent-engine.service";
 import { TemporalEngineService } from "./temporal-engine.service";
 import { OrganizationalSignalBusService } from "./organizational-signal-bus.service";
 import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
+import { AttentionEngineService } from "./attention-engine.service";
 import { IntentProjector } from "./projectors/intent.projector";
 import { SnapshotProjector } from "./projectors/snapshot.projector";
 import { SignalProjector } from "./projectors/signal.projector";
@@ -28,7 +29,7 @@ import { InsightProjector } from "./projectors/insight.projector";
     MemoryIndexModule,
     PulseModule,
     PluginsModule,
-    PlatformOperationsModule,
+    forwardRef(() => PlatformOperationsModule),
     forwardRef(() => EventsModule),
   ],
   providers: [
@@ -44,6 +45,7 @@ import { InsightProjector } from "./projectors/insight.projector";
     SnapshotProjector,
     SignalProjector,
     InsightProjector,
+    AttentionEngineService,
   ],
   exports: [
     ContextRuntimeService,
@@ -57,6 +59,7 @@ import { InsightProjector } from "./projectors/insight.projector";
     SnapshotProjector,
     SignalProjector,
     InsightProjector,
+    AttentionEngineService,
   ],
 })
 export class ContextRuntimeModule {}

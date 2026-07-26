@@ -29,6 +29,9 @@ export interface CouncilIssue {
   title: string;
   summary: string;
   domain: string;
+  /** Decision class — MUST be set before deliberation begins (ADR-036) */
+  decisionClass: string;
+  classification?: { decisionClass: string; classifiedAt: string; correlationId: string };
   status: CouncilIssueStatus;
   urgency: "low" | "medium" | "high" | "critical";
   intentRef?: string;

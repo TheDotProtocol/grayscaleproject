@@ -325,6 +325,22 @@ export const EVENT_CATALOG = {
   "executive.skeptic.pass.completed": { version: 1, category: "executive", description: "Skeptic pass completed on recommendation draft" },
   "athena.discovery.completed": { version: 1, category: "executive", description: "Athena discovery pipeline completed" },
   "athena.recommendation.drafted": { version: 1, category: "executive", description: "Athena recommendation draft with full explainability" },
+
+  // ─── Executive Council Runtime (Sprint 3 Phase B — ADR-037) ───
+  "council.session.started": { version: 1, category: "council", description: "Council session started" },
+  "council.session.closed": { version: 1, category: "council", description: "Council session closed" },
+  "council.issue.opened": { version: 1, category: "council", description: "Council issue opened with decision classification" },
+  "council.issue.classified": { version: 1, category: "council", description: "Decision class assigned before deliberation" },
+  "council.evidence.submitted": { version: 1, category: "council", description: "Council evidence submitted" },
+  "council.deliberation.recorded": { version: 1, category: "council", description: "Structured deliberation recorded via bus" },
+  "council.vote.cast": { version: 1, category: "council", description: "Council vote cast with evidence" },
+  "council.consensus.measured": { version: 1, category: "council", description: "Consensus measured deterministically" },
+  "council.resolution.proposed": { version: 1, category: "council", description: "Council resolution proposed" },
+  "council.decision.approved": { version: 1, category: "council", description: "Council decision approved" },
+  "council.founder.escalated": { version: 1, category: "council", description: "Issue escalated to Founder" },
+  "council.founder.override": { version: 1, category: "council", description: "Founder override recorded" },
+  "council.audit.recorded": { version: 1, category: "council", description: "Council audit entry recorded" },
+  "attention.snapshot.captured": { version: 1, category: "organization", description: "Organizational attention snapshot captured" },
 } as const;
 
 export type PlatformEventType = keyof typeof EVENT_CATALOG;

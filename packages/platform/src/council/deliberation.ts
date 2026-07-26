@@ -18,6 +18,20 @@ export interface CouncilDeliberationRecord {
   recordedAt: string;
 }
 
+/** Structured executive contribution — NOT free-form chat (Sprint 3 Phase B) */
+export interface CouncilExecutiveContribution {
+  executiveId: string;
+  evidence: string[];
+  reasoning: string;
+  confidence: number;
+  assumptions: string[];
+  risks: string[];
+  supportingEvidence: string[];
+  contradictingEvidence: string[];
+  alternatives: string[];
+  unknowns: string[];
+}
+
 export interface CouncilVote {
   id: string;
   companyId: string;

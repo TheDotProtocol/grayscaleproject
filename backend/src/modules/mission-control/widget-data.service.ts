@@ -21,6 +21,7 @@ import { ReadinessReportGeneratorService } from "../platform-operations/readines
 import { PlatformEvolutionService } from "../platform-operations/platform-evolution.service";
 import { SecurityObservatoryService } from "../platform-operations/security-observatory.service";
 import { AthenaWidgetDataService } from "./athena-widget-data.service";
+import { CouncilWidgetDataService } from "./council-widget-data.service";
 
 @Injectable()
 export class WidgetDataService implements WidgetDataPort {
@@ -46,6 +47,7 @@ export class WidgetDataService implements WidgetDataPort {
     private readonly evolution: PlatformEvolutionService,
     private readonly security: SecurityObservatoryService,
     private readonly athenaWidgets: AthenaWidgetDataService,
+    private readonly councilWidgets: CouncilWidgetDataService,
   ) {}
 
   async fetchWidget(
@@ -126,6 +128,44 @@ export class WidgetDataService implements WidgetDataPort {
         return this.athenaWidgets.getAutomationReadiness(companyId);
       case "athena-founder-overrides":
         return this.athenaWidgets.getFounderOverrides(companyId);
+      case "council-sessions":
+        return this.councilWidgets.getSessions(companyId);
+      case "council-open-deliberations":
+        return this.councilWidgets.getDeliberations(companyId);
+      case "council-consensus-score":
+        return this.councilWidgets.getConsensus(companyId);
+      case "council-minority-opinions":
+        return this.councilWidgets.getMinorityOpinions(companyId);
+      case "council-executive-participation":
+        return this.councilWidgets.getParticipation(companyId);
+      case "council-health":
+        return this.councilWidgets.getHealth(companyId);
+      case "council-trust":
+        return this.councilWidgets.getTrust(companyId);
+      case "council-decisions":
+        return this.councilWidgets.getDecisions(companyId);
+      case "council-founder-overrides":
+        return this.councilWidgets.getOverrides(companyId);
+      case "council-history":
+        return this.councilWidgets.getHistory(companyId);
+      case "council-audit":
+        return this.councilWidgets.getAudit(companyId);
+      case "council-timeline":
+        return this.councilWidgets.getTimeline(companyId);
+      case "council-metrics":
+        return this.councilWidgets.getMetrics(companyId);
+      case "executive-council":
+        return this.councilWidgets.getCouncilFeed(companyId);
+      case "council-decision-queue":
+        return this.councilWidgets.getDecisionQueue(companyId);
+      case "council-decision-classification":
+        return this.councilWidgets.getDecisionClassification(companyId);
+      case "organizational-attention":
+        return this.councilWidgets.getAttention(companyId);
+      case "council-founder-escalations":
+        return this.councilWidgets.getEscalations(companyId);
+      case "council-decision-replay":
+        return this.councilWidgets.getHistory(companyId);
       default:
         return null;
     }

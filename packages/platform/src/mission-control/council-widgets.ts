@@ -39,4 +39,9 @@ export const RESERVED_COUNCIL_MC_WIDGETS: Pick<
   { id: "council-audit", name: "Council Audit", category: "intelligence", dataProvider: "council.audit", emptyState: "No audit records." },
   { id: "council-timeline", name: "Council Timeline", category: "operations", dataProvider: "council.timeline", emptyState: "No council events." },
   { id: "council-metrics", name: "Council Metrics", category: "intelligence", dataProvider: "council.metrics", emptyState: "Metrics unavailable." },
+  { id: "council-decision-queue", name: "Decision Queue", category: "intelligence", dataProvider: "council.decision-queue", emptyState: "No pending decisions." },
+  { id: "council-decision-classification", name: "Decision Classification", category: "intelligence", dataProvider: "council.decision-classification", emptyState: "No classified decisions." },
+  { id: "organizational-attention", name: "Organizational Attention", category: "intelligence", dataProvider: "attention.snapshot", emptyState: "Attention data unavailable." },
+  { id: "council-founder-escalations", name: "Founder Escalations", category: "intelligence", dataProvider: "council.escalations", emptyState: "No escalations." },
+  { id: "council-decision-replay", name: "Decision Replay", category: "intelligence", dataProvider: "council.replay", emptyState: "No replay data." },
 ];

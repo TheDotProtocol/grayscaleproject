@@ -23,8 +23,9 @@ import { IntentEngineService } from "./intent-engine.service";
 import { TemporalEngineService } from "./temporal-engine.service";
 import { OrganizationalSignalBusService } from "./organizational-signal-bus.service";
 import { OrganizationalInsightEngineService } from "./organizational-insight-engine.service";
+import { AttentionEngineService } from "./attention-engine.service";
 
-const CONTEXT_VERSION = "1.4.0-a4";
+const CONTEXT_VERSION = "1.5.0-s3b";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -45,6 +46,7 @@ export class CompanyContextAssemblerService {
     private readonly reliability: ReliabilityEngineService,
     private readonly governance: GovernanceService,
     private readonly security: SecurityObservatoryService,
+    private readonly attention: AttentionEngineService,
   ) {}
 
   async assemble(
@@ -106,6 +108,7 @@ export class CompanyContextAssemblerService {
       reliabilitySnapshot,
       governanceSummary,
       securitySummary,
+      attentionSnapshot,
     ] = await Promise.all([
       wrap("strategic", "1.0", () => this.strategy.buildContext(companyId)),
       wrap("graph", "1.0", () => this.graphSummary.getSummary(companyId)),
@@ -151,6 +154,7 @@ export class CompanyContextAssemblerService {
       wrap("platform-reliability", "1.0", () => this.reliability.computeAll()),
       wrap("governance", "1.0", () => this.governance.search(undefined, undefined, 5)),
       wrap("security", "1.0", () => this.security.assess(companyId)),
+      wrap("attention", "1.0", () => this.attention.assemble(companyId)),
     ]);
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
@@ -279,6 +283,7 @@ export class CompanyContextAssemblerService {
       signals: signalSnapshot,
       insights: insightSnapshot,
       founderConstitution: createFounderConstitutionContext(),
+      attention: attentionSnapshot,
     };
 
     assemblerResults.push({

@@ -24,6 +24,7 @@ import { AthenaModule } from "./modules/athena/athena.module";
 import { ExecutiveNotebookModule } from "./modules/executive-notebook/executive-notebook.module";
 import { ExecutiveComplianceModule } from "./modules/executive-compliance/executive-compliance.module";
 import { ExecutiveCouncilModule } from "./modules/executive-council/executive-council.module";
+import { CouncilRuntimeModule } from "./modules/council-runtime/council-runtime.module";
 import { IntegrationPlatformModule } from "./modules/integration-platform/integration-platform.module";
 import { MissionControlModule } from "./modules/mission-control/mission-control.module";
 import { PlatformOperationsModule } from "./modules/platform-operations/platform-operations.module";
@@ -51,6 +52,7 @@ import { PlatformOperationsModule } from "./modules/platform-operations/platform
     ExecutiveNotebookModule,
     ExecutiveComplianceModule,
     ExecutiveCouncilModule,
+    CouncilRuntimeModule,
     IntegrationPlatformModule,
     MissionControlModule,
     PlatformOperationsModule,

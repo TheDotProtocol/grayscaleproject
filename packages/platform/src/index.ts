@@ -17,4 +17,6 @@ export * from "./temporal/index.js";
 export * from "./signals/index.js";
 export * from "./insights/index.js";
 export * from "./council/index.js";
+export * from "./decision/index.js";
+export * from "./attention/index.js";
 export type { PlatformEventType } from "./events/catalog.js";

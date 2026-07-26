@@ -17,6 +17,7 @@ import { ExecutiveNotebookModule } from "../executive-notebook/executive-noteboo
 import { ExecutiveCuriosityModule } from "../executive-curiosity/executive-curiosity.module";
 import { ExecutiveSkepticModule } from "../executive-skeptic/executive-skeptic.module";
 import { ExecutiveComplianceModule } from "../executive-compliance/executive-compliance.module";
+import { CouncilRuntimeModule } from "../council-runtime/council-runtime.module";
 import { MissionControlController } from "./mission-control.controller";
 import { PlatformRegistryController } from "./platform-registry.controller";
 import { MissionControlService } from "./mission-control.service";
@@ -34,6 +35,7 @@ import { OperationalTimelineService } from "./operational-timeline.service";
 import { GlobalSearchService } from "./global-search.service";
 import { QuickActionsService } from "./quick-actions.service";
 import { AthenaWidgetDataService } from "./athena-widget-data.service";
+import { CouncilWidgetDataService } from "./council-widget-data.service";
 
 @Module({
   imports: [
@@ -53,6 +55,7 @@ import { AthenaWidgetDataService } from "./athena-widget-data.service";
     ExecutiveCuriosityModule,
     ExecutiveSkepticModule,
     ExecutiveComplianceModule,
+    CouncilRuntimeModule,
     BullModule.registerQueue({ name: PLATFORM_JOBS_QUEUE }),
     forwardRef(() => PlatformOperationsModule),
   ],
@@ -73,6 +76,7 @@ import { AthenaWidgetDataService } from "./athena-widget-data.service";
     GlobalSearchService,
     QuickActionsService,
     AthenaWidgetDataService,
+    CouncilWidgetDataService,
   ],
   exports: [MissionControlService, PlatformServiceRegistryService, PlatformHealthService],
 })

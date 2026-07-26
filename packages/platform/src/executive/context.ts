@@ -169,6 +169,9 @@ export interface CompanyContext {
 
   /** Founder Constitution — immutable principles inherited by all executives */
   founderConstitution?: FounderConstitutionContext;
+
+  /** Sprint 3 Phase B — organizational attention (read-only to executives) */
+  attention?: import("../attention/attention-engine.js").OrganizationalAttention;
 }
 
 export interface CompanyContextAssemblerPort {
