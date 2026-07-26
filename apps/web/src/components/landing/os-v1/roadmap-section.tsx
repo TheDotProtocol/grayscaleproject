@@ -11,7 +11,7 @@ export function RoadmapSection() {
       <div className="grid gap-12 lg:grid-cols-2">
         <FadeIn>
           <h3 className="mb-6 flex items-center gap-2 text-sm font-medium text-white">
-            <span className="h-2 w-2 rounded-full bg-[hsl(var(--gold))]" aria-hidden />
+            <span className="h-2 w-2 rounded-full landing-gold-dot" aria-hidden />
             Delivered
           </h3>
           <ul className="space-y-4">

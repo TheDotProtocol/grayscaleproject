@@ -72,7 +72,7 @@ function PreviewWidget({
         <span className="text-2xl md:text-3xl">{value}</span>
         <span className="text-sm text-white/50">{unit}</span>
       </p>
-      <p className="mt-2 text-xs text-[hsl(var(--gold))]/80">{trend}</p>
+      <p className="mt-2 text-xs landing-gold-80">{trend}</p>
     </div>
   );
 }

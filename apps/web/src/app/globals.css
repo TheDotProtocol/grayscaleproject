@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source "../../src/**/*.{js,ts,jsx,tsx}";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -82,6 +84,7 @@
 }
 
 /* ─── Grayscale OS v1.0 Landing (enterprise) ─── */
+@layer components {
 .landing-os {
   --landing-bg: 220 10% 4%;
   --landing-fg: 210 15% 92%;
@@ -90,7 +93,30 @@
   --gold: 43 56% 52%;
   --gold-muted: 43 40% 40%;
   --landing-muted: 220 8% 55%;
+  min-height: 100vh;
+  background-color: hsl(var(--landing-bg));
+  color: hsl(var(--landing-fg));
   scroll-behavior: smooth;
+}
+
+.landing-gold { color: hsl(var(--gold)); }
+.landing-gold-80 { color: hsl(var(--gold) / 0.8); }
+.landing-gold-70 { color: hsl(var(--gold) / 0.7); }
+.landing-gold-60 { color: hsl(var(--gold) / 0.6); }
+.landing-gold-border-20 { border-color: hsl(var(--gold) / 0.2); }
+.landing-gold-border-30 { border-color: hsl(var(--gold) / 0.3); }
+.landing-gold-bg-5 { background-color: hsl(var(--gold) / 0.05); }
+.landing-gold-bg-10 { background-color: hsl(var(--gold) / 0.1); }
+.landing-gold-dot { background-color: hsl(var(--gold)); }
+.landing-graphite-bg-95 { background-color: hsl(var(--graphite) / 0.95); }
+
+.landing-fade-in {
+  animation: landing-fade-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes landing-fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .landing-container {
@@ -385,4 +411,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .landing-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 }

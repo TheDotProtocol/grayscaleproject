@@ -23,7 +23,7 @@ export function FAQSection() {
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 <span className="font-medium text-white">{item.q}</span>
-                <span className="mt-1 shrink-0 text-[hsl(var(--gold))]/60">{open === i ? "−" : "+"}</span>
+                <span className="mt-1 shrink-0 landing-gold-60">{open === i ? "−" : "+"}</span>
               </button>
               {open === i && (
                 <p className="mt-3 text-sm leading-relaxed text-white/50">{item.a}</p>
@@ -54,7 +54,7 @@ export function CTASection() {
           <h2 className="landing-heading">{CTA.title}</h2>
           <p className="landing-subheading mt-5">{CTA.subtitle}</p>
           {done ? (
-            <p className="mt-8 text-sm text-[hsl(var(--gold))]/80" role="status">
+            <p className="mt-8 text-sm landing-gold-80" role="status">
               Thank you. We will be in touch shortly.
             </p>
           ) : (

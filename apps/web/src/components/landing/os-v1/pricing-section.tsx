@@ -20,7 +20,7 @@ export function PricingSection({ onWaitlistClick }: PricingSectionProps) {
               hover={!plan.highlighted}
             >
               {plan.highlighted && (
-                <span className="mb-4 inline-block w-fit rounded-full border border-[hsl(var(--gold))]/30 bg-[hsl(var(--gold))]/10 px-3 py-1 text-[10px] font-medium tracking-wider text-[hsl(var(--gold))] uppercase">
+                <span className="mb-4 inline-block w-fit rounded-full border landing-gold-border-30 landing-gold-bg-10 px-3 py-1 text-[10px] font-medium tracking-wider landing-gold uppercase">
                   Most Popular
                 </span>
               )}
@@ -54,7 +54,7 @@ export function PricingSection({ onWaitlistClick }: PricingSectionProps) {
         <LuxuryCard className="landing-founding-card p-8 md:p-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <span className="rounded-full border border-[hsl(var(--gold))]/30 bg-[hsl(var(--gold))]/10 px-3 py-1 text-[10px] font-medium tracking-wider text-[hsl(var(--gold))] uppercase">
+              <span className="rounded-full border landing-gold-border-30 landing-gold-bg-10 px-3 py-1 text-[10px] font-medium tracking-wider landing-gold uppercase">
                 {PRICING.founding.badge}
               </span>
               <h3 className="mt-4 text-xl font-medium text-white">{PRICING.founding.name}</h3>
@@ -80,7 +80,7 @@ export function PricingSection({ onWaitlistClick }: PricingSectionProps) {
               <th className="pb-4 font-medium text-white/40">Feature</th>
               <th className="pb-4 text-center font-medium text-white/60">Explorer</th>
               <th className="pb-4 text-center font-medium text-white/60">Builder</th>
-              <th className="pb-4 text-center font-medium text-[hsl(var(--gold))]/80">Scale</th>
+              <th className="pb-4 text-center font-medium landing-gold-80">Scale</th>
               <th className="pb-4 text-center font-medium text-white/60">Enterprise</th>
             </tr>
           </thead>

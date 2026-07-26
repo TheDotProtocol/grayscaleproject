@@ -28,7 +28,7 @@ export function TrustSection() {
               <div className="landing-timeline-dot" aria-hidden />
               {i < TRUST.timeline.length - 1 && <div className="landing-timeline-line" aria-hidden />}
               <div className="pb-10 pl-8">
-                <p className="text-xs font-medium text-[hsl(var(--gold))]/80">{item.date}</p>
+                <p className="text-xs font-medium landing-gold-80">{item.date}</p>
                 <p className="mt-1 font-medium text-white">{item.phase}</p>
                 <p className="mt-1 text-xs text-white/45">{item.score}</p>
                 <span className="mt-2 inline-block rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/50 uppercase tracking-wide">

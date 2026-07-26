@@ -63,7 +63,7 @@ export function Navbar({ onWaitlistClick }: NavbarProps) {
       </nav>
 
       {open && (
-        <div className="border-t border-white/5 bg-[hsl(var(--graphite))]/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-white/5 landing-graphite-bg-95 backdrop-blur-xl md:hidden">
           <ul className="landing-container flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>

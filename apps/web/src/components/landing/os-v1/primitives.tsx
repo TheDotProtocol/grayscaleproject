@@ -1,8 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export function Section({
   id,
@@ -35,15 +34,14 @@ export function SectionHeader({
 }) {
   return (
     <header className={cn("mb-14 md:mb-20", align === "center" && "mx-auto max-w-3xl text-center")}>
-      {eyebrow && (
-        <p className="landing-eyebrow mb-4">{eyebrow}</p>
-      )}
+      {eyebrow && <p className="landing-eyebrow mb-4">{eyebrow}</p>}
       <h2 className="landing-heading">{title}</h2>
       {subtitle && <p className="landing-subheading mt-5">{subtitle}</p>}
     </header>
   );
 }
 
+/** CSS-only fade-in — content visible without JavaScript */
 export function FadeIn({
   children,
   className,
@@ -53,19 +51,13 @@ export function FadeIn({
   className?: string;
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
-  if (reduce) return <div className={className}>{children}</div>;
-
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      className={cn("landing-fade-in", className)}
+      style={{ animationDelay: `${delay}s` } as CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -135,7 +127,7 @@ export function SecondaryButton({
 
 export function CheckIcon({ className }: { className?: string }) {
   return (
-    <svg className={cn("h-4 w-4 shrink-0 text-[hsl(var(--gold))]", className)} viewBox="0 0 16 16" fill="none" aria-hidden>
+    <svg className={cn("h-4 w-4 shrink-0 landing-gold", className)} viewBox="0 0 16 16" fill="none" aria-hidden>
       <path d="M3 8.5L6.5 12L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

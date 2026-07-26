@@ -34,8 +34,8 @@ export function PlatformSection() {
         {PLATFORM.pillars.map((pillar, i) => (
           <FadeIn key={pillar.label} delay={i * 0.05}>
             <LuxuryCard className="p-6 text-center">
-              <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-[hsl(var(--gold))]/20 bg-[hsl(var(--gold))]/5">
-                <span className="text-xs font-semibold text-[hsl(var(--gold))]">{i + 1}</span>
+              <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full border landing-gold-border-20 landing-gold-bg-5">
+                <span className="text-xs font-semibold landing-gold">{i + 1}</span>
               </div>
               <h3 className="text-sm font-medium text-white">{pillar.label}</h3>
               <p className="mt-2 text-xs leading-relaxed text-white/45">{pillar.desc}</p>
@@ -94,7 +94,7 @@ function FeatureVisual({ id, title }: { id: string; title: string }) {
   return (
     <div className="landing-feature-visual">
       <div className="landing-feature-visual-header">
-        <span className="text-xs font-medium tracking-wider text-[hsl(var(--gold))]/70 uppercase">{title}</span>
+        <span className="text-xs font-medium tracking-wider landing-gold-70 uppercase">{title}</span>
       </div>
       <div className="p-6">
         <div className="space-y-3">
@@ -105,13 +105,13 @@ function FeatureVisual({ id, title }: { id: string; title: string }) {
                 <div className="h-2 w-3/4 rounded bg-white/10" />
                 <div className="h-1.5 w-1/2 rounded bg-white/5" />
               </div>
-              <div className="h-5 w-12 rounded-full bg-[hsl(var(--gold))]/10" />
+              <div className="h-5 w-12 rounded-full landing-gold-bg-10" />
             </div>
           ))}
         </div>
         <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4 text-xs text-white/35">
           <span>Explainable · Auditable</span>
-          <span className="text-[hsl(var(--gold))]/60">Bedrock</span>
+          <span className="landing-gold-60">Bedrock</span>
         </div>
       </div>
     </div>

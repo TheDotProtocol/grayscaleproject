@@ -17,7 +17,7 @@ export function GrayscaleOSLandingPage() {
   };
 
   return (
-    <div className="landing-os min-h-screen bg-[hsl(var(--landing-bg))] text-[hsl(var(--landing-fg))]">
+    <div className="landing-os">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4">
         Skip to content
       </a>
