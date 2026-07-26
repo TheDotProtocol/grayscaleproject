@@ -226,6 +226,16 @@ export interface CompanyContext {
   organizationalRuntime?: import("../runtime/organizational-runtime.js").OrganizationalRuntimeSnapshot;
   runtimeHealth?: import("../runtime/organizational-runtime.js").RuntimeHealth;
   runtimeMetrics?: import("../runtime/organizational-runtime.js").RuntimeMetrics;
+
+  /** Sprint 4 Phase C — Organizational Attention Budget (read-only, assembled) */
+  attentionBudget?: import("../attention-budget/organizational-attention-budget.js").AttentionBudgetSnapshot;
+  attentionCapacity?: import("../attention-budget/organizational-attention-budget.js").AttentionCapacitySnapshot;
+  attentionDebt?: import("../attention-budget/organizational-attention-budget.js").AttentionDebtSnapshot;
+  attentionRecovery?: import("../attention-budget/organizational-attention-budget.js").AttentionRecoverySnapshot;
+  attentionConsumption?: import("../attention-budget/organizational-attention-budget.js").AttentionConsumptionSnapshot;
+  attentionBudgetHealth?: import("../attention-budget/organizational-attention-budget.js").AttentionBudgetHealth;
+  attentionAllocation?: import("../attention-budget/organizational-attention-budget.js").AttentionAllocationSnapshot;
+  attentionMetrics?: import("../attention-budget/organizational-attention-budget.js").AttentionBudgetMetrics;
 }
 
 export interface CompanyContextAssemblerPort {

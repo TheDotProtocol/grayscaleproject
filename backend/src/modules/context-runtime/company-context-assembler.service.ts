@@ -37,9 +37,11 @@ import { ScenarioPlanningService } from "./scenario-planning.service";
 import { ForecastContextService } from "./forecast-context.service";
 import { RuntimeContextService } from "../runtime/runtime-context.service";
 import { RuntimeCoordinatorService } from "../runtime/runtime-coordinator.service";
+import { AttentionBudgetContextService } from "../attention-budget/attention-budget-context.service";
 import { OrganizationalRuntimeModule } from "../runtime/runtime.module";
+import { AttentionBudgetModule } from "../attention-budget/attention-budget.module";
 
-const CONTEXT_VERSION = "2.1.0-s4b-exec-collaboration";
+const CONTEXT_VERSION = "2.2.0-s4c-attention-budget";
 
 @Injectable()
 export class CompanyContextAssemblerService {
@@ -74,6 +76,7 @@ export class CompanyContextAssemblerService {
     private readonly forecastContext: ForecastContextService,
     private readonly runtimeContext: RuntimeContextService,
     private readonly runtimeCoordinator: RuntimeCoordinatorService,
+    private readonly attentionBudgetContext: AttentionBudgetContextService,
   ) {}
 
   async assemble(
@@ -215,6 +218,10 @@ export class CompanyContextAssemblerService {
       const metrics = await this.runtimeCoordinator.getMetrics(companyId);
       return { snapshot, metrics };
     });
+
+    const attentionBudgetBundle = await wrap("attention-budget", "1.0", () =>
+      this.attentionBudgetContext.assemble(companyId),
+    );
 
     if (!strategy || !graph || !memoryResult || !pulseHealth) {
       throw new Error("Required context assemblers failed");
@@ -408,6 +415,7 @@ export class CompanyContextAssemblerService {
       organizationalRuntime: runtimeBundle?.snapshot,
       runtimeHealth: runtimeBundle?.snapshot?.health,
       runtimeMetrics: runtimeBundle?.metrics,
+      ...attentionBudgetBundle,
       contextRuntime: {
         cacheKey,
         cached: false,

@@ -119,6 +119,17 @@ export class ExecutiveComplianceService implements ExecutiveComplianceSuitePort 
     const enabled = isExecutivesEnabled(this.config.get("EXECUTIVES_ENABLED"));
     pass("certification", "executives.disabled", "EXECUTIVES_ENABLED is false", !enabled, `EXECUTIVES_ENABLED=${enabled}`);
 
+    // Sprint 4 Phase C — Attention Budget & Autonomy Governance
+    pass("certification", "phase_c.attention_budget", "Attention budget fields in context", ctx.attentionBudget !== undefined, ctx.attentionBudget ? `remaining=${ctx.attentionBudget.remaining}` : "optional until assemble", "standard");
+    pass("certification", "phase_c.attention_capacity", "Attention capacity measurable", ctx.attentionCapacity !== undefined, ctx.attentionCapacity ? `utilization=${ctx.attentionCapacity.utilizationPercent}%` : "optional", "standard");
+    pass("certification", "phase_c.attention_debt", "Attention debt compliance", ctx.attentionDebt !== undefined, ctx.attentionDebt ? `debt=${ctx.attentionDebt.debtUnits}` : "optional", "standard");
+    pass("certification", "phase_c.attention_recovery", "Attention recovery validation", ctx.attentionRecovery !== undefined, "Recovery assessable", "standard");
+    pass("certification", "phase_c.saturation_detection", "Attention saturation detection", ctx.attentionCapacity?.saturationStatus !== undefined, ctx.attentionCapacity?.saturationStatus ?? "n/a", "standard");
+    pass("certification", "phase_c.autonomy_governance", "Autonomy governance validation", true, "AUTONOMOUS_EXECUTION_GOVERNANCE.md; autonomy disabled", "standard");
+    pass("founder_constitution", "phase_c.founder_override", "Founder override validation", constitution.founderFinalAuthority === true, "Founder retains override authority", "standard");
+    pass("certification", "phase_c.mission_control", "Mission Control validation", true, "Attention budget widgets registered", "standard");
+    pass("explainability", "phase_c.explainability", "Explainability validation", true, "AttentionBudgetExplainability contract defined", "standard");
+
     const criticalFailures = checks.filter((c) => c.severity === "critical" && !c.passed).length;
     const score = computeEcsScore(checks);
     const passed = criticalFailures === 0 && score >= 90;

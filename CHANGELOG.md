@@ -129,6 +129,28 @@ Executive gate spec: `docs/platform/EXECUTIVE_CERTIFICATION_SPECIFICATION.md`
 
 ---
 
+## [Sprint-4-Phase-C-AttentionBudget-v1.0] — 2026-07-26
+
+**Context Version:** `2.2.0-s4c-attention-budget`  
+**Status:** ATTENTION BUDGET CERTIFIED — `EXECUTIVES_ENABLED=false`, `AUTONOMOUS_EXECUTION_ENABLED=false`
+
+### Added
+
+- **Organizational Attention Budget** — `ORGANIZATIONAL_ATTENTION_BUDGET.md`
+- **Autonomous Execution Governance** — constitutional rules only, no activation
+- **Attention Budget Module** — allocator, capacity, debt, recovery, certification
+- **CompanyContext** — 8 read-only attention budget fields
+- **Mission Control** — 14 attention budget widget contracts
+- **ECS Extension** — 9 Phase C compliance gates
+- **ADRs 080–084**
+
+### Verification
+
+- `pnpm typecheck` — PASS
+- `pnpm test` — 156 tests PASS
+
+---
+
 ## [Sprint-4-Phase-B-ExecutiveCollaboration-v1.0] — 2026-07-26
 
 **Context Version:** `2.1.0-s4b-exec-collaboration`  

@@ -25,6 +25,7 @@ export * from "./compliance-suite.js";
 export * from "./recommendation-pipeline.js";
 export * from "./executive-recommendation.js";
 export * from "./twin-reasoning.js";
+export * from "./phase-c-ecs.js";
 export * from "./executive-specialization.js";
 export * from "./executive-registry.js";
 export * from "./executive-network.js";

@@ -387,6 +387,13 @@ export const EVENT_CATALOG = {
   "collaboration.certified": { version: 1, category: "council", description: "Executive collaboration certification passed" },
   "council.memory.appended": { version: 1, category: "council", description: "Immutable council memory entry appended" },
 
+  // ─── Organizational Attention Budget (Sprint 4 Phase C) ───
+  "attention-budget.allocated": { version: 1, category: "organization", description: "Organizational attention allocated" },
+  "attention-budget.certified": { version: 1, category: "organization", description: "Attention budget certification passed" },
+  "attention-budget.debt.recorded": { version: 1, category: "organization", description: "Attention debt recorded" },
+  "attention-budget.recovery.assessed": { version: 1, category: "organization", description: "Attention recovery assessed" },
+  "autonomy.governance.validated": { version: 1, category: "organization", description: "Autonomous execution governance validated (not enabled)" },
+
   // ─── Organizational Evolution (Sprint 4 — ADR-046–051) ───
   "memory-evolution.layer.created": { version: 1, category: "organization", description: "Memory evolution layer added without mutating source memory" },
   "organizational-learning.validated": { version: 1, category: "organization", description: "Organizational learning validated with evidence" },
