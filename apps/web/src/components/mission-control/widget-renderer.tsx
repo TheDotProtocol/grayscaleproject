@@ -17,7 +17,12 @@ import {
   Gauge,
   Stethoscope,
   Layers,
+  Users,
+  GitBranch,
+  Brain,
+  Sparkles,
 } from "lucide-react";
+import { renderExtendedWidget } from "./extended-widget-renderer";
 
 const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   "platform-health": Activity,
@@ -39,6 +44,13 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   "foundation-readiness": Target,
   "platform-evolution": Layers,
   "security-health": Shield,
+  "executive-council": Users,
+  "living-organizational-twin": GitBranch,
+  "council-sessions": Users,
+  "athena-status": Sparkles,
+  "executive-network": Users,
+  "organizational-evolution": Brain,
+  "wisdom-library": Sparkles,
 };
 
 function WidgetShell({
@@ -359,8 +371,11 @@ function renderWidgetBody(widgetId: string, result: WidgetDataResult | undefined
         </div>
       );
     }
-    default:
+    default: {
+      const extended = renderExtendedWidget(widgetId, data, emptyState);
+      if (extended) return extended;
       return <EmptyState message={emptyState ?? "No data"} />;
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { Sidebar } from "@/components/dashboard/sidebar";
+import { CommandPalette } from "@/components/workspace/command-palette";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { token, loading } = useAuth();
@@ -28,6 +29,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="min-h-screen bg-background pl-64">
       <Sidebar />
+      <CommandPalette />
       <main className="px-8 py-8">{children}</main>
     </div>
   );
